@@ -52,5 +52,24 @@ namespace Xiangqi.Game
             Pieces[9, 7] = Horse.Of(Color.Red);
             Pieces[9, 8] = Chariot.Of(Color.Red);
         }
+
+        public override string ToString()
+        {
+            int row = Pieces.GetUpperBound(0) + 1;
+            int col = Pieces.GetUpperBound(1) + 1;
+
+            string[] rowString = new string[row];
+            for (int i = 0; i < row; i++)
+            {
+                string[] colString = new string[col];
+                for (int j = 0; j < col; j++)
+                {
+                    IPiece p = Pieces[i,j];
+                    colString[j] = p != null ? p.ToString() : "。";
+                }
+                rowString[i] = string.Join("|", colString);
+            }
+            return string.Join("\n", rowString);
+        }
     }
 }

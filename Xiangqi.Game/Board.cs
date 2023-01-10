@@ -9,11 +9,16 @@ namespace Xiangqi.Game
 {
     public class Board
     {
+        public const int Rows = 10;
+        public const int Cols = 9;
+        public const int BlackRiver = 4;
+        public const int RedRiver = 5;
+
         public IPiece[,] Pieces;
 
         public Board() 
         { 
-            Pieces = new IPiece[10,9];
+            Pieces = new IPiece[Rows, Cols];
             Pieces[0, 0] = Chariot.Of(Color.Black);
             Pieces[0, 1] = Horse.Of(Color.Black);
             Pieces[0, 2] = Elephant.Of(Color.Black);
@@ -58,16 +63,22 @@ namespace Xiangqi.Game
             Pieces[position.Row, position.Col] = piece;
         }
 
+        public static Color GetPositionSide(Position position)
+        {
+            if (position.Row >= RedRiver) 
+            { 
+                return Color.Red; 
+            }
+            return Color.Black;
+        }
+
         public override string ToString()
         {
-            int row = Pieces.GetUpperBound(0) + 1;
-            int col = Pieces.GetUpperBound(1) + 1;
-
-            string[] rowString = new string[row];
-            for (int i = 0; i < row; i++)
+            string[] rowString = new string[Rows];
+            for (int i = 0; i < Rows; i++)
             {
-                string[] colString = new string[col];
-                for (int j = 0; j < col; j++)
+                string[] colString = new string[Cols];
+                for (int j = 0; j < Cols; j++)
                 {
                     IPiece p = Pieces[i,j];
                     colString[j] = p != null ? p.ToString() : "。";

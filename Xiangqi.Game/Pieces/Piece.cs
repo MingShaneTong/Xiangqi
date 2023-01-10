@@ -14,5 +14,8 @@ namespace Xiangqi.Game.Pieces
             get { return _color; }
             init { _color = value; }
         }
+
+        public abstract bool IsValidMove(Board board, Position oldPosition, Position newPosition);
+        public abstract bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured);
     }
 }

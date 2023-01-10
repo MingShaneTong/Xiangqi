@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xiangqi.Game.Pieces
 {
-    public class Horse : Piece, IPiece
+    public class Horse : Piece
     {
         public override string ToString()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xiangqi.Game.Pieces
 {
-    public abstract class Piece
+    public abstract class Piece : IPiece
     {
         private Color _color;
         public Color Color 

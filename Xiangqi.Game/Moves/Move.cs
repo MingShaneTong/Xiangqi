@@ -15,14 +15,7 @@ namespace Xiangqi.Game.Moves
             init { _color = value; }
         }
 
-        public void Apply(Board board)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsValid(Board board)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract bool IsValid(Board board);
+        public abstract void Apply(Board board);
     }
 }

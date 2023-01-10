@@ -53,6 +53,11 @@ namespace Xiangqi.Game
             Pieces[9, 8] = Chariot.Of(Color.Red);
         }
 
+        public void SetPieceOn(Position position, IPiece piece)
+        {
+            Pieces[position.Row, position.Col] = piece;
+        }
+
         public override string ToString()
         {
             int row = Pieces.GetUpperBound(0) + 1;

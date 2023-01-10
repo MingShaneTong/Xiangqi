@@ -24,5 +24,15 @@ namespace Xiangqi.Game.Pieces
         {
             return new Elephant() { Color = color };
         }
+
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

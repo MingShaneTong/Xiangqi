@@ -14,48 +14,12 @@ namespace Xiangqi.Game
         public const int BlackRiver = 4;
         public const int RedRiver = 5;
 
-        public IPiece[,] Pieces;
+        public IPiece[,] Pieces { get; init; }
 
-        public Board() 
-        { 
-            Pieces = new IPiece[Rows, Cols];
-            Pieces[0, 0] = Chariot.Of(Color.Black);
-            Pieces[0, 1] = Horse.Of(Color.Black);
-            Pieces[0, 2] = Elephant.Of(Color.Black);
-            Pieces[0, 3] = Advisor.Of(Color.Black);
-            Pieces[0, 4] = General.Of(Color.Black);
-            Pieces[0, 5] = Advisor.Of(Color.Black);
-            Pieces[0, 6] = Elephant.Of(Color.Black);
-            Pieces[0, 7] = Horse.Of(Color.Black);
-            Pieces[0, 8] = Chariot.Of(Color.Black);
-
-            Pieces[2, 1] = Cannon.Of(Color.Black);
-            Pieces[2, 7] = Cannon.Of(Color.Black);
-
-            Pieces[3, 0] = Soldier.Of(Color.Black);
-            Pieces[3, 2] = Soldier.Of(Color.Black);
-            Pieces[3, 4] = Soldier.Of(Color.Black);
-            Pieces[3, 6] = Soldier.Of(Color.Black);
-            Pieces[3, 8] = Soldier.Of(Color.Black);
-
-            Pieces[6, 0] = Soldier.Of(Color.Red);
-            Pieces[6, 2] = Soldier.Of(Color.Red);
-            Pieces[6, 4] = Soldier.Of(Color.Red);
-            Pieces[6, 6] = Soldier.Of(Color.Red);
-            Pieces[6, 8] = Soldier.Of(Color.Red);
-
-            Pieces[7, 1] = Cannon.Of(Color.Red);
-            Pieces[7, 7] = Cannon.Of(Color.Red);
-
-            Pieces[9, 0] = Chariot.Of(Color.Red);
-            Pieces[9, 1] = Horse.Of(Color.Red);
-            Pieces[9, 2] = Elephant.Of(Color.Red);
-            Pieces[9, 3] = Advisor.Of(Color.Red);
-            Pieces[9, 4] = General.Of(Color.Red);
-            Pieces[9, 5] = Advisor.Of(Color.Red);
-            Pieces[9, 6] = Elephant.Of(Color.Red);
-            Pieces[9, 7] = Horse.Of(Color.Red);
-            Pieces[9, 8] = Chariot.Of(Color.Red);
+        public IPiece GetPieceOn(Position position)
+        {
+            if (!position.IsValid()) { return null; }
+            return Pieces[position.Row, position.Col];
         }
 
         public void SetPieceOn(Position position, IPiece piece)

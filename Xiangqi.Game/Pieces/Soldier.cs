@@ -58,6 +58,7 @@ namespace Xiangqi.Game.Pieces
 
         public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
         {
+            if (board.GetPieceOn(oldPosition) != this) { return false; }
             if (!oldPosition.IsValid() || !newPosition.IsValid()) { return false; }
 
             if (IsValidHorizontalMove(board, oldPosition, newPosition)) { return true; }
@@ -68,6 +69,7 @@ namespace Xiangqi.Game.Pieces
         public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
         {
             if (pieceCaptured == null) { return false; }
+            if (board.GetPieceOn(newPosition) != pieceCaptured) { return false; }
             return IsValidMove(board, oldPosition, newPosition);
         }
 

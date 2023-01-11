@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xiangqi", "Xiangqi\Xiangqi.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xiangqi.Game", "Xiangqi.Game\Xiangqi.Game.csproj", "{081E8DA8-A619-4DB6-A68F-FCA3643209DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xiangqi.UnitTests", "UnitTesting\Xiangqi.UnitTests.csproj", "{B7B323C3-76E6-4B2E-8ADB-789915A4756D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xiangqi.UnitTests", "Xiangqi.UnitTests\Xiangqi.UnitTests.csproj", "{B7B323C3-76E6-4B2E-8ADB-789915A4756D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

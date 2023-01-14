@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Xiangqi.Game;
 
-namespace UnitTests
+namespace Xiangqi.UnitTests
 {
     [TestClass]
     public class BoardState
@@ -9,7 +9,7 @@ namespace UnitTests
         [TestMethod]
         public void InitialBoardPosition()
         {
-            Board board = new Board();
+            Board board = BoardCreator.InitBoard();
             Trace.WriteLine(board);
             Assert.AreEqual(board.ToString(),
                 "車|馬|象|士|将|士|象|馬|車\n" +

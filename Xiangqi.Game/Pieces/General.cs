@@ -10,7 +10,17 @@ namespace Xiangqi.Game.Pieces
     {
         public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
         {
-            throw new NotImplementedException();
+            if (!Board.InCastle(Color, newPosition) || !Board.InCastle(Color, newPosition)) { return false; }
+            if (oldPosition.Row == newPosition.Row)
+            {
+                return Math.Abs(newPosition.Col - oldPosition.Col) == 1;
+            }
+            if (oldPosition.Col == newPosition.Col)
+            {
+                return Math.Abs(newPosition.Row - oldPosition.Row) == 1;
+            }
+
+            return false;
         }
 
         public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)

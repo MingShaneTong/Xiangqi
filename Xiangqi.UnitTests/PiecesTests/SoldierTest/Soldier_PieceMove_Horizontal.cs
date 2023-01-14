@@ -7,13 +7,13 @@ using Xiangqi.Game.Moves;
 using Xiangqi.Game.Pieces;
 using Xiangqi.Game;
 
-namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
+namespace PiecesTests.SoldierTest
 {
     [TestClass]
-    public class Horizontal
+    public class Soldier_PieceMove_Horizontal
     {
         [TestMethod]
-        public void ValidHorizontalBlack()
+        public void HorizontalMove_Black()
         {
             IPiece soldier = Soldier.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -31,7 +31,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
         }
 
         [TestMethod]
-        public void ValidHorizontalRed()
+        public void HorizontalMove_Red()
         {
             IPiece soldier = Soldier.Of(Color.Red);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -49,7 +49,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
         }
 
         [TestMethod]
-        public void InvalidMultiHorizontalBlack()
+        public void HorizontalMove_AcrossMultipleSquares_Black()
         {
             IPiece soldier = Soldier.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -67,7 +67,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
         }
 
         [TestMethod]
-        public void InvalidMultiHorizontalRed()
+        public void HorizontalMove_AcrossMultipleSquares_Red()
         {
             IPiece soldier = Soldier.Of(Color.Red);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -85,7 +85,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
         }
 
         [TestMethod]
-        public void InvalidHorizontalNotOverRiverBlack()
+        public void HorizontalMove_NotOverRiver_Black()
         {
             IPiece soldier = Soldier.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -103,7 +103,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
         }
 
         [TestMethod]
-        public void InvalidHorizontalNotOverRiverRed()
+        public void HorizontalMove_NotOverRiver_Red()
         {
             IPiece soldier = Soldier.Of(Color.Red);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>

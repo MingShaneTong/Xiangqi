@@ -7,13 +7,13 @@ using Xiangqi.Game;
 using Xiangqi.Game.Moves;
 using Xiangqi.Game.Pieces;
 
-namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
+namespace PiecesTests.SoldierTest
 {
     [TestClass]
-    public class Vertical
+    public class Soldier_PieceMove_Vertical
     {
         [TestMethod]
-        public void ValidForwardBlack()
+        public void ForwardMove_Black()
         {
             IPiece soldier = Soldier.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -31,7 +31,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
         }
 
         [TestMethod]
-        public void ValidForwardRed()
+        public void ForwardMove_Red()
         {
             IPiece soldier = Soldier.Of(Color.Red);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -49,7 +49,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
         }
 
         [TestMethod]
-        public void InvalidBackwardBlack()
+        public void BackwardMove_Black_Invalid()
         {
             IPiece soldier = Soldier.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -67,7 +67,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
         }
 
         [TestMethod]
-        public void InvalidBackwardRed()
+        public void BackwardMove_Red_Invalid()
         {
             IPiece soldier = Soldier.Of(Color.Red);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -85,7 +85,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
         }
 
         [TestMethod]
-        public void InvalidMultiForwardBlack()
+        public void ForwardMove_AcrossMultipleSquares_Black()
         {
             IPiece soldier = Soldier.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -103,7 +103,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
         }
 
         [TestMethod]
-        public void InvalidMultiForwardRed()
+        public void ForwardMove_AcrossMultipleSquares_Red()
         {
             IPiece soldier = Soldier.Of(Color.Red);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>

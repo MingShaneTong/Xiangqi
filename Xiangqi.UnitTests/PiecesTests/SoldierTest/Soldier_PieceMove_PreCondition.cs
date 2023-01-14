@@ -7,13 +7,13 @@ using Xiangqi.Game.Moves;
 using Xiangqi.Game.Pieces;
 using Xiangqi.Game;
 
-namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
+namespace PiecesTests.SoldierTest
 {
     [TestClass]
-    public class PreCondition
+    public class Soldier_PieceMove_PreCondition
     {
         [TestMethod]
-        public void InvalidNoMove()
+        public void NoMove()
         {
             IPiece soldier = Soldier.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -31,7 +31,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
         }
 
         [TestMethod]
-        public void InvalidOldPosition()
+        public void Invalid_OldPosition()
         {
             IPiece soldier = Soldier.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -50,7 +50,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
 
 
         [TestMethod]
-        public void InvalidNewPosition()
+        public void Invalid_NewPosition()
         {
             IPiece soldier = Soldier.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -68,7 +68,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
         }
 
         [TestMethod]
-        public void InvalidOldAndNewPosition()
+        public void Invalid_OldAndNewPosition()
         {
             IPiece soldier = Soldier.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -86,7 +86,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
         }
 
         [TestMethod]
-        public void InvalidWrongPiecePositions()
+        public void Invalid_WrongPiece_InOldPosition()
         {
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>());
 

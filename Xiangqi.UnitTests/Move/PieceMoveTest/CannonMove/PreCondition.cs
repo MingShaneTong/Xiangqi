@@ -27,7 +27,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.CannonMove
                 NewPosition = new Position(0, 0),
                 Piece = cannon
             };
-            Assert.IsFalse(moveBlack.IsValid(board), "Cannon No Move Valid");
+            Assert.IsFalse(moveBlack.IsValid(board), "Expected: Cannon No Move to be Invalid");
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.CannonMove
                 NewPosition = new Position(0, 0),
                 Piece = cannon
             };
-            Assert.IsFalse(move.IsValid(board), "Cannon Old Position Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Cannon Move with Invalid Old Position to be Invalid");
         }
 
 
@@ -64,7 +64,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.CannonMove
                 NewPosition = new Position(0, -1),
                 Piece = cannon
             };
-            Assert.IsFalse(move.IsValid(board), "Cannon New Position Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Cannon Move with Invalid New Position to be Invalid");
         }
 
         [TestMethod]
@@ -82,7 +82,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.CannonMove
                 NewPosition = new Position(0, -2),
                 Piece = cannon
             };
-            Assert.IsFalse(move.IsValid(board), "Cannon Old And New Position Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Cannon Invalid Old And New Position to be Invalid");
         }
 
         [TestMethod]
@@ -96,7 +96,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.CannonMove
                 NewPosition = new Position(3, 7),
                 Piece = Cannon.Of(Color.Black)
             };
-            Assert.IsFalse(move.IsValid(board), "Wrong Piece Move Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Cannon Move with Wrong Piece to be Invalid");
         }
     }
 }

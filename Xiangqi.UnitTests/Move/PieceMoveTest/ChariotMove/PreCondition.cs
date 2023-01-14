@@ -27,7 +27,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
                 NewPosition = new Position(0, 0),
                 Piece = chariot
             };
-            Assert.IsFalse(moveBlack.IsValid(board), "Chariot No Move Valid");
+            Assert.IsFalse(moveBlack.IsValid(board), "Expected: Chariot No Move to be Invalid");
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
                 NewPosition = new Position(0, 0),
                 Piece = chariot
             };
-            Assert.IsFalse(move.IsValid(board), "Chariot Old Position Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Chariot Move with Invalid Old Position to be Invalid");
         }
 
 
@@ -64,7 +64,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
                 NewPosition = new Position(0, -1),
                 Piece = chariot
             };
-            Assert.IsFalse(move.IsValid(board), "Chariot New Position Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Chariot Move with Invalid New Position to be Invalid");
         }
 
         [TestMethod]
@@ -82,7 +82,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
                 NewPosition = new Position(0, -2),
                 Piece = chariot
             };
-            Assert.IsFalse(move.IsValid(board), "Chariot Old And New Position Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Chariot Move with Invalid Old And New Position to be Invalid");
         }
 
         [TestMethod]
@@ -96,7 +96,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
                 NewPosition = new Position(3, 7),
                 Piece = Chariot.Of(Color.Black)
             };
-            Assert.IsFalse(move.IsValid(board), "Wrong Piece Move Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Chariot Move with Wrong Piece to be Invalid");
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
                 NewPosition = new Position(0, 8),
                 Piece = chariot
             };
-            Assert.IsTrue(move.IsValid(board), "Chariot Horizontal Not Valid");
+            Assert.IsTrue(move.IsValid(board), "Expected: Chariot Horizontal Move to be Valid");
         }
 
         [TestMethod]
@@ -45,11 +45,11 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
                 NewPosition = new Position(9, 0),
                 Piece = chariot
             };
-            Assert.IsTrue(move.IsValid(board), "Chariot Vertical Not Valid");
+            Assert.IsTrue(move.IsValid(board), "Expected: Chariot Vertical Move to be Valid");
         }
 
         [TestMethod]
-        public void InvalidNotVerticalOrHorizontal()
+        public void InvalidDiagonal()
         {
             IPiece chariot = Chariot.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -63,7 +63,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
                 NewPosition = new Position(1, 1),
                 Piece = chariot
             };
-            Assert.IsFalse(move.IsValid(board), "Chariot Vertical or Horizontal Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Chariot Diagonal Move to be Invalid");
         }
 
         [TestMethod]
@@ -82,7 +82,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
                 NewPosition = new Position(0, 8),
                 Piece = chariot
             };
-            Assert.IsFalse(move.IsValid(board), "Chariot Horizontal Blocking Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Chariot Horizontal Move Through Blocking to be Invalid");
         }
 
         [TestMethod]
@@ -101,7 +101,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
                 NewPosition = new Position(9, 0),
                 Piece = chariot
             };
-            Assert.IsFalse(move.IsValid(board), "Chariot Vertical Blocking Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Chariot Vertical Move Through Blocking to be Invalid");
         }
     }
 }

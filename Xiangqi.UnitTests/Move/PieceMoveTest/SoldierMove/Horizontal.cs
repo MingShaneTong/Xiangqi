@@ -27,7 +27,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
                 NewPosition = new Position(5, 5),
                 Piece = soldier
             };
-            Assert.IsTrue(moveBlack.IsValid(board), "Black Soldier Horizontal Not Valid");
+            Assert.IsTrue(moveBlack.IsValid(board), "Expected: Black Soldier Horizontal Move to be Valid");
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
                 NewPosition = new Position(4, 3),
                 Piece = soldier
             };
-            Assert.IsTrue(moveRed.IsValid(board), "Red Soldier Horizontal Not Valid");
+            Assert.IsTrue(moveRed.IsValid(board), "Expected: Red Soldier Horizontal Move to be Valid");
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
                 NewPosition = new Position(5, 4),
                 Piece = soldier
             };
-            Assert.IsFalse(moveBlack.IsValid(board), "Black Soldier Horizontal Valid");
+            Assert.IsFalse(moveBlack.IsValid(board), "Expected: Black Soldier Horizontal Move across multiple squares to be invalid");
         }
 
         [TestMethod]
@@ -81,7 +81,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
                 NewPosition = new Position(4, 4),
                 Piece = soldier
             };
-            Assert.IsFalse(moveRed.IsValid(board), "Red Soldier MultiHorizontal Valid");
+            Assert.IsFalse(moveRed.IsValid(board), "Expected: Red Soldier Horizontal Move across multiple squares to be invalid");
         }
 
         [TestMethod]
@@ -99,7 +99,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
                 NewPosition = new Position(3, 7),
                 Piece = soldier
             };
-            Assert.IsFalse(moveBlack.IsValid(board), "Black Soldier MultiHorizontal Valid");
+            Assert.IsFalse(moveBlack.IsValid(board), "Expected: Black Soldier Horizontal Move when not across the river to be invalid");
         }
 
         [TestMethod]
@@ -117,7 +117,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
                 NewPosition = new Position(6, 3),
                 Piece = soldier
             };
-            Assert.IsFalse(moveRed.IsValid(board), "Red Soldier Horizontal Not Over River Valid");
+            Assert.IsFalse(moveRed.IsValid(board), "Expected: Red Soldier Horizontal Move when not across the river to be invalid");
         }
     }
 }

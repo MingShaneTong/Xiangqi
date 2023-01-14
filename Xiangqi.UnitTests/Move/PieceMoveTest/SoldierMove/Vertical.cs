@@ -27,7 +27,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
                 NewPosition = new Position(4, 6),
                 Piece = soldier
             };
-            Assert.IsTrue(moveBlack.IsValid(board), "Black Soldier Forward Not Valid");
+            Assert.IsTrue(moveBlack.IsValid(board), "Expected: Black Soldier Forward Move to be Valid");
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
                 NewPosition = new Position(5, 2),
                 Piece = soldier
             };
-            Assert.IsTrue(moveRed.IsValid(board), "Red Soldier Forward Not Valid");
+            Assert.IsTrue(moveRed.IsValid(board), "Expected: Red Soldier Forward Move to be Valid");
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
                 NewPosition = new Position(2, 6),
                 Piece = soldier
             };
-            Assert.IsFalse(moveBlack.IsValid(board), "Black Soldier Backwards Valid");
+            Assert.IsFalse(moveBlack.IsValid(board), "Expected: Black Soldier Backward Move to be Invalid");
         }
 
         [TestMethod]
@@ -81,7 +81,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
                 NewPosition = new Position(7, 2),
                 Piece = soldier
             };
-            Assert.IsFalse(moveRed.IsValid(board), "Red Soldier Backwards Valid");
+            Assert.IsFalse(moveRed.IsValid(board), "Expected: Red Soldier Backward Move to be Invalid");
         }
 
         [TestMethod]
@@ -99,7 +99,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
                 NewPosition = new Position(5, 6),
                 Piece = soldier
             };
-            Assert.IsFalse(moveBlack.IsValid(board), "Black Soldier MultForward Valid");
+            Assert.IsFalse(moveBlack.IsValid(board), "Expected: Black Soldier Forward across multiple squares to be Invalid");
         }
 
         [TestMethod]
@@ -117,7 +117,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.SoldierMove
                 NewPosition = new Position(4, 2),
                 Piece = soldier
             };
-            Assert.IsFalse(moveRed.IsValid(board), "Red Soldier MultiForward Valid");
+            Assert.IsFalse(moveRed.IsValid(board), "Expected: Red Soldier Forward across multiple squares to be Invalid");
         }
     }
 }

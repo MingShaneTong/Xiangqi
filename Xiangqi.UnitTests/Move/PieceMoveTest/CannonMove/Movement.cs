@@ -27,7 +27,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.CannonMove
                 NewPosition = new Position(0, 8),
                 Piece = cannon
             };
-            Assert.IsTrue(move.IsValid(board), "Cannon Horizontal Not Valid");
+            Assert.IsTrue(move.IsValid(board), "Expected: Cannon Horizontal Move to be Valid");
         }
 
         [TestMethod]
@@ -45,11 +45,11 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.CannonMove
                 NewPosition = new Position(9, 0),
                 Piece = cannon
             };
-            Assert.IsTrue(move.IsValid(board), "Cannon Vertical Not Valid");
+            Assert.IsTrue(move.IsValid(board), "Expected: Cannon Vertical Move to be Valid");
         }
 
         [TestMethod]
-        public void InvalidNotVerticalOrHorizontal()
+        public void InvalidDiagonal()
         {
             IPiece cannon = Cannon.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -63,7 +63,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.CannonMove
                 NewPosition = new Position(1, 1),
                 Piece = cannon
             };
-            Assert.IsFalse(move.IsValid(board), "Cannon Vertical or Horizontal Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Cannon Diagonal Move to be Invalid");
         }
 
         [TestMethod]
@@ -82,7 +82,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.CannonMove
                 NewPosition = new Position(0, 8),
                 Piece = cannon
             };
-            Assert.IsFalse(move.IsValid(board), "Cannon Horizontal Blocking Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Cannon Horizontal Move Through Blocking to be Invalid");
         }
 
         [TestMethod]
@@ -101,7 +101,7 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.CannonMove
                 NewPosition = new Position(9, 0),
                 Piece = cannon
             };
-            Assert.IsFalse(move.IsValid(board), "Cannon Vertical Blocking Valid");
+            Assert.IsFalse(move.IsValid(board), "Expected: Cannon Vertical Move Through Blocking to be Invalid");
         }
     }
 }

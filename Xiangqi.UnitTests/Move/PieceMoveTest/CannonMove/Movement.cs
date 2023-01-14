@@ -7,7 +7,7 @@ using Xiangqi.Game.Moves;
 using Xiangqi.Game.Pieces;
 using Xiangqi.Game;
 
-namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
+namespace Xiangqi.UnitTests.Move.PieceMoveTest.CannonMove
 {
     [TestClass]
     public class Movement
@@ -15,64 +15,64 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
         [TestMethod]
         public void ValidHorizontal()
         {
-            IPiece chariot = Chariot.Of(Color.Black);
+            IPiece cannon = Cannon.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
-                { new Position(0, 0), chariot }
+                { new Position(0, 0), cannon }
             });
 
             IMove move = new PieceMove()
             {
                 OldPosition = new Position(0, 0),
                 NewPosition = new Position(0, 8),
-                Piece = chariot
+                Piece = cannon
             };
-            Assert.IsTrue(move.IsValid(board), "Chariot Horizontal Not Valid");
+            Assert.IsTrue(move.IsValid(board), "Cannon Horizontal Not Valid");
         }
 
         [TestMethod]
         public void ValidVertical()
         {
-            IPiece chariot = Chariot.Of(Color.Black);
+            IPiece cannon = Cannon.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
-                { new Position(0, 0), chariot }
+                { new Position(0, 0), cannon }
             });
 
             IMove move = new PieceMove()
             {
                 OldPosition = new Position(0, 0),
                 NewPosition = new Position(9, 0),
-                Piece = chariot
+                Piece = cannon
             };
-            Assert.IsTrue(move.IsValid(board), "Chariot Vertical Not Valid");
+            Assert.IsTrue(move.IsValid(board), "Cannon Vertical Not Valid");
         }
 
         [TestMethod]
         public void InvalidNotVerticalOrHorizontal()
         {
-            IPiece chariot = Chariot.Of(Color.Black);
+            IPiece cannon = Cannon.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
-                { new Position(0, 0), chariot }
+                { new Position(0, 0), cannon }
             });
 
             IMove move = new PieceMove()
             {
                 OldPosition = new Position(0, 0),
                 NewPosition = new Position(1, 1),
-                Piece = chariot
+                Piece = cannon
             };
-            Assert.IsFalse(move.IsValid(board), "Chariot Vertical or Horizontal Valid");
+            Assert.IsFalse(move.IsValid(board), "Cannon Vertical or Horizontal Valid");
         }
 
         [TestMethod]
         public void InvalidHorizontalBlocking()
         {
-            IPiece chariot = Chariot.Of(Color.Black);
+            IPiece cannon = Cannon.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
-                { new Position(0, 0), chariot },
+                { new Position(0, 0), cannon },
                 { new Position(0, 1), Soldier.Of(Color.Black) }
             });
 
@@ -80,18 +80,18 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
             {
                 OldPosition = new Position(0, 0),
                 NewPosition = new Position(0, 8),
-                Piece = chariot
+                Piece = cannon
             };
-            Assert.IsFalse(move.IsValid(board), "Chariot Horizontal Blocking Valid");
+            Assert.IsFalse(move.IsValid(board), "Cannon Horizontal Blocking Valid");
         }
 
         [TestMethod]
         public void InvalidVerticalBlocking()
         {
-            IPiece chariot = Chariot.Of(Color.Black);
+            IPiece cannon = Cannon.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
-                { new Position(0, 0), chariot },
+                { new Position(0, 0), cannon },
                 { new Position(1, 0), Soldier.Of(Color.Black) }
             });
 
@@ -99,9 +99,9 @@ namespace Xiangqi.UnitTests.Move.PieceMoveTest.ChariotMove
             {
                 OldPosition = new Position(0, 0),
                 NewPosition = new Position(9, 0),
-                Piece = chariot
+                Piece = cannon
             };
-            Assert.IsFalse(move.IsValid(board), "Chariot Vertical Blocking Valid");
+            Assert.IsFalse(move.IsValid(board), "Cannon Vertical Blocking Valid");
         }
     }
 }

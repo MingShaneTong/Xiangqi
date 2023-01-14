@@ -8,6 +8,16 @@ namespace Xiangqi.Game.Pieces
 {
     public class General : Piece
     {
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
+        {
+            throw new NotImplementedException();
+        }
+
         public override string ToString()
         {
             switch (Color)
@@ -24,16 +34,6 @@ namespace Xiangqi.Game.Pieces
         public static General Of(Color color)
         {
             return new General() { Color = color };
-        }
-
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -56,27 +56,16 @@ namespace Xiangqi.Game.Pieces
             return true;
         }
 
-        public bool IsValidSoldierMove(Board board, Position oldPosition, Position newPosition)
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
         {
-            if (!oldPosition.IsValid() || !newPosition.IsValid()) { return false; }
-            if (board.GetPieceOn(oldPosition) != this) { return false; }
-
             if (IsValidVerticalMove(board, oldPosition, newPosition)) { return true; }
             if (IsValidHorizontalMove(board, oldPosition, newPosition)) { return true; }
             return false;
         }
 
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
-        {
-            if (board.GetPieceOn(newPosition) != null) { return false; }
-            return IsValidSoldierMove(board, oldPosition, newPosition);
-        }
-
         public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
         {
-            if (pieceCaptured == null) { return false; }
-            if (board.GetPieceOn(newPosition) != pieceCaptured) { return false; }
-            return IsValidSoldierMove(board, oldPosition, newPosition);
+            throw new NotImplementedException();
         }
 
         public override string ToString()

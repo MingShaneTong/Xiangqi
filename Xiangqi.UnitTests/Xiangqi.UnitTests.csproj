@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Move\CaptureMove\" />
+    <Folder Include="Move\PieceMoveTest\" />
   </ItemGroup>
 
 </Project>

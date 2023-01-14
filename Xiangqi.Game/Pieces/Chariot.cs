@@ -10,11 +10,6 @@ namespace Xiangqi.Game.Pieces
     {
         public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
         {
-            if (!oldPosition.IsValid() || !newPosition.IsValid()) { return false; }
-            if (board.GetPieceOn(oldPosition) != this) { return false; }
-
-            if (oldPosition == newPosition) { return false; }
-
             if (oldPosition.Row == newPosition.Row)
             {
                 IList<IPiece> piecesBlocking = board.GetHorizontalPiecesBetween(oldPosition, newPosition);

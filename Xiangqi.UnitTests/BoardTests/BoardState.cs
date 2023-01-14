@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Xiangqi.Game;
 
-namespace Xiangqi.UnitTests
+namespace Xiangqi.UnitTests.BoardTests
 {
     [TestClass]
     public class BoardState

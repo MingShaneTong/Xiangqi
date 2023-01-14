@@ -8,6 +8,26 @@ namespace Xiangqi.Game.Pieces
 {
     public class General : Piece
     {
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
+        {
+            if (!Board.InCastle(Color, newPosition) || !Board.InCastle(Color, newPosition)) { return false; }
+            if (oldPosition.Row == newPosition.Row)
+            {
+                return Math.Abs(newPosition.Col - oldPosition.Col) == 1;
+            }
+            if (oldPosition.Col == newPosition.Col)
+            {
+                return Math.Abs(newPosition.Row - oldPosition.Row) == 1;
+            }
+
+            return false;
+        }
+
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
+        {
+            throw new NotImplementedException();
+        }
+
         public override string ToString()
         {
             switch (Color)
@@ -24,16 +44,6 @@ namespace Xiangqi.Game.Pieces
         public static General Of(Color color)
         {
             return new General() { Color = color };
-        }
-
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
-        {
-            throw new NotImplementedException();
         }
     }
 }

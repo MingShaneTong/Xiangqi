@@ -19,9 +19,4 @@
     <ProjectReference Include="..\Xiangqi.Game\Xiangqi.Game.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Move\CaptureMove\" />
-    <Folder Include="Move\PieceMoveTest\" />
-  </ItemGroup>
-
 </Project>

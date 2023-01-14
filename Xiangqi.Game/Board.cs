@@ -12,8 +12,14 @@ namespace Xiangqi.Game
     {
         public const int Rows = 10;
         public const int Cols = 9;
+
         public const int BlackRiver = 4;
         public const int RedRiver = 5;
+
+        public const int CastleMinCol = 3;
+        public const int CastleMaxCol = 5;
+        public const int CastleRedMinRow = 7;
+        public const int CastleBlackMaxRow = 2;
 
         public IPiece[,] Pieces { get; init; }
 
@@ -30,11 +36,23 @@ namespace Xiangqi.Game
 
         public static Color GetPositionSide(Position position)
         {
-            if (position.Row >= RedRiver) 
-            { 
-                return Color.Red; 
+            if (position.Row >= RedRiver)
+            {
+                return Color.Red;
             }
             return Color.Black;
+        }
+
+        public static bool InCastle(Color castleColor, Position position)
+        {
+            if(position.Col < CastleMinCol || CastleMaxCol < position.Col) { return false;  }
+            switch (castleColor) { 
+                case Color.Black:
+                    return 0 <= position.Row && position.Row <= CastleBlackMaxRow;
+                case Color.Red:
+                    return CastleRedMinRow <= position.Row && position.Row < Rows;
+            }
+            return false;
         }
 
         public IList<IPiece> GetHorizontalPiecesBetween(Position p1, Position p2)

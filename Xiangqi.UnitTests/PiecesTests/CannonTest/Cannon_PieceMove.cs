@@ -6,102 +6,70 @@ using System.Threading.Tasks;
 using Xiangqi.Game.Moves;
 using Xiangqi.Game.Pieces;
 using Xiangqi.Game;
+using Xiangqi.UnitTests.PiecesTests;
 
 namespace PiecesTests.CannonTest
 {
     [TestClass]
-    public class Cannon_PieceMove
+    public class Cannon_PieceMove : PieceMoveTestClass<Cannon>
     {
         [TestMethod]
-        public void HorizontalMove()
+        [DataRow("Black", 0, 0, 0, 8)]
+        [DataRow("Black", 0, 7, 0, 2)]
+        [DataRow("Red", 9, 8, 9, 0)]
+        [DataRow("Red", 9, 2, 9, 7)]
+        public void HorizontalMove(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            IPiece cannon = Cannon.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 0), cannon }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 0),
-                NewPosition = new Position(0, 8),
-                Piece = cannon
-            };
-            Assert.IsTrue(move.IsValid(board), "Expected: Cannon Horizontal Move to be Valid");
+            Assert.IsTrue(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol),
+                "Expected: Cannon Horizontal Move to be Valid"
+            );
         }
 
         [TestMethod]
-        public void VerticalMove()
+        [DataRow("Black", 0, 0, 9, 0)]
+        [DataRow("Black", 2, 0, 7, 0)]
+        [DataRow("Red", 9, 0, 0, 0)]
+        [DataRow("Red", 7, 0, 2, 0)]
+        public void VerticalMove(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            IPiece cannon = Cannon.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 0), cannon }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 0),
-                NewPosition = new Position(9, 0),
-                Piece = cannon
-            };
-            Assert.IsTrue(move.IsValid(board), "Expected: Cannon Vertical Move to be Valid");
+            Assert.IsTrue(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol),
+                "Expected: Cannon Vertical Move to be Valid"
+            );
         }
 
         [TestMethod]
-        public void DiagonalMove_Invalid()
+        [DataRow("Black", 0, 0, 5, 5)]
+        [DataRow("Red", 5, 5, 8, 8)]
+        public void DiagonalMove(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            IPiece cannon = Cannon.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 0), cannon }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 0),
-                NewPosition = new Position(1, 1),
-                Piece = cannon
-            };
-            Assert.IsFalse(move.IsValid(board), "Expected: Cannon Diagonal Move to be Invalid");
+            Assert.IsFalse(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol),
+                "Expected: Cannon Diagonal Move to be Invalid"
+            );
         }
 
         [TestMethod]
-        public void HorizontalMove_WithBlocking_Invalid()
+        [DataRow("Black", 0, 0, 0, 8, 0, 1)]
+        [DataRow("Red", 9, 7, 9, 1, 9, 4)]
+        public void HorizontalMove_WithBlocking_Invalid(string color, int oldRow, int oldCol, int newRow, int newCol, int blockRow, int blockCol)
         {
-            IPiece cannon = Cannon.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 0), cannon },
-                { new Position(0, 1), Soldier.Of(Color.Black) }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 0),
-                NewPosition = new Position(0, 8),
-                Piece = cannon
-            };
-            Assert.IsFalse(move.IsValid(board), "Expected: Cannon Horizontal Move Through Blocking to be Invalid");
+            Assert.IsFalse(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol, blockRow, blockCol),
+                "Expected: Cannon Horizontal Move Through Blocking to be Invalid"
+            );
         }
 
         [TestMethod]
-        public void VerticalMove_WithBlocking_Invalid()
+        [DataRow("Black", 0, 0, 9, 0, 2, 0)]
+        [DataRow("Red", 8, 0, 1, 0, 4, 0)]
+        public void VerticalMove_WithBlocking_Invalid(string color, int oldRow, int oldCol, int newRow, int newCol, int blockRow, int blockCol)
         {
-            IPiece cannon = Cannon.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 0), cannon },
-                { new Position(1, 0), Soldier.Of(Color.Black) }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 0),
-                NewPosition = new Position(9, 0),
-                Piece = cannon
-            };
-            Assert.IsFalse(move.IsValid(board), "Expected: Cannon Vertical Move Through Blocking to be Invalid");
+            Assert.IsFalse(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol, blockRow, blockCol),
+                "Expected: Cannon Vertical Move Through Blocking to be Invalid"
+            );
         }
     }
 }

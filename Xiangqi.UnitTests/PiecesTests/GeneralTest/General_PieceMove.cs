@@ -6,118 +6,89 @@ using System.Threading.Tasks;
 using Xiangqi.Game.Moves;
 using Xiangqi.Game.Pieces;
 using Xiangqi.Game;
+using Xiangqi.UnitTests.PiecesTests;
 
 namespace PiecesTests.GeneralTest
 {
     [TestClass]
-    public class General_PieceMove
+    public class General_PieceMove : PieceMoveTestClass<General>
     {
         [TestMethod]
-        public void HorizontalMove()
+        [DataRow("Black", 0, 3, 0, 4)]
+        [DataRow("Black", 2, 5, 2, 4)]
+        [DataRow("Red", 7, 4, 7, 3)]
+        [DataRow("Red", 9, 4, 9, 5)]
+        public void HorizontalMove(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            IPiece general = General.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 4), general }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 4),
-                NewPosition = new Position(0, 5),
-                Piece = general
-            };
-            Assert.IsTrue(move.IsValid(board), "Expected: General Horizontal Move to be Valid");
+            Assert.IsTrue(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol),
+                "Expected: General Valid Move to be Valid"
+            );
         }
 
         [TestMethod]
-        public void VerticalMove()
+        [DataRow("Black", 1, 4, 2, 4)]
+        [DataRow("Black", 1, 4, 0, 4)]
+        [DataRow("Red", 8, 4, 7, 4)]
+        [DataRow("Red", 8, 4, 9, 4)]
+        public void VerticalMove(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            IPiece general = General.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 4), general }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 4),
-                NewPosition = new Position(1, 4),
-                Piece = general
-            };
-            Assert.IsTrue(move.IsValid(board), "Expected: General Vertical Move to be Valid");
+            Assert.IsTrue(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol),
+                "Expected: General Vertical Move to be Valid"
+            );
         }
 
         [TestMethod]
-        public void HorizontalMove_AcrossMultipleSquares()
+        [DataRow("Black", 0, 3, 0, 5)]
+        [DataRow("Black", 2, 5, 2, 3)]
+        [DataRow("Red", 9, 3, 9, 5)]
+        [DataRow("Red", 7, 5, 7, 3)]
+        public void HorizontalMove_AcrossMultipleSquares(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            IPiece general = General.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 3), general }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 3),
-                NewPosition = new Position(0, 5),
-                Piece = general
-            };
-            Assert.IsFalse(move.IsValid(board), "Expected: General Horizontal Move Across Multiple Squares to be Invalid");
+            Assert.IsFalse(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol), 
+                "Expected: General Horizontal Move Across Multiple Squares to be Invalid"
+            );
         }
 
         [TestMethod]
-        public void VerticalMove_AcrossMultipleSquares()
+        [DataRow("Black", 0, 3, 2, 3)]
+        [DataRow("Black", 2, 5, 0, 5)]
+        [DataRow("Red", 9, 3, 7, 3)]
+        [DataRow("Red", 7, 5, 9, 5)]
+        public void VerticalMove_AcrossMultipleSquares(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            IPiece general = General.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 3), general }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 3),
-                NewPosition = new Position(2, 3),
-                Piece = general
-            };
-            Assert.IsFalse(move.IsValid(board), "Expected: General Vertical Move Across Multiple Squares to be Invalid");
+            Assert.IsFalse(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol),
+                "Expected: General Vertical Move Across Multiple Squares to be Invalid"
+            );
         }
 
         [TestMethod]
-        public void DiagonalMove()
+        [DataRow("Black", 0, 4, 1, 3)]
+        [DataRow("Black", 0, 4, 1, 5)]
+        [DataRow("Red", 9, 4, 8, 3)]
+        [DataRow("Red", 9, 4, 8, 5)]
+        public void DiagonalMove(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            IPiece general = General.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 3), general }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 3),
-                NewPosition = new Position(1, 4),
-                Piece = general
-            };
-            Assert.IsFalse(move.IsValid(board), "Expected: General Diagonal Move to be Invalid");
+            Assert.IsFalse(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol),
+                "Expected: General Diagonal Move to be Invalid"
+            );
         }
 
         [TestMethod]
-        public void Move_OutOfCastle()
+        [DataRow("Black", 2, 3, 2, 2)]
+        [DataRow("Black", 2, 5, 3, 5)]
+        [DataRow("Red", 7, 3, 6, 3)]
+        [DataRow("Red", 7, 5, 7, 6)]
+        public void Move_OutOfCastle(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            IPiece general = General.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 3), general }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 3),
-                NewPosition = new Position(0, 2),
-                Piece = general
-            };
-            Assert.IsFalse(move.IsValid(board), "Expected: General Moves Out of Castle to be Invalid");
+            Assert.IsFalse(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol), 
+                "Expected: General Moves Out of Castle to be Invalid"
+            );
         }
     }
 }

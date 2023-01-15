@@ -8,6 +8,31 @@ namespace Xiangqi.Game.Pieces
 {
     public class Horse : Piece
     {
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
+        {
+            int rowDiff = Math.Abs(oldPosition.Row - newPosition.Row);
+            int colDiff = Math.Abs(oldPosition.Col - newPosition.Col);
+            
+            if (rowDiff == 2 && colDiff == 1) 
+            {
+                Position checkPosition = new Position(newPosition.Row, oldPosition.Col);
+                return !board.GetVerticalPiecesBetween(oldPosition, checkPosition).Any();
+            }
+
+            if (rowDiff == 1 && colDiff == 2)
+            {
+                Position checkPosition = new Position(oldPosition.Row, newPosition.Col);
+                return !board.GetHorizontalPiecesBetween(oldPosition, checkPosition).Any();
+            }
+
+            return false;
+        }
+
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
+        {
+            throw new NotImplementedException();
+        }
+
         public override string ToString()
         {
             switch (Color)
@@ -24,16 +49,6 @@ namespace Xiangqi.Game.Pieces
         public static Horse Of(Color color)
         {
             return new Horse() { Color = color };
-        }
-
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
-        {
-            throw new NotImplementedException();
         }
     }
 }

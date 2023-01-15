@@ -85,6 +85,27 @@ namespace Xiangqi.Game
             return piecesBetween;
         }
 
+        public IList<IPiece> GetDiagonalPiecesBetween(Position p1, Position p2)
+        {
+            int rowDiff = Math.Abs(p1.Row - p2.Row);
+            int colDiff = Math.Abs(p1.Col - p2.Col);
+            if (rowDiff != colDiff) { throw new Exception("Positions are not diagonal from each other"); }
+
+            IList<IPiece> piecesBetween = new List<IPiece>();
+            if (p1.Row > p2.Row) { (p1, p2) = (p2, p1); }
+            int dir = Math.Sign(p2.Col - p1.Col);
+
+            for (int i = 1; i < rowDiff; i++)
+            {
+                int row = p1.Row + i;
+                int col = p1.Col + dir * i;
+                IPiece piece = Pieces[row, col];
+                if (piece == null) { continue; }
+                piecesBetween.Add(piece);
+            }
+            return piecesBetween;
+        }
+
         public override string ToString()
         {
             string[] rowString = new string[Rows];

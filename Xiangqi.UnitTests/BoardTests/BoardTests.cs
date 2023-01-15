@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xiangqi.Game;
+using Xiangqi.Game.Moves;
+using Xiangqi.Game.Pieces;
 
 namespace Xiangqi.UnitTests.BoardTests
 {
@@ -62,6 +64,28 @@ namespace Xiangqi.UnitTests.BoardTests
                     );
                 }
             }
+        }
+
+        [TestMethod]
+        public void GetDiagonalPiecesBetween_Test()
+        {
+            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
+            {
+                { new Position(4, 5), Soldier.Of(Color.Black) },
+
+                { new Position(2, 3), Soldier.Of(Color.Black) },
+
+                { new Position(5, 4), Soldier.Of(Color.Black) },
+                { new Position(6, 3), Soldier.Of(Color.Black) },
+                { new Position(7, 2), Soldier.Of(Color.Black) },
+                { new Position(8, 1), Soldier.Of(Color.Black) }
+            });
+
+            Position center = new Position(4, 5);
+
+            Assert.IsTrue(board.GetDiagonalPiecesBetween(center, new Position(9, 0)).Count() == 4);
+            Assert.IsTrue(board.GetDiagonalPiecesBetween(center, new Position(0, 1)).Count() == 1);
+            Assert.IsTrue(board.GetDiagonalPiecesBetween(center, new Position(1, 8)).Count() == 0);
         }
     }
 }

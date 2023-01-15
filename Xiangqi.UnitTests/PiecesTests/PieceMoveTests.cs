@@ -6,34 +6,27 @@ using System.Threading.Tasks;
 using Xiangqi.Game.Moves;
 using Xiangqi.Game.Pieces;
 using Xiangqi.Game;
-using System.Runtime.InteropServices;
+using Xiangqi.UnitTests.PiecesTests;
 
-namespace MovesTests.PieceMoveTest
+namespace PiecesTests
 {
     [TestClass]
-    public class PieceMoveTests
+    public class PieceMove_Tests : PieceMoveTestClass<Soldier>
     {
-
         [TestMethod]
         public void NoMove()
         {
-            IPiece chariot = Chariot.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 0), chariot }
-            });
-
-            IMove moveBlack = new PieceMove()
-            {
-                OldPosition = new Position(0, 0),
-                NewPosition = new Position(0, 0),
-                Piece = chariot
-            };
-            Assert.IsFalse(moveBlack.IsValid(board), "Expected: Piece Move with No Movement to be Invalid");
+            Assert.IsFalse(
+                MoveIsValid("Black", 0, 0, 0, 0), 
+                "Expected: Piece Move with No Movement to be Invalid"
+            );
         }
 
         [TestMethod]
-        public void Invalid_OldPosition()
+        [DataRow("Black", -1, -1, 0, 0)]
+        [DataRow("Black", 0, 0, -1,-1)]
+        [DataRow("Black", -1, -1, -1, -1)]
+        public void Invalid_Positions(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
             IPiece chariot = Chariot.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
@@ -43,48 +36,14 @@ namespace MovesTests.PieceMoveTest
 
             IMove move = new PieceMove()
             {
-                OldPosition = new Position(0, -1),
-                NewPosition = new Position(0, 0),
+                OldPosition = new Position(oldRow, oldCol),
+                NewPosition = new Position(newRow, newCol),
                 Piece = chariot
             };
-            Assert.IsFalse(move.IsValid(board), "Expected: Piece Move with Invalid Old Position to be Invalid");
-        }
-
-
-        [TestMethod]
-        public void Invalid_NewPosition()
-        {
-            IPiece chariot = Chariot.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 0), chariot }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 0),
-                NewPosition = new Position(0, -1),
-                Piece = chariot
-            };
-            Assert.IsFalse(move.IsValid(board), "Expected: Piece Move with Invalid New Position to be Invalid");
-        }
-
-        [TestMethod]
-        public void Invalid_OldAndNewPosition()
-        {
-            IPiece chariot = Chariot.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 0), chariot }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, -1),
-                NewPosition = new Position(0, -2),
-                Piece = chariot
-            };
-            Assert.IsFalse(move.IsValid(board), "Expected: Piece Move with Invalid Old And New Position to be Invalid");
+            Assert.IsFalse(
+                move.IsValid(board), 
+                "Expected: Piece Move with Invalid Positions to be Invalid"
+            );
         }
 
         [TestMethod]
@@ -119,7 +78,7 @@ namespace MovesTests.PieceMoveTest
         }
 
         [TestMethod]
-        public void PieceMove_InNewPosition()
+        public void PieceMove_PieceAlreadyInNewPosition()
         {
             IPiece chariot = Chariot.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>

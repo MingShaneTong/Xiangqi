@@ -6,102 +6,71 @@ using System.Threading.Tasks;
 using Xiangqi.Game.Moves;
 using Xiangqi.Game.Pieces;
 using Xiangqi.Game;
+using Xiangqi.UnitTests.PiecesTests;
+using System.Drawing;
 
 namespace PiecesTests.ChariotTest
 {
     [TestClass]
-    public class Chariot_PieceMove
+    public class Chariot_PieceMove : PieceMoveTestClass<Chariot>
     {
         [TestMethod]
-        public void HorizontalMove()
+        [DataRow("Black", 0, 0, 0, 8)]
+        [DataRow("Black", 0, 7, 0, 2)]
+        [DataRow("Red", 9, 8, 9, 0)]
+        [DataRow("Red", 9, 2, 9, 7)]
+        public void HorizontalMove(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            IPiece chariot = Chariot.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 0), chariot }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 0),
-                NewPosition = new Position(0, 8),
-                Piece = chariot
-            };
-            Assert.IsTrue(move.IsValid(board), "Expected: Chariot Horizontal Move to be Valid");
+            Assert.IsTrue(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol),
+                "Expected: Chariot Horizontal Move to be Valid"
+            );
         }
 
         [TestMethod]
-        public void VerticalMove()
+        [DataRow("Black", 0, 0, 9, 0)]
+        [DataRow("Black", 2, 0, 7, 0)]
+        [DataRow("Red", 9, 0, 0, 0)]
+        [DataRow("Red", 7, 0, 2, 0)]
+        public void VerticalMove(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            IPiece chariot = Chariot.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 0), chariot }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 0),
-                NewPosition = new Position(9, 0),
-                Piece = chariot
-            };
-            Assert.IsTrue(move.IsValid(board), "Expected: Chariot Vertical Move to be Valid");
+            Assert.IsTrue(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol),    
+                "Expected: Chariot Vertical Move to be Valid"
+            );
         }
 
         [TestMethod]
-        public void DiagonalMove_Invalid()
+        [DataRow("Black", 0, 0, 5, 5)]
+        [DataRow("Red", 5, 5, 8, 8)]
+        public void DiagonalMove(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            IPiece chariot = Chariot.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 0), chariot }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 0),
-                NewPosition = new Position(1, 1),
-                Piece = chariot
-            };
-            Assert.IsFalse(move.IsValid(board), "Expected: Chariot Diagonal Move to be Invalid");
+            Assert.IsFalse(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol),
+                "Expected: Chariot Diagonal Move to be Invalid"
+            );
         }
 
         [TestMethod]
-        public void HorizontalMove_WithBlocking_Invalid()
+        [DataRow("Black", 0, 0, 0, 8, 0, 1)]
+        [DataRow("Red", 9, 7, 9, 1, 9, 4)]
+        public void HorizontalMove_WithBlocking_Invalid(string color, int oldRow, int oldCol, int newRow, int newCol, int blockRow, int blockCol)
         {
-            IPiece chariot = Chariot.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 0), chariot },
-                { new Position(0, 1), Soldier.Of(Color.Black) }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 0),
-                NewPosition = new Position(0, 8),
-                Piece = chariot
-            };
-            Assert.IsFalse(move.IsValid(board), "Expected: Chariot Horizontal Move Through Blocking to be Invalid");
+            Assert.IsFalse(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol, blockRow, blockCol), 
+                "Expected: Chariot Horizontal Move Through Blocking to be Invalid"
+            );
         }
 
         [TestMethod]
-        public void VerticalMove_WithBlocking_Invalid()
+        [DataRow("Black", 0, 0, 9, 0, 2, 0)]
+        [DataRow("Red", 8, 0, 1, 0, 4, 0)]
+        public void VerticalMove_WithBlocking_Invalid(string color, int oldRow, int oldCol, int newRow, int newCol, int blockRow, int blockCol)
         {
-            IPiece chariot = Chariot.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
-            {
-                { new Position(0, 0), chariot },
-                { new Position(1, 0), Soldier.Of(Color.Black) }
-            });
-
-            IMove move = new PieceMove()
-            {
-                OldPosition = new Position(0, 0),
-                NewPosition = new Position(9, 0),
-                Piece = chariot
-            };
-            Assert.IsFalse(move.IsValid(board), "Expected: Chariot Vertical Move Through Blocking to be Invalid");
+            Assert.IsFalse(
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol, blockRow, blockCol),
+                "Expected: Chariot Vertical Move Through Blocking to be Invalid"
+            );
         }
     }
 }

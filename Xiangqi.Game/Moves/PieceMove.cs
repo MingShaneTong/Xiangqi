@@ -9,12 +9,10 @@ namespace Xiangqi.Game.Moves
 {
     public class PieceMove : Move
     {
-        public Position OldPosition { get; init; }
-        public Position NewPosition { get; init; }
-        public IPiece Piece { get; init; }
-
         public override bool IsValid(Board board)
         {
+            if (Piece == null || OldPosition == null || NewPosition == null) { return false; }
+
             if (!OldPosition.IsValid() || !NewPosition.IsValid()) { return false; }
             if (OldPosition == NewPosition) { return false; }
             if (board.GetPieceOn(OldPosition) != Piece) { return false; }

@@ -16,6 +16,11 @@ namespace Xiangqi.Game.Moves
 
         public override bool IsValid(Board board)
         {
+            if (!OldPosition.IsValid() || !NewPosition.IsValid()) { return false; }
+            if (OldPosition == NewPosition) { return false; }
+            if (board.GetPieceOn(OldPosition) != Piece) { return false; }
+            if (board.GetPieceOn(NewPosition) != PieceCaptured) { return false; }
+
             return Piece.IsValidMove(board, OldPosition, NewPosition, PieceCaptured);
         }
 

@@ -56,16 +56,11 @@ namespace Xiangqi.Game.Pieces
             return true;
         }
 
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece? pieceCaptured = null)
         {
             if (IsValidVerticalMove(board, oldPosition, newPosition)) { return true; }
             if (IsValidHorizontalMove(board, oldPosition, newPosition)) { return true; }
             return false;
-        }
-
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
-        {
-            throw new NotImplementedException();
         }
 
         public override string ToString()

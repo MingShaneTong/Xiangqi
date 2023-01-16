@@ -8,7 +8,7 @@ namespace Xiangqi.Game.Pieces
 {
     public class Elephant : Piece
     {
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece? pieceCaptured = null)
         {
             // must be on same side
             if (Board.GetPositionSide(oldPosition) != Color) { return false; }
@@ -21,11 +21,6 @@ namespace Xiangqi.Game.Pieces
 
             // no obstruction
             return !board.GetDiagonalPiecesBetween(oldPosition, newPosition).Any();
-        }
-
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
-        {
-            throw new NotImplementedException();
         }
 
         public override string ToString()

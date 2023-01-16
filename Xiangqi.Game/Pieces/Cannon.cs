@@ -8,7 +8,7 @@ namespace Xiangqi.Game.Pieces
 {
     public class Cannon : Piece
     {
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece? pieceCaptured = null)
         {
             if (oldPosition.Row == newPosition.Row)
             {
@@ -22,11 +22,6 @@ namespace Xiangqi.Game.Pieces
             }
 
             return false;
-        }
-
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
-        {
-            throw new NotImplementedException();
         }
 
         public override string ToString()

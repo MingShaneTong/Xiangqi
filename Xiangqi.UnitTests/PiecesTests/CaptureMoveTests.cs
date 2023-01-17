@@ -50,7 +50,7 @@ namespace PiecesTests
                 OldPosition = new Position(oldRow, oldCol),
                 NewPosition = new Position(newRow, newCol),
                 Piece = chariot,
-                PieceCaptured = Soldier.Of(Color.Red)
+                PieceCaptured = Pawn.Of(Color.Red)
             };
             Assert.IsFalse(
                 move.IsValid(board),
@@ -61,7 +61,7 @@ namespace PiecesTests
         [TestMethod]
         public void Invalid_WrongPieceInOldPosition()
         {
-            Piece captured = Soldier.Of(Color.Red);
+            Piece captured = Pawn.Of(Color.Red);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(0, 0), Chariot.Of(Color.Black) },
@@ -73,7 +73,7 @@ namespace PiecesTests
                 Color = Color.Black,
                 OldPosition = new Position(0, 0),
                 NewPosition = new Position(1, 0),
-                Piece = Soldier.Of(Color.Black),
+                Piece = Pawn.Of(Color.Black),
                 PieceCaptured = captured
             };
             Assert.IsFalse(
@@ -89,7 +89,7 @@ namespace PiecesTests
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(0, 0), piece },
-                { new Position(1, 0), Soldier.Of(Color.Red) }
+                { new Position(1, 0), Pawn.Of(Color.Red) }
             });
 
             IMove move = new CaptureMove()
@@ -111,7 +111,7 @@ namespace PiecesTests
         public void Invalid_WrongDeclaredColor()
         {
             Piece piece = Chariot.Of(Color.Black);
-            Piece pieceCaptured = Soldier.Of(Color.Red);
+            Piece pieceCaptured = Pawn.Of(Color.Red);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(0, 0), piece },

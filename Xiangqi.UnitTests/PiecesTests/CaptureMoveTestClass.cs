@@ -17,7 +17,7 @@ namespace Xiangqi.UnitTests.PiecesTests
             Enum.TryParse(blockColor, out Color blockColorEnum);
 
             Piece piece = new TPiece { Color = colorEnum };
-            Piece blockPiece = Soldier.Of(blockColorEnum);
+            Piece blockPiece = Pawn.Of(blockColorEnum);
 
             Position oldPosition = new Position(oldRow, oldCol);
             Position newPosition = new Position(newRow, newCol);

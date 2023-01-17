@@ -23,7 +23,7 @@ namespace Xiangqi.UnitTests.PiecesTests
                 { oldPosition, piece }
             });
 
-            IMove move = new PieceMove()
+            IMove move = new AdvanceMove()
             {
                 Color = colorEnum,
                 OldPosition = oldPosition,
@@ -44,10 +44,10 @@ namespace Xiangqi.UnitTests.PiecesTests
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { oldPosition, piece },
-                { blockPosition, Soldier.Of(Color.Black) }
+                { blockPosition, Pawn.Of(Color.Black) }
             });
 
-            IMove move = new PieceMove()
+            IMove move = new AdvanceMove()
             {
                 OldPosition = oldPosition,
                 NewPosition = newPosition,

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xiangqi.Game.Pieces
 {
-    public class Soldier : Piece
+    public class Pawn : Piece
     {
         private bool IsValidVerticalMove(Board board, Position oldPosition, Position newPosition)
         {
@@ -76,9 +76,9 @@ namespace Xiangqi.Game.Pieces
             }
         }
 
-        public static Soldier Of(Color color)
+        public static Pawn Of(Color color)
         {
-            return new Soldier() { Color = color };
+            return new Pawn() { Color = color };
         }
     }
 }

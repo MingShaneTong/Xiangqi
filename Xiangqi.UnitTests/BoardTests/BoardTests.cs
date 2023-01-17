@@ -71,14 +71,14 @@ namespace Xiangqi.UnitTests.BoardTests
         {
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
-                { new Position(4, 5), Soldier.Of(Color.Black) },
+                { new Position(4, 5), Pawn.Of(Color.Black) },
 
-                { new Position(2, 3), Soldier.Of(Color.Black) },
+                { new Position(2, 3), Pawn.Of(Color.Black) },
 
-                { new Position(5, 4), Soldier.Of(Color.Black) },
-                { new Position(6, 3), Soldier.Of(Color.Black) },
-                { new Position(7, 2), Soldier.Of(Color.Black) },
-                { new Position(8, 1), Soldier.Of(Color.Black) }
+                { new Position(5, 4), Pawn.Of(Color.Black) },
+                { new Position(6, 3), Pawn.Of(Color.Black) },
+                { new Position(7, 2), Pawn.Of(Color.Black) },
+                { new Position(8, 1), Pawn.Of(Color.Black) }
             });
 
             Position center = new Position(4, 5);

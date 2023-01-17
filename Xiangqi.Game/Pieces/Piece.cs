@@ -9,13 +9,12 @@ namespace Xiangqi.Game.Pieces
     public abstract class Piece : IPiece
     {
         private Color _color;
-        public Color Color 
+        public Color Color
         {
             get { return _color; }
             init { _color = value; }
         }
 
-        public abstract bool IsValidMove(Board board, Position oldPosition, Position newPosition);
-        public abstract bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured);
+        public abstract bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece? pieceCaptured = null);
     }
 }

@@ -8,7 +8,7 @@ namespace Xiangqi.Game.Pieces
 {
     public class Horse : Piece
     {
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece? pieceCaptured = null)
         {
             int rowDiff = Math.Abs(oldPosition.Row - newPosition.Row);
             int colDiff = Math.Abs(oldPosition.Col - newPosition.Col);
@@ -26,11 +26,6 @@ namespace Xiangqi.Game.Pieces
             }
 
             return false;
-        }
-
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
-        {
-            throw new NotImplementedException();
         }
 
         public override string ToString()

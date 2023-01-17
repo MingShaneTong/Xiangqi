@@ -8,7 +8,7 @@ namespace Xiangqi.Game.Pieces
 {
     public class General : Piece
     {
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece? pieceCaptured = null)
         {
             if (!Board.InCastle(Color, newPosition) || !Board.InCastle(Color, newPosition)) { return false; }
             if (oldPosition.Row == newPosition.Row)
@@ -21,11 +21,6 @@ namespace Xiangqi.Game.Pieces
             }
 
             return false;
-        }
-
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
-        {
-            throw new NotImplementedException();
         }
 
         public override string ToString()

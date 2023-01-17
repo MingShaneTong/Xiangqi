@@ -8,17 +8,12 @@ namespace Xiangqi.Game.Pieces
 {
     public class Advisor : Piece
     {
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition)
+        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece? pieceCaptured = null)
         {
             if (!Board.InCastle(Color, newPosition) || !Board.InCastle(Color, newPosition)) { return false; }
             return 
                 Math.Abs(newPosition.Col - oldPosition.Col) == 1 && 
                 Math.Abs(newPosition.Row - oldPosition.Row) == 1;
-        }
-
-        public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece pieceCaptured)
-        {
-            throw new NotImplementedException();
         }
 
         public override string ToString()

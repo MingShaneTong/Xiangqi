@@ -28,7 +28,7 @@ namespace PiecesTests
         [DataRow("Black", -1, -1, -1, -1)]
         public void Invalid_Positions(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            IPiece chariot = Chariot.Of(Color.Black);
+            Piece chariot = Chariot.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(0, 0), chariot }
@@ -36,6 +36,7 @@ namespace PiecesTests
 
             IMove move = new PieceMove()
             {
+                Color = Color.Black,
                 OldPosition = new Position(oldRow, oldCol),
                 NewPosition = new Position(newRow, newCol),
                 Piece = chariot
@@ -53,6 +54,7 @@ namespace PiecesTests
 
             IMove move = new PieceMove()
             {
+                Color = Color.Black,
                 OldPosition = new Position(3, 6),
                 NewPosition = new Position(3, 7),
                 Piece = Chariot.Of(Color.Black)
@@ -70,6 +72,7 @@ namespace PiecesTests
 
             IMove move = new PieceMove()
             {
+                Color = Color.Black,
                 OldPosition = new Position(3, 6),
                 NewPosition = new Position(3, 7),
                 Piece = Chariot.Of(Color.Black)
@@ -80,7 +83,7 @@ namespace PiecesTests
         [TestMethod]
         public void PieceMove_PieceAlreadyInNewPosition()
         {
-            IPiece chariot = Chariot.Of(Color.Black);
+            Piece chariot = Chariot.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(0, 0), chariot },
@@ -89,11 +92,31 @@ namespace PiecesTests
 
             IMove move = new PieceMove()
             {
+                Color = Color.Black,
                 OldPosition = new Position(0, 0),
                 NewPosition = new Position(0, 1),
                 Piece = chariot
             };
             Assert.IsFalse(move.IsValid(board), "Expected: Piece Move with Piece already in New Position to be Invalid");
+        }
+
+        [TestMethod]
+        public void PieceMove_WrongColor()
+        {
+            Piece chariot = Chariot.Of(Color.Black);
+            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
+            {
+                { new Position(0, 0), chariot }
+            });
+
+            IMove move = new PieceMove()
+            {
+                Color = Color.Red,
+                OldPosition = new Position(0, 0),
+                NewPosition = new Position(0, 1),
+                Piece = chariot
+            };
+            Assert.IsFalse(move.IsValid(board), "Expected: Piece Move with wrong Color to be Invalid");
         }
     }
 }

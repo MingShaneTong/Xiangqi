@@ -25,6 +25,7 @@ namespace Xiangqi.UnitTests.PiecesTests
 
             IMove move = new PieceMove()
             {
+                Color = colorEnum,
                 OldPosition = oldPosition,
                 NewPosition = newPosition,
                 Piece = piece

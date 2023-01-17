@@ -11,12 +11,13 @@ namespace Xiangqi.Game.Moves
     {
         public override bool IsValid(Board board)
         {
-            if (Piece == null || OldPosition == null || NewPosition == null) { return false; }
+            if (Piece == null || OldPosition == null || NewPosition == null || Color == null) { return false; }
 
             if (!OldPosition.IsValid() || !NewPosition.IsValid()) { return false; }
             if (OldPosition == NewPosition) { return false; }
             if (board.GetPieceOn(OldPosition) != Piece) { return false; }
             if (board.GetPieceOn(NewPosition) != null) { return false; }
+            if (Piece.Color != Color) { return false; }
 
             return Piece.IsValidMove(board, OldPosition, NewPosition);
         }

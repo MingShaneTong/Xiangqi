@@ -24,6 +24,7 @@ namespace Xiangqi.Game.Moves
 
         public override void Apply(Board board)
         {
+            if (IsValid(board)) { throw new Exception("Capture Move Not Valid"); }
             board.SetPieceOn(OldPosition, null);
             board.SetPieceOn(NewPosition, Piece);
         }

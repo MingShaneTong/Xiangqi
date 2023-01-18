@@ -11,7 +11,7 @@ using Xiangqi.UnitTests.PiecesTests;
 namespace PiecesTests.SoldierTest
 {
     [TestClass]
-    public class Soldier_PieceMove : PieceMoveTestClass<Pawn>
+    public class Soldier_PieceMove : MoveTestClass<Pawn>
     {
         [TestMethod]
         [DataRow("Black", 5, 0, 5, 1)]

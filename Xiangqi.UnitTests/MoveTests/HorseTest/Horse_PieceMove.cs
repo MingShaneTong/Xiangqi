@@ -9,7 +9,7 @@ using Xiangqi.UnitTests.PiecesTests;
 namespace PiecesTests.HorseTest
 {
     [TestClass]
-    public class Horse_PieceMove : PieceMoveTestClass<Horse>
+    public class Horse_PieceMove : MoveTestClass<Horse>
     {
         [TestMethod]
         [DataRow("Black", 0, 2, 1, 0)]

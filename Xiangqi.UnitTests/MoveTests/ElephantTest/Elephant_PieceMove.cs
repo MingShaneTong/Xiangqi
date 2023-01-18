@@ -9,7 +9,7 @@ using Xiangqi.UnitTests.PiecesTests;
 namespace PiecesTests.ElephantTest
 {
     [TestClass]
-    public class Elephant_PieceMove : PieceMoveTestClass<Elephant>
+    public class Elephant_PieceMove : MoveTestClass<Elephant>
     {
         [TestMethod]
         [DataRow("Black", 0, 2, 2, 0)]

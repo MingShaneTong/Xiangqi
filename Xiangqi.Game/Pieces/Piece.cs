@@ -16,5 +16,7 @@ namespace Xiangqi.Game.Pieces
         }
 
         public abstract bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece? pieceCaptured = null);
+        //public abstract bool Advance(Board board, File oldFile, File newFile);
+        //public abstract bool CanAdvance(Board board, File oldFile, File newFile);
     }
 }

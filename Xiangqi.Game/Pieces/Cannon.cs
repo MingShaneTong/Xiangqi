@@ -13,11 +13,19 @@ namespace Xiangqi.Game.Pieces
             if (oldPosition.Row == newPosition.Row)
             {
                 IList<IPiece> piecesBlocking = board.GetHorizontalPiecesBetween(oldPosition, newPosition);
+                if (pieceCaptured != null) 
+                { 
+                    return piecesBlocking.Count() == 1; 
+                }
                 return !piecesBlocking.Any();
             }
             if (oldPosition.Col == newPosition.Col)
             {
                 IList<IPiece> piecesBlocking = board.GetVerticalPiecesBetween(oldPosition, newPosition);
+                if (pieceCaptured != null)
+                {
+                    return piecesBlocking.Count() == 1;
+                }
                 return !piecesBlocking.Any();
             }
 

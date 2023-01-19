@@ -11,7 +11,7 @@ using Xiangqi.UnitTests.PiecesTests;
 namespace PiecesTests.GeneralTest
 {
     [TestClass]
-    public class General_PieceMove : MoveTestClass<General>
+    public class General_PieceMove : MoveTestClass<King>
     {
         [TestMethod]
         [DataRow("Black", 0, 3, 0, 4)]

@@ -17,20 +17,22 @@ namespace Xiangqi.Game.Moves
 
         public bool IsValid(Board board)
         {
+            if (Piece == null || OldPosition == null || NewPosition == null || Color == null) { return false; }
+
             if (!OldPosition.IsValid() || !NewPosition.IsValid()) { return false; }
             if (OldPosition == NewPosition) { return false; }
             if (board.GetPieceOn(OldPosition) != Piece) { return false; }
             if (board.GetPieceOn(NewPosition) != PieceCaptured) { return false; }
             if (Piece.Color != Color) { return false; }
 
-            return Piece.IsValidMove(board, OldPosition, NewPosition);
+            return Piece.IsValidMove(board, OldPosition, NewPosition, PieceCaptured);
         }
 
         public void Apply(Board board)
         {
-            if (IsValid(board)) { throw new Exception("Capture Move Not Valid"); }
-            board.SetPieceOn(OldPosition, null);
+            if (!IsValid(board)) { throw new Exception("Move Not Valid"); }
             board.SetPieceOn(NewPosition, Piece);
+            board.SetPieceOn(OldPosition, null);
         }
     }
 }

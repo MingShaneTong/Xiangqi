@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xiangqi.Game.Pieces
 {
-    public class General : Piece
+    public class King : Piece
     {
         public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece? pieceCaptured = null)
         {
@@ -36,9 +36,9 @@ namespace Xiangqi.Game.Pieces
             }
         }
 
-        public static General Of(Color color)
+        public static King Of(Color color)
         {
-            return new General() { Color = color };
+            return new King() { Color = color };
         }
     }
 }

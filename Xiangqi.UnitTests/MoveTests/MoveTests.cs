@@ -11,7 +11,7 @@ using Xiangqi.UnitTests.PiecesTests;
 namespace PiecesTests
 {
     [TestClass]
-    public class PieceMove_Tests : PieceMoveTestClass<Soldier>
+    public class Move_Tests : MoveTestClass<Pawn>
     {
         [TestMethod]
         public void NoMove()
@@ -34,7 +34,7 @@ namespace PiecesTests
                 { new Position(0, 0), chariot }
             });
 
-            IMove move = new PieceMove()
+            IMove move = new Move()
             {
                 Color = Color.Black,
                 OldPosition = new Position(oldRow, oldCol),
@@ -52,7 +52,7 @@ namespace PiecesTests
         {
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>());
 
-            IMove move = new PieceMove()
+            IMove move = new Move()
             {
                 Color = Color.Black,
                 OldPosition = new Position(3, 6),
@@ -67,10 +67,10 @@ namespace PiecesTests
         {
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
-                { new Position(0, 0), Soldier.Of(Color.Black) }
+                { new Position(0, 0), Pawn.Of(Color.Black) }
             });
 
-            IMove move = new PieceMove()
+            IMove move = new Move()
             {
                 Color = Color.Black,
                 OldPosition = new Position(3, 6),
@@ -87,10 +87,10 @@ namespace PiecesTests
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(0, 0), chariot },
-                { new Position(0, 1), Soldier.Of(Color.Red) }
+                { new Position(0, 1), Pawn.Of(Color.Red) }
             });
 
-            IMove move = new PieceMove()
+            IMove move = new Move()
             {
                 Color = Color.Black,
                 OldPosition = new Position(0, 0),
@@ -109,7 +109,7 @@ namespace PiecesTests
                 { new Position(0, 0), chariot }
             });
 
-            IMove move = new PieceMove()
+            IMove move = new Move()
             {
                 Color = Color.Red,
                 OldPosition = new Position(0, 0),

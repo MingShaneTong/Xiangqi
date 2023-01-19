@@ -9,7 +9,7 @@ using Xiangqi.Game;
 
 namespace Xiangqi.UnitTests.PiecesTests
 {
-    public class PieceMoveTestClass<TPiece> where TPiece : Piece, new()
+    public class MoveTestClass<TPiece> where TPiece : Piece, new()
     {
         public bool MoveIsValid(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
@@ -23,7 +23,7 @@ namespace Xiangqi.UnitTests.PiecesTests
                 { oldPosition, piece }
             });
 
-            IMove move = new PieceMove()
+            IMove move = new Move()
             {
                 Color = colorEnum,
                 OldPosition = oldPosition,
@@ -44,10 +44,10 @@ namespace Xiangqi.UnitTests.PiecesTests
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { oldPosition, piece },
-                { blockPosition, Soldier.Of(Color.Black) }
+                { blockPosition, Pawn.Of(Color.Black) }
             });
 
-            IMove move = new PieceMove()
+            IMove move = new Move()
             {
                 OldPosition = oldPosition,
                 NewPosition = newPosition,

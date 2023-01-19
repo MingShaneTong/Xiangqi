@@ -8,6 +8,8 @@ namespace Xiangqi.Game.Pieces
 {
     public interface IPiece
     {
-        public bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece? pieceCaptured = null);
+        bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece? pieceCaptured = null);
+        //bool CanAdvance(Board board, File oldFile, File newFile);
+        //bool Advance(Board board, File oldFile, File newFile);
     }
 }

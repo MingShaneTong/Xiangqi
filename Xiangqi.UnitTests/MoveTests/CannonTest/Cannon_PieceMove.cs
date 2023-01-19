@@ -7,12 +7,11 @@ using Xiangqi.Game.Moves;
 using Xiangqi.Game.Pieces;
 using Xiangqi.Game;
 using Xiangqi.UnitTests.PiecesTests;
-using System.Drawing;
 
-namespace PiecesTests.ChariotTest
+namespace PiecesTests.CannonTest
 {
     [TestClass]
-    public class Chariot_PieceMove : PieceMoveTestClass<Chariot>
+    public class Cannon_PieceMove : MoveTestClass<Cannon>
     {
         [TestMethod]
         [DataRow("Black", 0, 0, 0, 8)]
@@ -23,7 +22,7 @@ namespace PiecesTests.ChariotTest
         {
             Assert.IsTrue(
                 MoveIsValid(color, oldRow, oldCol, newRow, newCol),
-                "Expected: Chariot Horizontal Move to be Valid"
+                "Expected: Cannon Horizontal Move to be Valid"
             );
         }
 
@@ -35,8 +34,8 @@ namespace PiecesTests.ChariotTest
         public void VerticalMove(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
             Assert.IsTrue(
-                MoveIsValid(color, oldRow, oldCol, newRow, newCol),    
-                "Expected: Chariot Vertical Move to be Valid"
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol),
+                "Expected: Cannon Vertical Move to be Valid"
             );
         }
 
@@ -47,7 +46,7 @@ namespace PiecesTests.ChariotTest
         {
             Assert.IsFalse(
                 MoveIsValid(color, oldRow, oldCol, newRow, newCol),
-                "Expected: Chariot Diagonal Move to be Invalid"
+                "Expected: Cannon Diagonal Move to be Invalid"
             );
         }
 
@@ -57,8 +56,8 @@ namespace PiecesTests.ChariotTest
         public void HorizontalMove_WithBlocking_Invalid(string color, int oldRow, int oldCol, int newRow, int newCol, int blockRow, int blockCol)
         {
             Assert.IsFalse(
-                MoveIsValid(color, oldRow, oldCol, newRow, newCol, blockRow, blockCol), 
-                "Expected: Chariot Horizontal Move Through Blocking to be Invalid"
+                MoveIsValid(color, oldRow, oldCol, newRow, newCol, blockRow, blockCol),
+                "Expected: Cannon Horizontal Move Through Blocking to be Invalid"
             );
         }
 
@@ -69,7 +68,7 @@ namespace PiecesTests.ChariotTest
         {
             Assert.IsFalse(
                 MoveIsValid(color, oldRow, oldCol, newRow, newCol, blockRow, blockCol),
-                "Expected: Chariot Vertical Move Through Blocking to be Invalid"
+                "Expected: Cannon Vertical Move Through Blocking to be Invalid"
             );
         }
     }

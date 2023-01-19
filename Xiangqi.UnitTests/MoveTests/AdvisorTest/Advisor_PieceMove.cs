@@ -9,7 +9,7 @@ using Xiangqi.UnitTests.PiecesTests;
 namespace PiecesTests.AdvisorTest
 {
     [TestClass]
-    public class Advisor_PieceMove : PieceMoveTestClass<Advisor>
+    public class Advisor_PieceMove : MoveTestClass<Advisor>
     {
         [TestMethod]
         [DataRow("Black", 1, 4, 0, 3)]

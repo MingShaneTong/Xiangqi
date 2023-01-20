@@ -72,5 +72,24 @@ namespace Xiangqi.Game
             }
             return board;
         }
+
+        public static Board BuildBoard(string boardString)
+        {
+            Board board = Blank();
+
+            string[] rows = boardString.Split("\n");
+            for (int i = 0; i < rows.Length; i++)
+            {
+                string[] cols = rows[i].Split("|");
+                for (int j = 0; j < cols.Length; j++)
+                {
+                    string pieceString = cols[j];
+                    Piece piece = PieceParser.ToPiece(pieceString);
+                    Position position = new Position(i, j);
+                    board.SetPieceOn(position, piece);
+                }
+            }
+            return board;
+        }
     }
 }

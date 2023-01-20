@@ -32,10 +32,10 @@ namespace Xiangqi.Game.Pieces
         {
             switch (Color)
             {
-                case Color.Black:
-                    return "馬";
                 case Color.Red:
-                    return "傌";
+                    return "H";
+                case Color.Black:
+                    return "h";
                 default:
                     throw new ArgumentException("The Piece Color is not valid");
             }

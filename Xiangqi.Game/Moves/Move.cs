@@ -25,12 +25,20 @@ namespace Xiangqi.Game.Moves
             if (board.GetPieceOn(NewPosition) != PieceCaptured) { return false; }
             if (Piece.Color != Color) { return false; }
 
-            return Piece.IsValidMove(board, OldPosition, NewPosition, PieceCaptured);
+            if (!Piece.IsValidMove(board, OldPosition, NewPosition, PieceCaptured)) { return false; }
+
+            // cannot face other king or put own king in check
+            Board testBoard = new Board() { Pieces = (IPiece[,])board.Pieces.Clone() };
+            this.Apply(testBoard, false);
+
+            if (testBoard.KingsAreFacing()) { return false; }
+
+            return true;
         }
 
-        public void Apply(Board board)
+        public void Apply(Board board, bool validation = true)
         {
-            if (!IsValid(board)) { throw new Exception("Move Not Valid"); }
+            if (validation && !IsValid(board)) { throw new Exception("Move Not Valid"); }
             board.SetPieceOn(NewPosition, Piece);
             board.SetPieceOn(OldPosition, null);
         }

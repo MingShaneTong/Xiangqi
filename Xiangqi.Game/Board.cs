@@ -106,6 +106,40 @@ namespace Xiangqi.Game
             return piecesBetween;
         }
 
+        public IEnumerable<KeyValuePair<Position, Piece>> GetPiecesWhere(Func<IPiece, bool> condition)
+        {
+            IList<KeyValuePair<Position, Piece>> results = new List<KeyValuePair<Position, Piece>>(); 
+            for (int i = 0; i < Pieces.GetLength(0); i++)
+            {
+                for (int j = 0; j < Pieces.GetLength(1); j++)
+                {
+                    if (condition(Pieces[i, j]))
+                    {
+                        Position position = new Position(i, j);
+                        Piece piece = Pieces[i, j] as Piece;
+                        results.Add(new KeyValuePair<Position, Piece>(position, piece));
+                    }
+                }
+            }
+            return results;
+        }
+
+        public bool KingsAreFacing()
+        {
+            IEnumerable<KeyValuePair<Position, Piece>> kings = GetPiecesWhere((IPiece piece) => piece is King);
+            if (kings.Count() != 2) { throw new Exception("Expected: 2 Kings"); }
+            KeyValuePair<Position, Piece>[] kingsArray = kings.ToArray();
+            
+            KeyValuePair<Position, Piece> king1 = kingsArray[0];
+            KeyValuePair<Position, Piece> king2 = kingsArray[1];
+
+            if (king1.Key.Col == king2.Key.Col)
+            {
+                return !GetVerticalPiecesBetween(king1.Key, king2.Key).Any();
+            }
+            return false;
+        }
+
         public override string ToString()
         {
             string[] rowString = new string[Rows];

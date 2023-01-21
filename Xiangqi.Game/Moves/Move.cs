@@ -23,7 +23,9 @@ namespace Xiangqi.Game.Moves
             if (OldPosition == NewPosition) { return false; }
             if (board.GetPieceOn(OldPosition) != Piece) { return false; }
             if (board.GetPieceOn(NewPosition) != PieceCaptured) { return false; }
+            
             if (Piece.Color != Color) { return false; }
+            if (PieceCaptured != null && PieceCaptured.Color == Piece.Color) { return false; }
 
             if (!Piece.IsValidMove(board, OldPosition, NewPosition, PieceCaptured)) { return false; }
 

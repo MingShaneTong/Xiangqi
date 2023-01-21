@@ -18,12 +18,12 @@ namespace Xiangqi.Game.Pieces
 
         public override string ToString()
         {
-            switch (Color) 
+            switch (Color)
             {
-                case Color.Black:
-                    return "士";
                 case Color.Red:
-                    return "仕";
+                    return "A";
+                case Color.Black:
+                    return "a";
                 default:
                     throw new ArgumentException("The Piece Color is not valid");
             }

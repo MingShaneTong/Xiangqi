@@ -149,7 +149,7 @@ namespace Xiangqi.Game
                 for (int j = 0; j < Cols; j++)
                 {
                     IPiece p = Pieces[i,j];
-                    colString[j] = p != null ? p.ToString() : "。";
+                    colString[j] = p != null ? p.ToString() : " ";
                 }
                 rowString[i] = string.Join("|", colString);
             }

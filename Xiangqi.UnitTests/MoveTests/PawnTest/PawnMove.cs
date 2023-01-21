@@ -8,7 +8,7 @@ using Xiangqi.Game.Pieces;
 using Xiangqi.Game;
 using Xiangqi.UnitTests;
 
-namespace PiecesTests.PawnTest
+namespace MoveTests.PawnTest
 {
     [TestClass]
     public class PawnMove

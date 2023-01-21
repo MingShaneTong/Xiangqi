@@ -8,7 +8,7 @@ using Xiangqi.Game.Pieces;
 using Xiangqi.Game;
 using Xiangqi.UnitTests;
 
-namespace PiecesTests.KingTest
+namespace MoveTests.KingTest
 {
     [TestClass]
     public class KingMove

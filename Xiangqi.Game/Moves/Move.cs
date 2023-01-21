@@ -34,6 +34,7 @@ namespace Xiangqi.Game.Moves
             this.Apply(testBoard, false);
 
             if (testBoard.KingsAreFacing()) { return false; }
+            if (testBoard.KingInCheck(Color)) { return false; } 
 
             return true;
         }

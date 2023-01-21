@@ -147,5 +147,47 @@ namespace PiecesTests
             };
             Assert.IsFalse(move.IsValid(board), "Expected: Piece Move with wrong Color to be Invalid");
         }
+
+        [TestMethod]
+        [DataRow(Color.Red, "b0c0")]
+        [DataRow(Color.Black, "c0b0")]
+        public void Move_Capture_OtherColor(Color color, string move)
+        {
+            string board =
+                " | | | |k| | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | |K| | | \n" +
+                "R|R|r|r| | | | | ";
+            bool result = TestSupport.MoveIsValid(board, color, move);
+
+            Assert.IsTrue(result, "Expected: Capture Other Piece to be Valid");
+        }
+
+        [TestMethod]
+        [DataRow(Color.Red, "b0a0")]
+        [DataRow(Color.Black, "c0d0")]
+        public void Move_Capture_OwnColor(Color color, string move)
+        {
+            string board =
+                " | | | |k| | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | |K| | | \n" +
+                "R|R|r|r| | | | | ";
+            bool result = TestSupport.MoveIsValid(board, color, move);
+
+            Assert.IsFalse(result, "Expected: Capture Own Piece to be Invalid");
+        }
     }
 }

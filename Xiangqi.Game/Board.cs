@@ -140,6 +140,34 @@ namespace Xiangqi.Game
             return false;
         }
 
+        public bool PositionIsVulnerable(Position position, Color color, Piece captured)
+        {
+            for (int row = 0; row < Pieces.GetLength(0); row++)
+            {
+                for (int col = 0; col < Pieces.GetLength(1); col++)
+                {
+                    Position oldPosition = new Position(row, col);
+                    Piece piece = (Piece)GetPieceOn(oldPosition);
+
+                    if (piece == null) { continue; }
+                    if (piece.Color == color) { continue; }
+                    if (!piece.IsValidMove(this, oldPosition, position, captured)) { continue; }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool KingInCheck(Color color)
+        {
+            IEnumerable<KeyValuePair<Position, Piece>> kingSearch = GetPiecesWhere(
+                (IPiece piece) => piece is King && ((Piece) piece).Color == color
+            );
+            if (kingSearch.Count() != 1) { throw new Exception("Expected 1 King"); }
+            KeyValuePair<Position, Piece> king = kingSearch.ToArray()[0];
+            return PositionIsVulnerable(king.Key, color, king.Value);
+        }
+
         public override string ToString()
         {
             string[] rowString = new string[Rows];

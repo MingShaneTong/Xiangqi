@@ -13,10 +13,10 @@ namespace MoveTests.CannonTest
     public class CannonCapture
     {
         [TestMethod]
-        [DataRow(Color.Black, "a9i9")]
-        [DataRow(Color.Black, "a9a0")]
         [DataRow(Color.Red, "b0h0")]
         [DataRow(Color.Red, "b0b8")]
+        [DataRow(Color.Black, "a9i9")]
+        [DataRow(Color.Black, "a9a0")]
         public void ValidCapture(Color color, string move) 
         {
             string board =
@@ -29,7 +29,7 @@ namespace MoveTests.CannonTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
-                "R|C| | | |K| |r| ";
+                "R|C| | | |K| |p| ";
             bool result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsTrue(result, "Expected: Cannon Valid Capture to be Valid");

@@ -8,10 +8,10 @@ using Xiangqi.Game.Pieces;
 using Xiangqi.Game;
 using Xiangqi.UnitTests;
 
-namespace MoveTests.ChariotTest
+namespace MoveTests.CannonTest
 {
     [TestClass]
-    public class ChariotMove
+    public class CannonMove
     {
         [TestMethod]
         [DataRow(Color.Red, "e4a4")]
@@ -25,15 +25,15 @@ namespace MoveTests.ChariotTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
-                " | | | |r| | | | \n" +
-                " | | | |R| | | | \n" +
+                " | | | |c| | | | \n" +
+                " | | | |C| | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | |K| | | ";
             bool result = TestSupport.MoveIsValid(board, color, move);
 
-            Assert.IsTrue(result, "Expected: Chariot Horizontal Move to be Valid");
+            Assert.IsTrue(result, "Expected: Cannon Horizontal Move to be Valid");
         }
 
         [TestMethod]
@@ -48,15 +48,15 @@ namespace MoveTests.ChariotTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
-                " | | | | | | | |r\n" +
-                "R| | | | | | | | \n" +
+                " | | | | | | | |c\n" +
+                "C| | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | |K| | | ";
             bool result = TestSupport.MoveIsValid(board, color, move);
 
-            Assert.IsTrue(result, "Expected: Chariot Vertical Move to be Valid");
+            Assert.IsTrue(result, "Expected: Cannon Vertical Move to be Valid");
         }
 
         [TestMethod]
@@ -65,7 +65,7 @@ namespace MoveTests.ChariotTest
         public void DiagonalMove(Color color, string move)
         {
             string board =
-                "r| | |k| | | | | \n" +
+                "c| | |k| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -74,10 +74,10 @@ namespace MoveTests.ChariotTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
-                "R| | | | |K| | | ";
+                "C| | | | |K| | | ";
             bool result = TestSupport.MoveIsValid(board, color, move);
 
-            Assert.IsFalse(result, "Expected: Chariot Diagonal Move to be Invalid");
+            Assert.IsFalse(result, "Expected: Cannon Diagonal Move to be Invalid");
         }
 
         [TestMethod]
@@ -86,7 +86,7 @@ namespace MoveTests.ChariotTest
         public void HorizontalMove_WithBlocking_Invalid(Color color, string move)
         {
             string board =
-                "r| | |k| | | | | \n" +
+                "c| | |k| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -95,10 +95,10 @@ namespace MoveTests.ChariotTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
-                "R| | | | |K| | | ";
+                "C| | | | |K| | | ";
             bool result = TestSupport.MoveIsValid(board, color, move);
 
-            Assert.IsFalse(result, "Expected: Chariot Horizontal Move Through Blocking to be Invalid");
+            Assert.IsFalse(result, "Expected: Cannon Horizontal Move Through Blocking to be Invalid");
         }
 
         [TestMethod]
@@ -107,7 +107,7 @@ namespace MoveTests.ChariotTest
         public void VerticalMove_WithBlocking_Invalid(Color color, string move)
         {
             string board =
-                "r| | |k| | | | | \n" +
+                "c| | |k| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -116,10 +116,10 @@ namespace MoveTests.ChariotTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
-                " |R| | | |K| | | ";
+                " |C| | | |K| | | ";
             bool result = TestSupport.MoveIsValid(board, color, move);
 
-            Assert.IsFalse(result, "Expected: Chariot Vertical Move Through Blocking to be Invalid");
+            Assert.IsFalse(result, "Expected: Cannon Vertical Move Through Blocking to be Invalid");
         }
     }
 }

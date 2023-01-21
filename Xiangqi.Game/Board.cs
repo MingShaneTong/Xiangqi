@@ -168,6 +168,43 @@ namespace Xiangqi.Game
             return PositionIsVulnerable(king.Key, color, king.Value);
         }
 
+        public bool IsInCheckmate(Color color)
+        {
+            if (!KingInCheck(color)) { return false; }
+            return ValidMovesAvailable(color);
+        }
+
+        public bool IsInStalemate(Color color)
+        {
+            if (KingInCheck(color)) { return false; }
+            return ValidMovesAvailable(color);
+        }
+
+        public bool ValidMovesAvailable(Color color)
+        {
+            // check if any moves do not result in check
+            IEnumerable<KeyValuePair<Position, Piece>> pieceSearch = GetPiecesWhere(
+                (IPiece piece) => piece != null && ((Piece)piece).Color == color
+            );
+            foreach (KeyValuePair<Position, Piece> positionPiecePair in pieceSearch)
+            {
+                Position position = positionPiecePair.Key;
+                Piece piece = positionPiecePair.Value;
+
+                for (int row = 0; row < Pieces.GetLength(0); row++)
+                {
+                    for (int col = 0; col < Pieces.GetLength(1); col++)
+                    {
+                        Position newPosition = new Position(row, col);
+                        Piece captured = (Piece)GetPieceOn(newPosition);
+                        if (!piece.IsValidMove(this, position, newPosition, captured)) { continue; }
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public override string ToString()
         {
             string[] rowString = new string[Rows];

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xiangqi.Game", "Xiangqi.Gam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xiangqi.UnitTests", "Xiangqi.UnitTests\Xiangqi.UnitTests.csproj", "{B7B323C3-76E6-4B2E-8ADB-789915A4756D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xiangqi.Web", "Xiangqi.Web\Xiangqi.Web.csproj", "{98434267-9A94-4DB2-BD7A-53CE5ED337E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xiangqi.Web", "Xiangqi.Web\Xiangqi.Web.csproj", "{F1638A4B-A272-40C7-95DE-E9F91824B0D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{B7B323C3-76E6-4B2E-8ADB-789915A4756D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7B323C3-76E6-4B2E-8ADB-789915A4756D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7B323C3-76E6-4B2E-8ADB-789915A4756D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98434267-9A94-4DB2-BD7A-53CE5ED337E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98434267-9A94-4DB2-BD7A-53CE5ED337E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98434267-9A94-4DB2-BD7A-53CE5ED337E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98434267-9A94-4DB2-BD7A-53CE5ED337E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1638A4B-A272-40C7-95DE-E9F91824B0D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1638A4B-A272-40C7-95DE-E9F91824B0D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1638A4B-A272-40C7-95DE-E9F91824B0D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1638A4B-A272-40C7-95DE-E9F91824B0D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

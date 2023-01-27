@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xiangqi", "Xiangqi\Xiangqi.csproj", "{26B12CFE-C7A1-440D-BE74-E5A28A1D1151}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xiangqi.Game", "Xiangqi.Game\Xiangqi.Game.csproj", "{081E8DA8-A619-4DB6-A68F-FCA3643209DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xiangqi.Game", "Xiangqi.Game\Xiangqi.Game.csproj", "{081E8DA8-A619-4DB6-A68F-FCA3643209DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xiangqi.UnitTests", "Xiangqi.UnitTests\Xiangqi.UnitTests.csproj", "{B7B323C3-76E6-4B2E-8ADB-789915A4756D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xiangqi.UnitTests", "Xiangqi.UnitTests\Xiangqi.UnitTests.csproj", "{B7B323C3-76E6-4B2E-8ADB-789915A4756D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xiangqi.Web", "Xiangqi.Web\Xiangqi.Web.csproj", "{F1638A4B-A272-40C7-95DE-E9F91824B0D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{26B12CFE-C7A1-440D-BE74-E5A28A1D1151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26B12CFE-C7A1-440D-BE74-E5A28A1D1151}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26B12CFE-C7A1-440D-BE74-E5A28A1D1151}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26B12CFE-C7A1-440D-BE74-E5A28A1D1151}.Release|Any CPU.Build.0 = Release|Any CPU
 		{081E8DA8-A619-4DB6-A68F-FCA3643209DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{081E8DA8-A619-4DB6-A68F-FCA3643209DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{081E8DA8-A619-4DB6-A68F-FCA3643209DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{B7B323C3-76E6-4B2E-8ADB-789915A4756D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7B323C3-76E6-4B2E-8ADB-789915A4756D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7B323C3-76E6-4B2E-8ADB-789915A4756D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1638A4B-A272-40C7-95DE-E9F91824B0D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1638A4B-A272-40C7-95DE-E9F91824B0D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1638A4B-A272-40C7-95DE-E9F91824B0D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1638A4B-A272-40C7-95DE-E9F91824B0D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,16 +10,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Xiangqi/Xiangqi.csproj", "Xiangqi/"]
-RUN dotnet restore "Xiangqi/Xiangqi.csproj"
+COPY ["Xiangqi.Web/Xiangqi.Web.csproj", "Xiangqi.Web/"]
+RUN dotnet restore "Xiangqi.Web/Xiangqi.Web.csproj"
 COPY . .
-WORKDIR "/src/Xiangqi"
-RUN dotnet build "Xiangqi.csproj" -c Release -o /app/build
+WORKDIR "/src/Xiangqi.Web"
+RUN dotnet build "Xiangqi.Web.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Xiangqi.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Xiangqi.Web.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Xiangqi.dll"]
+ENTRYPOINT ["dotnet", "Xiangqi.Web.dll"]

@@ -12,17 +12,13 @@ namespace Xiangqi.Web.Models
         public bool RedAck { get; set; }
         public string BlackPlayerConnection { get; set; }
         public bool BlackAck { get; set; }
-        public bool HasStarted { get { return RedAck && BlackAck; } }
+        public bool SentGameStart { get; set; }
 
         public Game()
         { 
             GameId = Guid.NewGuid();
             ChessGame = new ChessGame();
-        }
-
-        public void Start()
-        { 
-
+            SentGameStart = false;
         }
 
         public bool IsPlayer(string connectionId)

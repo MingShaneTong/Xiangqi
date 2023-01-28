@@ -34,6 +34,7 @@ namespace Xiangqi.Web.Hubs
             Guid gameId = new Guid(message);
             Models.Game game = GameManager.GetGame(gameId);
 
+            // trigger ack
             if (game.RedPlayerConnection == Context.ConnectionId)
             {
                 game.RedAck = true;
@@ -43,8 +44,10 @@ namespace Xiangqi.Web.Hubs
                 game.BlackAck = true;
             }
 
-            if (game.HasStarted)
+            // trigger game start
+            if (game.RedAck && game.BlackAck && !game.SentGameStart)
             {
+                game.SentGameStart = true;
                 Clients.Clients(game.RedPlayerConnection)
                     .SendAsync("GamePlay", game.ChessGame.Board.ToString());
                 Clients.Clients(game.BlackPlayerConnection)

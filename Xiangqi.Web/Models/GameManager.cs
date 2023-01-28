@@ -3,11 +3,11 @@
     public class GameManager
     {
         public Game? PendingGame { get; set; }
-        public ISet<Game> Games { get; init; }
+        public IDictionary<Guid, Game> Games { get; init; }
 
         public GameManager()
         { 
-            Games = new HashSet<Game>();
+            Games = new Dictionary<Guid, Game>();
         }
 
         public Game? MatchConnection(string connection)
@@ -23,10 +23,17 @@
             else
             {
                 Game game = PendingGame;
-                PendingGame.BlackPlayerConnection = connection;
+                game.BlackPlayerConnection = connection;
+                Games.Add(game.GameId, game);
+
                 PendingGame = null;
                 return game;
             }
+        }
+
+        public Game GetGame(Guid gameId)
+        {
+            return Games[gameId];
         }
     }
 }

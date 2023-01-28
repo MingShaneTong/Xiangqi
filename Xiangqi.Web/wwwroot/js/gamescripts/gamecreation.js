@@ -7,7 +7,18 @@ connection.on("AwaitingOpponent", (msg) => {
 });
 
 connection.on("GameCreatedSyn", (msg) => {
-	console.log("GameCreatedSyn");
+	let gameId = msg;
+	connection.invoke("GameCreatedAck", gameId);
+});
+
+connection.on("GamePlay", (msg) => {
+	console.log("GamePlay");
+	console.log(msg);
+});
+
+connection.on("GameWait", (msg) => {
+	console.log("GameWait");
+	console.log(msg);
 });
 
 connection.start();

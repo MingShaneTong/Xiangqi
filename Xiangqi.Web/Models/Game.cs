@@ -7,22 +7,29 @@ namespace Xiangqi.Web.Models
     {
         public Guid GameId { get; set; }
         public ChessGame ChessGame { get; set; }
-        public bool HasStarted { get; set; }
 
         public string RedPlayerConnection { get; set; }
         public bool RedAck { get; set; }
         public string BlackPlayerConnection { get; set; }
         public bool BlackAck { get; set; }
+        public bool HasStarted { get { return RedAck && BlackAck; } }
 
         public Game()
         { 
-            GameId = System.Guid.NewGuid();
+            GameId = Guid.NewGuid();
             ChessGame = new ChessGame();
         }
 
         public void Start()
         { 
 
+        }
+
+        public bool IsPlayer(string connectionId)
+        { 
+            return 
+                RedPlayerConnection == connectionId || 
+                BlackPlayerConnection == connectionId;
         }
     }
 }

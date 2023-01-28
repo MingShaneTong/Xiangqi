@@ -23,9 +23,32 @@ namespace Xiangqi.Web.Hubs
             {
                 // tell both players to respond with game ack
                 Clients.Clients(gameJoined.RedPlayerConnection)
-                    .SendAsync("GameCreatedSyn");
+                    .SendAsync("GameCreatedSyn", gameJoined.GameId.ToString());
                 Clients.Clients(gameJoined.BlackPlayerConnection)
-                    .SendAsync("GameCreatedSyn");
+                    .SendAsync("GameCreatedSyn", gameJoined.GameId.ToString());
+            }
+        }
+
+        public void GameCreatedAck(string message)
+        {
+            Guid gameId = new Guid(message);
+            Models.Game game = GameManager.GetGame(gameId);
+
+            if (game.RedPlayerConnection == Context.ConnectionId)
+            {
+                game.RedAck = true;
+            }
+            else if (game.BlackPlayerConnection == Context.ConnectionId)
+            { 
+                game.BlackAck = true;
+            }
+
+            if (game.HasStarted)
+            {
+                Clients.Clients(game.RedPlayerConnection)
+                    .SendAsync("GamePlay", game.ChessGame.Board.ToString());
+                Clients.Clients(game.BlackPlayerConnection)
+                    .SendAsync("GameWait", game.ChessGame.Board.ToString());
             }
         }
     }

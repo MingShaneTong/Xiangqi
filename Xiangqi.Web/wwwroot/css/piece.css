@@ -1,0 +1,79 @@
+﻿.board {
+	background-image: url('/img/board.svg');
+	background-repeat: no-repeat;
+}
+
+.tile {
+	background-repeat: no-repeat;
+}
+
+.tile-red {
+	background-image: url('/img/pieces/tile/btn-red.png');
+}
+
+.tile-black {
+	background-image: url('/img/pieces/tile/btn-black.png');
+}
+
+.piece {
+	background-repeat: no-repeat;
+}
+
+/** CHINESE CHARACTERS */
+/** RED */
+.advisor-red {
+	background-image: url('/img/pieces/character/chinese/red/chinese-advisor.svg');
+}
+
+.cannon-red {
+	background-image: url('/img/pieces/character/chinese/red/chinese-cannon.svg');
+}
+
+.elephant-red {
+	background-image: url('/img/pieces/character/chinese/red/chinese-elephant-red.svg');
+}
+
+.horse-red {
+	background-image: url('/img/pieces/character/chinese/red/chinese-horse.svg');
+}
+
+.king-red {
+	background-image: url('/img/pieces/character/chinese/red/chinese-king.svg');
+}
+
+.pawn-red {
+	background-image: url('/img/pieces/character/chinese/red/chinese-pawn.svg');
+}
+
+.rook-red {
+	background-image: url('/img/pieces/character/chinese/red/chinese-rook.svg');
+}
+
+/** BLACK */
+.advisor-black {
+	background-image: url('/img/pieces/character/chinese/black/chinese-advisor.svg');
+}
+
+.cannon-black {
+	background-image: url('/img/pieces/character/chinese/black/chinese-cannon.svg');
+}
+
+.elephant-black {
+	background-image: url('/img/pieces/character/chinese/black/chinese-elephant.svg');
+}
+
+.horse-black {
+	background-image: url('/img/pieces/character/chinese/black/chinese-horse.svg');
+}
+
+.king-black {
+	background-image: url('/img/pieces/character/chinese/black/chinese-king.svg');
+}
+
+.pawn-black {
+	background-image: url('/img/pieces/character/chinese/black/chinese-pawn.svg');
+}
+
+.rook-black {
+	background-image: url('/img/pieces/character/chinese/black/chinese-rook.svg');
+}

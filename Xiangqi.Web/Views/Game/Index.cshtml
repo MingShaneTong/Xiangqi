@@ -1,6 +1,17 @@
 ﻿@page
 
+<script src="~/lib/babel/babel.min.js"></script>
 <script src="~/lib/react/react.development.js"></script>
 <script src="~/lib/react-dom/react-dom.development.js"></script>
 <script src="~/lib/signalr/signalr.min.js"></script>
+
 <script src="~/js/gamescripts/gamecreation.js"></script>
+<script type="text/babel" src="~/js/gamescripts/components/pieces/PieceComponent.jsx"></script>
+<script type="text/babel" src="~/js/gamescripts/components/pieces/Pawn.jsx"></script>
+<script type="text/babel" src="~/js/gamescripts/components/Board.jsx"></script>
+
+<script type="text/babel">
+	const domContainer = document.querySelector('main');
+	const root = ReactDOM.createRoot(domContainer);
+	root.render(<Board />);
+</script>

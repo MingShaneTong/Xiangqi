@@ -23,7 +23,7 @@ namespace Xiangqi.Game
                 case "H":
                     return Horse.Of(color);
                 case "R":
-                    return Chariot.Of(color);
+                    return Rook.Of(color);
                 case "C":
                     return Cannon.Of(color);
                 case "P":

@@ -8,10 +8,10 @@ using Xiangqi.Game.Pieces;
 using Xiangqi.Game;
 using Xiangqi.UnitTests;
 
-namespace MoveTests.ChariotTest
+namespace MoveTests.RookTest
 {
     [TestClass]
-    public class ChariotMove
+    public class RookMove
     {
         [TestMethod]
         [DataRow(Color.Red, "e4a4")]
@@ -33,7 +33,7 @@ namespace MoveTests.ChariotTest
                 " | | | | |K| | | ";
             bool result = TestSupport.MoveIsValid(board, color, move);
 
-            Assert.IsTrue(result, "Expected: Chariot Horizontal Move to be Valid");
+            Assert.IsTrue(result, "Expected: Rook Horizontal Move to be Valid");
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace MoveTests.ChariotTest
                 " | | | | |K| | | ";
             bool result = TestSupport.MoveIsValid(board, color, move);
 
-            Assert.IsTrue(result, "Expected: Chariot Vertical Move to be Valid");
+            Assert.IsTrue(result, "Expected: Rook Vertical Move to be Valid");
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace MoveTests.ChariotTest
                 "R| | | | |K| | | ";
             bool result = TestSupport.MoveIsValid(board, color, move);
 
-            Assert.IsFalse(result, "Expected: Chariot Diagonal Move to be Invalid");
+            Assert.IsFalse(result, "Expected: Rook Diagonal Move to be Invalid");
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@ namespace MoveTests.ChariotTest
                 "R| | | | |K| | | ";
             bool result = TestSupport.MoveIsValid(board, color, move);
 
-            Assert.IsFalse(result, "Expected: Chariot Horizontal Move Through Blocking to be Invalid");
+            Assert.IsFalse(result, "Expected: Rook Horizontal Move Through Blocking to be Invalid");
         }
 
         [TestMethod]
@@ -119,7 +119,7 @@ namespace MoveTests.ChariotTest
                 " |R| | | |K| | | ";
             bool result = TestSupport.MoveIsValid(board, color, move);
 
-            Assert.IsFalse(result, "Expected: Chariot Vertical Move Through Blocking to be Invalid");
+            Assert.IsFalse(result, "Expected: Rook Vertical Move Through Blocking to be Invalid");
         }
     }
 }

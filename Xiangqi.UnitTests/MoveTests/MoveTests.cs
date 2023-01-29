@@ -38,7 +38,7 @@ namespace PiecesTests
         [DataRow("Black", -1, -1, -1, -1)]
         public void Invalid_Positions(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            Piece chariot = Chariot.Of(Color.Black);
+            Piece chariot = Rook.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(0, 0), chariot },
@@ -80,7 +80,7 @@ namespace PiecesTests
                 Color = Color.Black,
                 OldPosition = new Position(0, 0),
                 NewPosition = new Position(1, 0),
-                Piece = Chariot.Of(Color.Black)
+                Piece = Rook.Of(Color.Black)
             };
             Assert.IsFalse(move.IsValid(board), "Expected: Piece Move with Wrong Piece in Old Position to be Invalid");
         }
@@ -100,7 +100,7 @@ namespace PiecesTests
                 Color = Color.Black,
                 OldPosition = new Position(0, 0),
                 NewPosition = new Position(1, 0),
-                Piece = Chariot.Of(Color.Black)
+                Piece = Rook.Of(Color.Black)
             };
             Assert.IsFalse(move.IsValid(board), "Expected: Piece Move with Wrong Piece in Old Position to be Invalid");
         }
@@ -108,7 +108,7 @@ namespace PiecesTests
         [TestMethod]
         public void CapturedPiece_NotSpecified()
         {
-            Piece chariot = Chariot.Of(Color.Black);
+            Piece chariot = Rook.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(0, 0), chariot },
@@ -130,7 +130,7 @@ namespace PiecesTests
         [TestMethod]
         public void Move_WrongColor()
         {
-            Piece chariot = Chariot.Of(Color.Black);
+            Piece chariot = Rook.Of(Color.Black);
             Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(0, 0), chariot },

@@ -23,7 +23,7 @@ namespace Xiangqi.Game
         {
             return BuildBoard(new Dictionary<Position, IPiece>()
             {
-                { new Position(0, 0), Chariot.Of(Color.Black) },
+                { new Position(0, 0), Rook.Of(Color.Black) },
                 { new Position(0, 1), Horse.Of(Color.Black) },
                 { new Position(0, 2), Elephant.Of(Color.Black) },
                 { new Position(0, 3), Advisor.Of(Color.Black) },
@@ -31,7 +31,7 @@ namespace Xiangqi.Game
                 { new Position(0, 5), Advisor.Of(Color.Black) },
                 { new Position(0, 6), Elephant.Of(Color.Black) },
                 { new Position(0, 7), Horse.Of(Color.Black) },
-                { new Position(0, 8), Chariot.Of(Color.Black) },
+                { new Position(0, 8), Rook.Of(Color.Black) },
 
                 { new Position(2, 1), Cannon.Of(Color.Black) },
                 { new Position(2, 7), Cannon.Of(Color.Black) },
@@ -51,7 +51,7 @@ namespace Xiangqi.Game
                 { new Position(7, 1), Cannon.Of(Color.Red) },
                 { new Position(7, 7), Cannon.Of(Color.Red) },
 
-                { new Position(9, 0), Chariot.Of(Color.Red) },
+                { new Position(9, 0), Rook.Of(Color.Red) },
                 { new Position(9, 1), Horse.Of(Color.Red) },
                 { new Position(9, 2), Elephant.Of(Color.Red) },
                 { new Position(9, 3), Advisor.Of(Color.Red) },
@@ -59,7 +59,7 @@ namespace Xiangqi.Game
                 { new Position(9, 5), Advisor.Of(Color.Red) },
                 { new Position(9, 6), Elephant.Of(Color.Red) },
                 { new Position(9, 7), Horse.Of(Color.Red) },
-                { new Position(9, 8), Chariot.Of(Color.Red) }
+                { new Position(9, 8), Rook.Of(Color.Red) }
             });
         }
 

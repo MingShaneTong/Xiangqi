@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xiangqi.Game.Pieces
 {
-    public class Chariot : Piece
+    public class Rook : Piece
     {
         public override bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece? pieceCaptured = null)
         {
@@ -37,9 +37,9 @@ namespace Xiangqi.Game.Pieces
             }
         }
 
-        public static Chariot Of(Color color)
+        public static Rook Of(Color color)
         {
-            return new Chariot() { Color = color };
+            return new Rook() { Color = color };
         }
     }
 }

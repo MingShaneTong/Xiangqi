@@ -23,6 +23,11 @@ namespace Xiangqi.Game.Pieces
             return false;
         }
 
+        public override string PieceName()
+        {
+            return "King";
+        }
+
         public override string ToString()
         {
             switch (Color)

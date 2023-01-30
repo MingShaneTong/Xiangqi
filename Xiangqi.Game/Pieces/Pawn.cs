@@ -29,6 +29,11 @@ namespace Xiangqi.Game.Pieces
             return true;
         }
 
+        public override string PieceName()
+        {
+            return "Pawn";
+        }
+
         private bool IsValidHorizontalMove(Board board, Position oldPosition, Position newPosition)
         {
             // check same row

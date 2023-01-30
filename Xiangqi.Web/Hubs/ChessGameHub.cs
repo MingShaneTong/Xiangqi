@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Xiangqi.Game;
 using Xiangqi.Web.Models;
 
 namespace Xiangqi.Web.Hubs
@@ -48,10 +49,10 @@ namespace Xiangqi.Web.Hubs
             if (game.RedAck && game.BlackAck && !game.SentGameStart)
             {
                 game.SentGameStart = true;
-                Clients.Clients(game.RedPlayerConnection)
-                    .SendAsync("GamePlay", game.ChessGame.Board.ToString());
-                Clients.Clients(game.BlackPlayerConnection)
-                    .SendAsync("GameWait", game.ChessGame.Board.ToString());
+                Board board = game.ChessGame.Board;
+                string boardString = BoardStringConstructor.Construct(board);
+                Clients.Clients(game.RedPlayerConnection).SendAsync("GamePlay", boardString);
+                Clients.Clients(game.BlackPlayerConnection).SendAsync("GameWait", boardString);
             }
         }
     }

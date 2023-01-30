@@ -16,6 +16,11 @@ namespace Xiangqi.Game.Pieces
                 Math.Abs(newPosition.Row - oldPosition.Row) == 1;
         }
 
+        public override string PieceName()
+        {
+            return "Advisor";
+        }
+
         public override string ToString()
         {
             switch (Color)

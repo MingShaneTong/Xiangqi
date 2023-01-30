@@ -23,6 +23,11 @@ namespace Xiangqi.Game.Pieces
             return !board.GetDiagonalPiecesBetween(oldPosition, newPosition).Any();
         }
 
+        public override string PieceName()
+        {
+            return "Elephant";
+        }
+
         public override string ToString()
         {
             switch (Color)

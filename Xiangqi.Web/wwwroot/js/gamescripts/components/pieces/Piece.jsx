@@ -1,4 +1,4 @@
-﻿function PieceComponent(props) {
+﻿function Piece(props) {
     return (
         <div className={"tile " + props.tile}>
             <div className={"piece " + props.piece}></div>

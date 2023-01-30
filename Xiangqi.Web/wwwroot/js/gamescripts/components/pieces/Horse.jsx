@@ -1,8 +1,8 @@
 ﻿function Horse(props) {
     switch (props.color) {
         case 'red':
-            return <PieceComponent tile="tile-red" piece="horse-red" />;
+            return <Piece tile="tile-red" piece="horse-red" />;
         case 'black':
-            return <PieceComponent tile="tile-black" piece="horse-black" />;
+            return <Piece tile="tile-black" piece="horse-black" />;
     }
 }

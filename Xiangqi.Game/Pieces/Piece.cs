@@ -8,12 +8,8 @@ namespace Xiangqi.Game.Pieces
 {
     public abstract class Piece : IPiece
     {
-        private Color _color;
-        public Color Color
-        {
-            get { return _color; }
-            init { _color = value; }
-        }
+        public Color Color { get; init; }
+        public abstract String PieceName();
 
         public abstract bool IsValidMove(Board board, Position oldPosition, Position newPosition, IPiece? pieceCaptured = null);
     }

@@ -24,6 +24,11 @@ namespace Xiangqi.Game.Pieces
             return false;
         }
 
+        public override string PieceName()
+        {
+            return "Rook";
+        }
+
         public override string ToString()
         {
             switch (Color)

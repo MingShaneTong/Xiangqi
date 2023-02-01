@@ -12,13 +12,11 @@ connection.on("GameCreatedSyn", (msg) => {
 });
 
 connection.on("GamePlay", (msg) => {
-	console.log("GamePlay");
-	console.log(msg);
+	updateBoard(parseBoard(msg));
 });
 
 connection.on("GameWait", (msg) => {
-	console.log("GameWait");
-	console.log(msg);
+	updateBoard(parseBoard(msg));
 });
 
 connection.start();

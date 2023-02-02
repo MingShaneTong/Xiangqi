@@ -12,7 +12,22 @@ function onBoardClick(table) {
 	if (td != null) {
 		let row = Number(td.getAttribute("data-row"));
 		let col = Number(td.getAttribute("data-col"));
-		if (pieceInCell(td))
+
+		if (selectedCell == null) {
+			// select piece to move
+			if (pieceInCell(td)) {
+				selectedCell = td;
+			}
+		} else {
+			if (pieceInCell(td)) {
+				// captured a piece
+				if (td != selectedCell) {
+					
+				}
+			} else {
+				// move piece
+			}
+		}
 	}
 }
 

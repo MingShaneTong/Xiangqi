@@ -12,11 +12,13 @@ connection.on("GameCreatedSyn", (msg) => {
 });
 
 connection.on("GamePlay", (msg) => {
-	updateBoard(parseBoard(msg));
+	let gameData = JSON.parse(msg);
+	updateGame(gameData);
 });
 
 connection.on("GameWait", (msg) => {
-	updateBoard(parseBoard(msg));
+	let gameData = JSON.parse(msg);
+	updateGame(gameData);
 });
 
 connection.start();

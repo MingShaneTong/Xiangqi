@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using System.Text.Json;
 using Xiangqi.Game;
+using Xiangqi.Game.Pieces;
 using Xiangqi.Web.Models;
+using Xiangqi.Web.Models.Json;
 
 namespace Xiangqi.Web.Hubs
 {
@@ -33,7 +36,7 @@ namespace Xiangqi.Web.Hubs
         public void GameCreatedAck(string message)
         {
             Guid gameId = new Guid(message);
-            Models.Game game = GameManager.GetGame(gameId);
+            var game = GameManager.GetGame(gameId);
 
             // trigger ack
             if (game.RedPlayerConnection == Context.ConnectionId)
@@ -49,10 +52,35 @@ namespace Xiangqi.Web.Hubs
             if (game.RedAck && game.BlackAck && !game.SentGameStart)
             {
                 game.SentGameStart = true;
-                Board board = game.ChessGame.Board;
-                string boardString = BoardStringConstructor.Construct(board);
-                Clients.Clients(game.RedPlayerConnection).SendAsync("GamePlay", boardString);
-                Clients.Clients(game.BlackPlayerConnection).SendAsync("GameWait", boardString);
+
+                var json = new GameJson()
+                {
+                    GameId = game.GameId.ToString(),
+                    Turn = game.ChessGame.Turn.ToString(),
+                    Board = game.ChessGame.Board
+                        .GetPiecesWhere(p => p != null)
+                        .Select(p => {
+                            var position = p.Key;
+                            var piece = p.Value;
+
+                            return new PieceJson()
+                            {
+                                Piece = piece.PieceName(),
+                                Color = piece.Color.ToString(),
+                                Row = position.Row,
+                                Col = position.Col
+                            };
+                        })
+                };
+
+                var opt = new JsonSerializerOptions() { WriteIndented = true };
+
+                json.Player = Color.Red.ToString();
+                var redJson = JsonSerializer.Serialize(json, opt);
+                Clients.Clients(game.RedPlayerConnection).SendAsync("GamePlay", redJson);
+                json.Player = Color.Black.ToString();
+                var blackJson = JsonSerializer.Serialize(json, opt);
+                Clients.Clients(game.BlackPlayerConnection).SendAsync("GameWait", blackJson);
             }
         }
     }

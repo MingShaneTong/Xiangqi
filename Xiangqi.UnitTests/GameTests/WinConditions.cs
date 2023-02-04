@@ -1,4 +1,5 @@
 ﻿using Xiangqi.Game;
+using Xiangqi.Game.Notation;
 
 namespace Xiangqi.UnitTests.GameTests
 {
@@ -39,7 +40,9 @@ namespace Xiangqi.UnitTests.GameTests
                 " | | | |r| | | | \n" +
                 " | | |K| | | | | ";
             var board = BoardCreator.BuildBoard(boardString);
-            var game = new ChessGame() { Board = board };
+
+            var notation = new BasicAlgebraicNotation();
+            var game = new ChessGame(notation) { Board = board };
             Assert.IsFalse(board.IsInCheckmate(Color.Black), "Expected: Non Checkmate");
             game.PerformTurn("e6g7");
             Assert.IsTrue(board.IsInCheckmate(Color.Black), "Expected: Checkmate");

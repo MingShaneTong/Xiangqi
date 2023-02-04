@@ -19,7 +19,16 @@ namespace Xiangqi.Game
             Notation = new RowColNotation();
             CurrentRound = new Round();
         }
-        
+
+        public ChessGame(INotation notation)
+        {
+            Board = BoardCreator.InitBoard();
+            Rounds = new List<Round>();
+            Turn = Color.Red;
+            Notation = notation;
+            CurrentRound = new Round();
+        }
+
         public void PerformTurn(string notation)
         {
             var move = Notation.ToMove(Board, Turn, notation);

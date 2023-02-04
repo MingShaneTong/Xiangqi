@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game;
-using Xiangqi.Game.Moves;
-using Xiangqi.Game.Pieces;
+﻿using Xiangqi.Game;
 using Xiangqi.UnitTests;
 
 namespace PiecesTests.HorseTest
@@ -24,7 +17,7 @@ namespace PiecesTests.HorseTest
         [DataRow(Color.Black, "c9e8")]
         public void ValidMove(Color color, string move)
         {
-            string board =
+            var board =
                 " | |h| | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | |k| | | \n" +
@@ -35,7 +28,7 @@ namespace PiecesTests.HorseTest
                 " | | |K| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | |H| | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsTrue(result, "Expected: Horse Valid Move to be Valid");
         }
@@ -49,7 +42,7 @@ namespace PiecesTests.HorseTest
         [DataRow(Color.Black, "c9a9")]
         public void InvalidMove(Color color, string move)
         {
-            string board =
+            var board =
                 " | |h| | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | |k| | | \n" +
@@ -60,7 +53,7 @@ namespace PiecesTests.HorseTest
                 " | | |K| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | |H| | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Horse Invalid Move to be Invalid");
         }
@@ -77,7 +70,7 @@ namespace PiecesTests.HorseTest
         [DataRow(Color.Black, "c9e8")]
         public void Move_WithBlocking_Invalid(Color color, string move)
         {
-            string board =
+            var board =
                 " |P|h|P| | | | | \n" +
                 " | |P| | | | | | \n" +
                 " | | | | |k| | | \n" +
@@ -88,7 +81,7 @@ namespace PiecesTests.HorseTest
                 " | | |K| | | | | \n" +
                 " | | | | | |p| | \n" +
                 " | | | | |p|H|p| ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Horse Move Through Blocking to be Invalid");
         }

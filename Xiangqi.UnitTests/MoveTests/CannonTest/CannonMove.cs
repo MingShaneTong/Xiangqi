@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game.Moves;
-using Xiangqi.Game.Pieces;
-using Xiangqi.Game;
+﻿using Xiangqi.Game;
 using Xiangqi.UnitTests;
 
 namespace MoveTests.CannonTest
@@ -20,7 +13,7 @@ namespace MoveTests.CannonTest
         [DataRow(Color.Black, "e5i5")]
         public void HorizontalMove(Color color, string move)
         {
-            string board =
+            var board =
                 " | | |k| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -31,7 +24,7 @@ namespace MoveTests.CannonTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | |K| | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsTrue(result, "Expected: Cannon Horizontal Move to be Valid");
         }
@@ -43,7 +36,7 @@ namespace MoveTests.CannonTest
         [DataRow(Color.Black, "i5i9")]
         public void VerticalMove(Color color, string move)
         {
-            string board =
+            var board =
                 " | | |k| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -54,7 +47,7 @@ namespace MoveTests.CannonTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | |K| | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsTrue(result, "Expected: Cannon Vertical Move to be Valid");
         }
@@ -64,7 +57,7 @@ namespace MoveTests.CannonTest
         [DataRow(Color.Black, "a9e5")]
         public void DiagonalMove(Color color, string move)
         {
-            string board =
+            var board =
                 "c| | |k| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -75,7 +68,7 @@ namespace MoveTests.CannonTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 "C| | | | |K| | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Cannon Diagonal Move to be Invalid");
         }
@@ -85,7 +78,7 @@ namespace MoveTests.CannonTest
         [DataRow(Color.Black, "a9i9")]
         public void HorizontalMove_WithBlocking_Invalid(Color color, string move)
         {
-            string board =
+            var board =
                 "c| | |k| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -96,7 +89,7 @@ namespace MoveTests.CannonTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 "C| | | | |K| | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Cannon Horizontal Move Through Blocking to be Invalid");
         }
@@ -106,7 +99,7 @@ namespace MoveTests.CannonTest
         [DataRow(Color.Black, "a9a0")]
         public void VerticalMove_WithBlocking_Invalid(Color color, string move)
         {
-            string board =
+            var board =
                 "c| | |k| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -117,7 +110,7 @@ namespace MoveTests.CannonTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " |C| | | |K| | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Cannon Vertical Move Through Blocking to be Invalid");
         }

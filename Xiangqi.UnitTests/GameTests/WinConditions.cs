@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game;
-using Xiangqi.Game.Moves;
+﻿using Xiangqi.Game;
+using Xiangqi.Game.Notation;
 
 namespace Xiangqi.UnitTests.GameTests
 {
@@ -14,18 +9,18 @@ namespace Xiangqi.UnitTests.GameTests
         [TestMethod]
         public void Checkmate()
         {
-            string boardString =
-                    " | | | | |k| | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | | |R| | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | |r| | | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | |K| | | | ";
-            Board board = BoardCreator.BuildBoard(boardString);
+            var boardString =
+                " | | | | |k| | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | |R| | | \n" +
+                " | | | | | | | | \n" +
+                " | | |r| | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | |K| | | | ";
+            var board = BoardCreator.BuildBoard(boardString);
 
             Assert.IsTrue(board.IsInCheckmate(Color.Black), "Expected: Checkmate");
         }
@@ -33,19 +28,21 @@ namespace Xiangqi.UnitTests.GameTests
         [TestMethod]
         public void MoveToCheckmate()
         {
-            string boardString =
-                    " | | | | |k| | | \n" +
-                    " | | | |P| | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | |H| | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | |r| | | | \n" +
-                    " | | |K| | | | | ";
-            Board board = BoardCreator.BuildBoard(boardString);
-            ChessGame game = new ChessGame() { Board = board };
+            var boardString =
+                " | | | | |k| | | \n" +
+                " | | | |P| | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | |H| | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | |r| | | | \n" +
+                " | | |K| | | | | ";
+            var board = BoardCreator.BuildBoard(boardString);
+
+            var notation = new BasicAlgebraicNotation();
+            var game = new ChessGame(notation) { Board = board };
             Assert.IsFalse(board.IsInCheckmate(Color.Black), "Expected: Non Checkmate");
             game.PerformTurn("e6g7");
             Assert.IsTrue(board.IsInCheckmate(Color.Black), "Expected: Checkmate");
@@ -54,18 +51,18 @@ namespace Xiangqi.UnitTests.GameTests
         [TestMethod]
         public void Stalemate()
         {
-            string boardString =
-                    " | | |k|r|a| | | \n" +
-                    " | | |h|c|H| | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | | | | | | | \n" +
-                    " | | |K| | | | | ";
-            Board board = BoardCreator.BuildBoard(boardString);
+            var boardString =
+                " | | |k|r|a| | | \n" +
+                " | | |h|c|H| | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | | | | | | | \n" +
+                " | | |K| | | | | ";
+            var board = BoardCreator.BuildBoard(boardString);
             Assert.IsTrue(board.IsInStalemate(Color.Black), "Expected: Stalemate");
         }
     }

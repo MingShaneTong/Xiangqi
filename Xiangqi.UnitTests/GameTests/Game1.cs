@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Xiangqi.Game;
+using Xiangqi.Game.Notation;
 
 namespace Xiangqi.UnitTests.GameTests
 {
@@ -20,7 +16,8 @@ namespace Xiangqi.UnitTests.GameTests
         [TestMethod]
         public void Game()
         {
-            ChessGame game = new ChessGame();
+            var notation = new BasicAlgebraicNotation();
+            var game = new ChessGame(notation);
             PerformRound(game, "h2e2", "h9g7");
             PerformRound(game, "h0g2", "i9h9");
             PerformRound(game, "c3c4", "h7i7");

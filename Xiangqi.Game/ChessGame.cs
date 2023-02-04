@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game.Moves;
+﻿using Xiangqi.Game.Moves;
 using Xiangqi.Game.Notation;
 
 namespace Xiangqi.Game
@@ -25,10 +19,19 @@ namespace Xiangqi.Game
             Notation = new RowColNotation();
             CurrentRound = new Round();
         }
-        
+
+        public ChessGame(INotation notation)
+        {
+            Board = BoardCreator.InitBoard();
+            Rounds = new List<Round>();
+            Turn = Color.Red;
+            Notation = notation;
+            CurrentRound = new Round();
+        }
+
         public void PerformTurn(string notation)
         {
-            Move move = Notation.ToMove(Board, Turn, notation);
+            var move = Notation.ToMove(Board, Turn, notation);
             PerformTurn(move);
         }
 

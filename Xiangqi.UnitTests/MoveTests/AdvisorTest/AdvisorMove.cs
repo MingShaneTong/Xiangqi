@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game;
-using Xiangqi.Game.Moves;
-using Xiangqi.Game.Pieces;
+﻿using Xiangqi.Game;
 using Xiangqi.UnitTests;
 
 namespace PiecesTests.AdvisorTest
@@ -24,7 +17,7 @@ namespace PiecesTests.AdvisorTest
         [DataRow(Color.Black, "e8f9")]
         public void DiagonalMove(Color color, string move)
         {
-            string board =
+            var board =
                 " | | | |k| | | | \n" +
                 " | | | |a| | | | \n" +
                 " | | | | | | | | \n" +
@@ -35,7 +28,7 @@ namespace PiecesTests.AdvisorTest
                 " | | | | | | | | \n" +
                 " | | | |A| | | | \n" +
                 " | | | |K| | | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsTrue(result, "Expected: Advisor Diagonal Move to be Valid");
         }
@@ -51,7 +44,7 @@ namespace PiecesTests.AdvisorTest
         [DataRow(Color.Black, "e8e9")]
         public void NonDiagonalMove(Color color, string move)
         {
-            string board =
+            var board =
                 " | | | |k| | | | \n" +
                 " | | | |a| | | | \n" +
                 " | | | | | | | | \n" +
@@ -62,7 +55,7 @@ namespace PiecesTests.AdvisorTest
                 " | | | | | | | | \n" +
                 " | | | |A| | | | \n" +
                 " | | | |K| | | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Advisor Move that is not diagonal to be Invalid");
         }
@@ -72,7 +65,7 @@ namespace PiecesTests.AdvisorTest
         [DataRow(Color.Black, "d9f7")]
         public void DiagonalMove_AcrossMultipleSquares(Color color, string move)
         {
-            string board =
+            var board =
                 " | | |a|k| | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -83,7 +76,7 @@ namespace PiecesTests.AdvisorTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | |A| |K| | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Advisor Move across multiple squares to be Invalid");
         }
@@ -93,7 +86,7 @@ namespace PiecesTests.AdvisorTest
         [DataRow(Color.Black, "d7c6")]
         public void Move_OutOfCastle(Color color, string move)
         {
-            string board =
+            var board =
                 " | | | |k| | | | \n" +
                 " | | | | | | | | \n" +
                 " | | |a| | | | | \n" +
@@ -104,7 +97,7 @@ namespace PiecesTests.AdvisorTest
                 " | | |A| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | |K| | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Advisor Moves Out of Castle to be Invalid");
         }

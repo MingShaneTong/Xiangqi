@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game.Pieces;
+﻿using Xiangqi.Game.Pieces;
 
 namespace Xiangqi.Game
 {
@@ -12,7 +6,7 @@ namespace Xiangqi.Game
     {
         public static Board Blank()
         {
-            Board board = new Board()
+            var board = new Board()
             {
                 Pieces = new IPiece[Board.Rows, Board.Cols]
             };
@@ -65,8 +59,8 @@ namespace Xiangqi.Game
 
         public static Board BuildBoard(IDictionary<Position, IPiece> piecePlacements)
         {
-            Board board = Blank();
-            foreach ((Position pos, IPiece piece) in piecePlacements) 
+            var board = Blank();
+            foreach ((var pos, var piece) in piecePlacements) 
             {
                 board.SetPieceOn(pos, piece);
             }
@@ -75,17 +69,17 @@ namespace Xiangqi.Game
 
         public static Board BuildBoard(string boardString)
         {
-            Board board = Blank();
+            var board = Blank();
 
-            string[] rows = boardString.Split("\n");
+            var rows = boardString.Split("\n");
             for (int i = 0; i < rows.Length; i++)
             {
-                string[] cols = rows[i].Split("|");
-                for (int j = 0; j < cols.Length; j++)
+                var cols = rows[i].Split("|");
+                for (var j = 0; j < cols.Length; j++)
                 {
-                    string pieceString = cols[j];
-                    Piece piece = PieceParser.ToPiece(pieceString);
-                    Position position = new Position(i, j);
+                    var pieceString = cols[j];
+                    var piece = PieceParser.ToPiece(pieceString);
+                    var position = new Position(i, j);
                     board.SetPieceOn(position, piece);
                 }
             }

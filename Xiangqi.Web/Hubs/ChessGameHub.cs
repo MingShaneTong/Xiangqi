@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
-using System.Text.Json;
 using Xiangqi.Game;
-using Xiangqi.Game.Pieces;
 using Xiangqi.Web.Models;
 using Xiangqi.Web.Models.Messages;
 
@@ -18,7 +16,7 @@ namespace Xiangqi.Web.Hubs
 
         public void JoinGame()
         {
-            Models.Game? gameJoined = GameManager.MatchConnection(Context.ConnectionId);
+            var gameJoined = GameManager.MatchConnection(Context.ConnectionId);
             if (gameJoined == null)
             {
                 // tell client game to wait for game
@@ -36,7 +34,7 @@ namespace Xiangqi.Web.Hubs
 
         public void GameCreatedAck(string message)
         {
-            Guid gameId = new Guid(message);
+            var gameId = new Guid(message);
             var game = GameManager.GetGame(gameId);
 
             // TODO: If game not found, respond error
@@ -93,13 +91,13 @@ namespace Xiangqi.Web.Hubs
         public void GameMove(string msg)
         {
             var moveMsg = JsonConvert.DeserializeObject<MoveMessage>(msg);
-            Guid gameId = new Guid(moveMsg.GameId);
+            var gameId = new Guid(moveMsg.GameId);
             var game = GameManager.GetGame(gameId);
 
             // TODO: If game not found, respond error
 
             // player color
-            Color? playerColor = game.GetPlayerColor(Context.ConnectionId);
+            var playerColor = game.GetPlayerColor(Context.ConnectionId);
             if (playerColor == null) { return; }
             if (playerColor != game.ChessGame.Turn) { return; }
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game.Moves;
+﻿using Xiangqi.Game.Moves;
 using Xiangqi.Game.Pieces;
 
 namespace Xiangqi.Game.Notation
@@ -12,16 +7,16 @@ namespace Xiangqi.Game.Notation
     {
         public override Move ToMove(Board board, Color color, string notation)
         {
-            int oldRow = notation[0] - '0';
-            int oldCol = notation[1] - '0';
-            int newRow = notation[2] - '0';
-            int newCol = notation[3] - '0';
+            var oldRow = notation[0] - '0';
+            var oldCol = notation[1] - '0';
+            var newRow = notation[2] - '0';
+            var newCol = notation[3] - '0';
 
-            Position oldPosition = new Position(oldRow, oldCol);
-            Position newPosition = new Position(newRow, newCol);
+            var oldPosition = new Position(oldRow, oldCol);
+            var newPosition = new Position(newRow, newCol);
 
-            Piece movingPiece = (Piece)board.GetPieceOn(oldPosition);
-            Piece capturedPiece = (Piece)board.GetPieceOn(newPosition);
+            var movingPiece = (Piece)board.GetPieceOn(oldPosition);
+            var capturedPiece = (Piece)board.GetPieceOn(newPosition);
 
             return new Move
             {

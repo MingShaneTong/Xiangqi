@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game;
-using Xiangqi.Game.Pieces;
+﻿using Xiangqi.Game;
 
 namespace Xiangqi.UnitTests
 {
@@ -25,9 +18,9 @@ namespace Xiangqi.UnitTests
         [TestMethod]
         public void ValidPosition()
         {
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
-                for (int j = 0; j < 9; j++)
+                for (var j = 0; j < 9; j++)
                 {
                     AssertPositionValid(new Position(i, j));
                 }

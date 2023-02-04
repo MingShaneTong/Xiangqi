@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Xiangqi.Game.Pieces
+﻿namespace Xiangqi.Game.Pieces
 {
     public class Rook : Piece
     {
@@ -12,12 +6,12 @@ namespace Xiangqi.Game.Pieces
         {
             if (oldPosition.Row == newPosition.Row)
             {
-                IList<IPiece> piecesBlocking = board.GetHorizontalPiecesBetween(oldPosition, newPosition);
+                var piecesBlocking = board.GetHorizontalPiecesBetween(oldPosition, newPosition);
                 return !piecesBlocking.Any();
             }
             if (oldPosition.Col == newPosition.Col)
             {
-                IList<IPiece> piecesBlocking = board.GetVerticalPiecesBetween(oldPosition, newPosition);
+                var piecesBlocking = board.GetVerticalPiecesBetween(oldPosition, newPosition);
                 return !piecesBlocking.Any();
             }
 

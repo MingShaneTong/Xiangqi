@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game.Pieces;
+﻿using Xiangqi.Game.Pieces;
 
 namespace Xiangqi.Game
 {
@@ -11,7 +6,7 @@ namespace Xiangqi.Game
     {
         public static Piece ToPiece(string pieceString)
         {
-            Color color = pieceString == pieceString.ToUpper() ? Color.Red : Color.Black;
+            var color = pieceString == pieceString.ToUpper() ? Color.Red : Color.Black;
             switch (pieceString.ToUpper())
             {
                 case "K":

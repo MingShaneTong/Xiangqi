@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game;
+﻿using Xiangqi.Game;
 using Xiangqi.Game.Pieces;
 
 namespace Xiangqi.UnitTests.GameTests
@@ -14,8 +9,8 @@ namespace Xiangqi.UnitTests.GameTests
         [TestMethod]
         public void KingFacingMove() 
         {
-            Piece pawn = Pawn.Of(Color.Red);
-            ChessGame game = new ChessGame
+            var pawn = Pawn.Of(Color.Red);
+            var game = new ChessGame
             { 
                 Board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
                 {

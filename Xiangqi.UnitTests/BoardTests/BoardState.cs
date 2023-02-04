@@ -9,7 +9,7 @@ namespace Xiangqi.UnitTests.BoardTests
         [TestMethod]
         public void InitialBoardPosition()
         {
-            Board board = BoardCreator.InitBoard();
+            var board = BoardCreator.InitBoard();
             Trace.WriteLine(board);
             Assert.AreEqual(board.ToString(),
                 "r|h|e|a|k|a|e|h|r\n" +

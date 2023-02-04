@@ -5,10 +5,10 @@
 	}
 
 	tileClass() {
-		return "tile-" + this.color;
+		return "tile-" + this.color.toLowerCase();
 	}
 
 	pieceClass() {
-		return this.piece.toLowerCase() + "-" + this.color;
+		return this.piece.toLowerCase() + "-" + this.color.toLowerCase();
 	}
 }

@@ -1,5 +1,6 @@
 ﻿function BoardComponent(props) {
 	let board = props.board;
+
 	let boardComps = [];
 
 	for (let r = 0; r < 10; r++) {
@@ -20,12 +21,12 @@
 	return (
 		<div className="board">
 			<div className="boardBackground" />
-			<table className="pieceContainer">
+			<table className="pieceContainer" onClick={onBoardClick}>
 				<tbody>
-					{boardComps.map(row =>
+					{boardComps.map((rowCells, row) =>
 						<tr key={key++}>
-							{row.map(cell =>
-								<td key={key++}>{cell}</td>
+							{rowCells.map((cell, col) =>
+								<td key={key++} data-row={row} data-col={col}>{cell}</td>
 							)}
 						</tr>
 					)}

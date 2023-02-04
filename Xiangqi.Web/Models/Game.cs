@@ -1,5 +1,4 @@
 ﻿using Xiangqi.Game;
-using Xiangqi.Web.Hubs;
 
 namespace Xiangqi.Web.Models
 {
@@ -22,10 +21,15 @@ namespace Xiangqi.Web.Models
         }
 
         public bool IsPlayer(string connectionId)
-        { 
-            return 
-                RedPlayerConnection == connectionId || 
-                BlackPlayerConnection == connectionId;
+        {
+            return GetPlayerColor(connectionId) != null;
+        }
+
+        public Color? GetPlayerColor(string connectionId)
+        {
+            if (RedPlayerConnection == connectionId) { return Color.Red; }
+            if (BlackPlayerConnection == connectionId) { return Color.Black; }
+            return null;
         }
     }
 }

@@ -5,3 +5,11 @@
         </div>
     );
 }
+
+function BlankComponent() {
+    return (
+        <div className={"tile blank-tile"}>
+            <div className={"piece blank-piece"}></div>
+        </div>
+    );
+}

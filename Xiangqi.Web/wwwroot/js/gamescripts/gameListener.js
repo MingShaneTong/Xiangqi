@@ -7,20 +7,24 @@ connection.on("AwaitingOpponent", (msg) => {
 });
 
 connection.on("GameCreatedSyn", (msg) => {
+	console.log("GameCreatedSyn");
 	let gameId = msg;
 	connection.invoke("GameCreatedAck", gameId);
 });
 
-connection.on("GamePlay", (msg) => {
-	updateBoard(parseBoard(msg));
-});
-
-connection.on("GameWait", (msg) => {
-	updateBoard(parseBoard(msg));
+connection.on("GameState", (msg) => {
+	console.log("GameState");
+	let gameData = JSON.parse(msg);
+	updateGame(gameData);
 });
 
 connection.start();
 
 function joinGame() {
 	connection.invoke("JoinGame");
+}
+
+function movePiece(move) {
+	let moveData = JSON.stringify(move);
+	connection.invoke("GameMove", moveData);
 }

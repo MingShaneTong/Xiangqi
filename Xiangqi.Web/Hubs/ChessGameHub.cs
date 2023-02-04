@@ -1,14 +1,18 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
+using System.Text.Json;
 using Xiangqi.Game;
+using Xiangqi.Game.Pieces;
 using Xiangqi.Web.Models;
+using Xiangqi.Web.Models.Messages;
 
 namespace Xiangqi.Web.Hubs
 {
     public class ChessGameHub : Hub
     {
         public static readonly GameManager GameManager;
-        static ChessGameHub() 
-        { 
+        static ChessGameHub()
+        {
             GameManager = new GameManager();
         }
 
@@ -20,7 +24,7 @@ namespace Xiangqi.Web.Hubs
                 // tell client game to wait for game
                 Clients.Caller.SendAsync("AwaitingOpponent");
             }
-            else 
+            else
             {
                 // tell both players to respond with game ack
                 Clients.Clients(gameJoined.RedPlayerConnection)
@@ -33,7 +37,9 @@ namespace Xiangqi.Web.Hubs
         public void GameCreatedAck(string message)
         {
             Guid gameId = new Guid(message);
-            Models.Game game = GameManager.GetGame(gameId);
+            var game = GameManager.GetGame(gameId);
+
+            // TODO: If game not found, respond error
 
             // trigger ack
             if (game.RedPlayerConnection == Context.ConnectionId)
@@ -41,7 +47,7 @@ namespace Xiangqi.Web.Hubs
                 game.RedAck = true;
             }
             else if (game.BlackPlayerConnection == Context.ConnectionId)
-            { 
+            {
                 game.BlackAck = true;
             }
 
@@ -49,10 +55,64 @@ namespace Xiangqi.Web.Hubs
             if (game.RedAck && game.BlackAck && !game.SentGameStart)
             {
                 game.SentGameStart = true;
-                Board board = game.ChessGame.Board;
-                string boardString = BoardStringConstructor.Construct(board);
-                Clients.Clients(game.RedPlayerConnection).SendAsync("GamePlay", boardString);
-                Clients.Clients(game.BlackPlayerConnection).SendAsync("GameWait", boardString);
+                SendGameState(game);
+            }
+        }
+
+        private void SendGameState(Models.Game game)
+        {
+            var gameMsg = new GameMessage()
+            {
+                GameId = game.GameId.ToString(),
+                Turn = game.ChessGame.Turn.ToString(),
+                Board = game.ChessGame.Board
+                    .GetPiecesWhere(p => p != null)
+                    .Select(p =>
+                    {
+                        var position = p.Key;
+                        var piece = p.Value;
+
+                        return new PieceMessage()
+                        {
+                            Piece = piece.PieceName(),
+                            Color = piece.Color.ToString(),
+                            Row = position.Row,
+                            Col = position.Col
+                        };
+                    })
+            };
+
+            gameMsg.Player = Color.Red.ToString();
+            var redJson = JsonConvert.SerializeObject(gameMsg);
+            Clients.Clients(game.RedPlayerConnection).SendAsync("GameState", redJson);
+            gameMsg.Player = Color.Black.ToString();
+            var blackJson = JsonConvert.SerializeObject(gameMsg);
+            Clients.Clients(game.BlackPlayerConnection).SendAsync("GameState", blackJson);
+        }
+
+        public void GameMove(string msg)
+        {
+            var moveMsg = JsonConvert.DeserializeObject<MoveMessage>(msg);
+            Guid gameId = new Guid(moveMsg.GameId);
+            var game = GameManager.GetGame(gameId);
+
+            // TODO: If game not found, respond error
+
+            // player color
+            Color? playerColor = game.GetPlayerColor(Context.ConnectionId);
+            if (playerColor == null) { return; }
+            if (playerColor != game.ChessGame.Turn) { return; }
+
+            var oldPos = moveMsg.OldPosition;
+            var newPos = moveMsg.NewPosition;
+
+            try
+            {
+                game.ChessGame.PerformTurn($"{oldPos.Row}{oldPos.Col}{newPos.Row}{newPos.Col}");
+                SendGameState(game);
+            }
+            catch
+            { 
             }
         }
     }

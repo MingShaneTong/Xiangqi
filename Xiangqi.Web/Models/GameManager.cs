@@ -22,7 +22,7 @@
             }
             else
             {
-                Game game = PendingGame;
+                var game = PendingGame;
                 game.BlackPlayerConnection = connection;
                 Games.Add(game.GameId, game);
 

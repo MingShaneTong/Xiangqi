@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game;
-using Xiangqi.Game.Moves;
+﻿using Xiangqi.Game;
 using Xiangqi.UnitTests;
 
 namespace MoveTests.CannonTest
@@ -19,7 +13,7 @@ namespace MoveTests.CannonTest
         [DataRow(Color.Black, "a9a0")]
         public void ValidCapture(Color color, string move) 
         {
-            string board =
+            var board =
                 "c| | |k| | | | |P\n" +
                 " |h| | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -30,7 +24,7 @@ namespace MoveTests.CannonTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 "R|C| | | |K| |p| ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsTrue(result, "Expected: Cannon Valid Capture to be Valid");
         }
@@ -40,7 +34,7 @@ namespace MoveTests.CannonTest
         [DataRow(Color.Black, "a9a5")]
         public void NoJump_Capture(Color color, string move)
         {
-            string board =
+            var board =
                 "c| | |k| | | | |P\n" +
                 " |h| | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -51,7 +45,7 @@ namespace MoveTests.CannonTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 "R|C| | | |K| |r| ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Cannon No Jump Capture to be Invalid");
         }
@@ -63,7 +57,7 @@ namespace MoveTests.CannonTest
         [DataRow(Color.Black, "a9i9")]
         public void MultiplePieceJump_Capture(Color color, string move)
         {
-            string board =
+            var board =
                 "c|h|e|k| | | | |P\n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -74,7 +68,7 @@ namespace MoveTests.CannonTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 "R|C| | | |K| |r| ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Cannon With Multiple Piece Jump Capture to be Invalid");
         }

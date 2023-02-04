@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game;
-using Xiangqi.Game.Moves;
-using Xiangqi.Game.Pieces;
+﻿using Xiangqi.Game;
 using Xiangqi.UnitTests;
 
 namespace PiecesTests.ElephantTest
@@ -24,7 +17,7 @@ namespace PiecesTests.ElephantTest
         [DataRow(Color.Black, "c9e7")]
         public void DiagonalValidMove(Color color, string move)
         {
-            string board =
+            var board =
                 " | |e| |k| | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -35,7 +28,7 @@ namespace PiecesTests.ElephantTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | |E| | |K| | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsTrue(result, "Expected: Elephant Diagonal Valid Move to be Valid");
         }
@@ -46,7 +39,7 @@ namespace PiecesTests.ElephantTest
         [DataRow(Color.Red, "c0g4")]
         public void DiagonalInvalidMove(Color color, string move)
         {
-            string board =
+            var board =
                 " | |e| |k| | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -57,7 +50,7 @@ namespace PiecesTests.ElephantTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | |E| | |K| | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Elephant Diagonal Invalid Move to be Invalid");
         }
@@ -68,7 +61,7 @@ namespace PiecesTests.ElephantTest
         [DataRow(Color.Red, "c0b2")]
         public void NonDiagonalMove(Color color, string move)
         {
-            string board =
+            var board =
                 " | |e| |k| | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -79,7 +72,7 @@ namespace PiecesTests.ElephantTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | |E| | |K| | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Elephant Non Diagonal Move to be Invalid");
         }
@@ -88,7 +81,7 @@ namespace PiecesTests.ElephantTest
         [DataRow(Color.Red, "c4e6")]
         public void OverTheRiver(Color color, string move)
         {
-            string board =
+            var board =
                 " | |e| |k| | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -99,7 +92,7 @@ namespace PiecesTests.ElephantTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | |E| | |K| | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Elephant Over the River Move to be Invalid");
         }
@@ -108,7 +101,7 @@ namespace PiecesTests.ElephantTest
         [DataRow(Color.Red, "c0e2")]
         public void DiagonalMove_WithBlocking_Invalid(Color color, string move)
         {
-            string board =
+            var board =
                 " | |e| |k| | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -119,7 +112,7 @@ namespace PiecesTests.ElephantTest
                 " | | | | | | | | \n" +
                 " | | |p| | | | | \n" +
                 " | |E| | |K| | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Elephant Move Through Blocking to be Invalid");
         }

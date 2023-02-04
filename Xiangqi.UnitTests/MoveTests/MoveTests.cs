@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Xiangqi.Game;
 using Xiangqi.Game.Moves;
 using Xiangqi.Game.Pieces;
-using Xiangqi.Game;
 using Xiangqi.UnitTests;
 
 namespace PiecesTests
@@ -16,7 +11,7 @@ namespace PiecesTests
         [TestMethod]
         public void NoMove()
         {
-            string board =
+            var board =
                 "r|h|e|a|k|a|e|h|r\n" +
                 " | | | | | | | | \n" +
                 " |c| | | | | |c| \n" +
@@ -27,8 +22,8 @@ namespace PiecesTests
                 " |C| | | | | |C| \n" +
                 " | | | | | | | | \n" +
                 "R|H|E|A|K|A|E|H|R";
-            string move = "a0a0";
-            bool result = TestSupport.MoveIsValid(board, Color.Black, move);
+            var move = "a0a0";
+            var result = TestSupport.MoveIsValid(board, Color.Black, move);
             Assert.IsFalse(result, "Expected: Piece Move with No Movement to be Invalid");
         }
 
@@ -38,15 +33,15 @@ namespace PiecesTests
         [DataRow("Black", -1, -1, -1, -1)]
         public void Invalid_Positions(string color, int oldRow, int oldCol, int newRow, int newCol)
         {
-            Piece chariot = Rook.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
+            var chariot = Rook.Of(Color.Black);
+            var board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(0, 0), chariot },
                 { new Position(0, 3), King.Of(Color.Black) },
                 { new Position(9, 5), King.Of(Color.Red) }
             });
 
-            IMove move = new Move()
+            var move = new Move()
             {
                 Color = Color.Black,
                 OldPosition = new Position(oldRow, oldCol),
@@ -62,7 +57,7 @@ namespace PiecesTests
         [TestMethod]
         public void NoPiece_InOldPositions()
         {
-            Board board = BoardCreator.BuildBoard(
+            var board = BoardCreator.BuildBoard(
                 " | | |k| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -75,7 +70,7 @@ namespace PiecesTests
                 " | | | | |K| | | "
             );
 
-            IMove move = new Move()
+            var move = new Move()
             {
                 Color = Color.Black,
                 OldPosition = new Position(0, 0),
@@ -88,14 +83,14 @@ namespace PiecesTests
         [TestMethod]
         public void WrongPiece_InOldPositions()
         {
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
+            var board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(0, 0), Pawn.Of(Color.Black) },
                 { new Position(0, 3), King.Of(Color.Black) },
                 { new Position(9, 5), King.Of(Color.Red) }
             });
 
-            IMove move = new Move()
+            var move = new Move()
             {
                 Color = Color.Black,
                 OldPosition = new Position(0, 0),
@@ -108,8 +103,8 @@ namespace PiecesTests
         [TestMethod]
         public void CapturedPiece_NotSpecified()
         {
-            Piece chariot = Rook.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
+            var chariot = Rook.Of(Color.Black);
+            var board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(0, 0), chariot },
                 { new Position(0, 1), Pawn.Of(Color.Red) },
@@ -117,7 +112,7 @@ namespace PiecesTests
                 { new Position(9, 5), King.Of(Color.Red) }
             });
 
-            IMove move = new Move()
+            var move = new Move()
             {
                 Color = Color.Black,
                 OldPosition = new Position(0, 0),
@@ -130,15 +125,15 @@ namespace PiecesTests
         [TestMethod]
         public void Move_WrongColor()
         {
-            Piece chariot = Rook.Of(Color.Black);
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
+            var chariot = Rook.Of(Color.Black);
+            var board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(0, 0), chariot },
                 { new Position(0, 3), King.Of(Color.Black) },
                 { new Position(9, 5), King.Of(Color.Red) }
             });
 
-            IMove move = new Move()
+            var move = new Move()
             {
                 Color = Color.Red,
                 OldPosition = new Position(0, 0),
@@ -153,7 +148,7 @@ namespace PiecesTests
         [DataRow(Color.Black, "c0b0")]
         public void Move_Capture_OtherColor(Color color, string move)
         {
-            string board =
+            var board =
                 " | | | |k| | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -164,7 +159,7 @@ namespace PiecesTests
                 " | | | | | | | | \n" +
                 " | | | | |K| | | \n" +
                 "R|R|r|r| | | | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsTrue(result, "Expected: Capture Other Piece to be Valid");
         }
@@ -174,7 +169,7 @@ namespace PiecesTests
         [DataRow(Color.Black, "c0d0")]
         public void Move_Capture_OwnColor(Color color, string move)
         {
-            string board =
+            var board =
                 " | | | |k| | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -185,7 +180,7 @@ namespace PiecesTests
                 " | | | | | | | | \n" +
                 " | | | | |K| | | \n" +
                 "R|R|r|r| | | | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: Capture Own Piece to be Invalid");
         }

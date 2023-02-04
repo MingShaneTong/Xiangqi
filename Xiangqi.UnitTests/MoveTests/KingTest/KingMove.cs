@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game.Moves;
-using Xiangqi.Game.Pieces;
-using Xiangqi.Game;
+﻿using Xiangqi.Game;
 using Xiangqi.UnitTests;
 
 namespace MoveTests.KingTest
@@ -20,7 +13,7 @@ namespace MoveTests.KingTest
         [DataRow(Color.Black, "e9f9")]
         public void HorizontalMove(Color color, string move)
         {
-            string board =
+            var board =
                 " | | | |k| | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -31,7 +24,7 @@ namespace MoveTests.KingTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | |K| | | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsTrue(result, "Expected: King Horizontal Move to be Valid");
         }
@@ -44,7 +37,7 @@ namespace MoveTests.KingTest
         [DataRow(Color.Black, "e8e9")]
         public void VerticalMove(Color color, string move)
         {
-            string board =
+            var board =
                 " | | | | | | | | \n" +
                 " | | | |k| | | | \n" +
                 " | | | | | | | | \n" +
@@ -55,7 +48,7 @@ namespace MoveTests.KingTest
                 " | | | | | | | | \n" +
                 " | | | |K| | | | \n" +
                 " | | | | | | | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsTrue(result, "Expected: King Vertical Move to be Valid");
         }
@@ -65,7 +58,7 @@ namespace MoveTests.KingTest
         [DataRow(Color.Black, "d9f9")]
         public void HorizontalMove_AcrossMultipleSquares(Color color, string move)
         {
-            string board =
+            var board =
                 " | | |k| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -76,7 +69,7 @@ namespace MoveTests.KingTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | |K| | | | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: King Horizontal Move Across Multiple Squares to be Invalid");
         }
@@ -86,7 +79,7 @@ namespace MoveTests.KingTest
         [DataRow(Color.Black, "d9d7")]
         public void VerticalMove_AcrossMultipleSquares(Color color, string move)
         {
-            string board =
+            var board =
                 " | | |k| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -97,7 +90,7 @@ namespace MoveTests.KingTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | |K| | | | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: King Vertical Move Across Multiple Squares to be Invalid");
         }
@@ -107,7 +100,7 @@ namespace MoveTests.KingTest
         [DataRow(Color.Black, "d9e8")]
         public void DiagonalMove(Color color, string move)
         {
-            string board =
+            var board =
                 " | | |k| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
@@ -118,7 +111,7 @@ namespace MoveTests.KingTest
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | |K| | | | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: King Diagonal Move to be Invalid");
         }
@@ -130,7 +123,7 @@ namespace MoveTests.KingTest
         [DataRow(Color.Black, "d7c6")]
         public void Move_OutOfCastle(Color color, string move)
         {
-            string board =
+            var board =
                 " | | | | | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | |k| | | | | \n" +
@@ -141,7 +134,7 @@ namespace MoveTests.KingTest
                 " | | |K| | | | | \n" +
                 " | | | | | | | | \n" +
                 " | | | | | | | | ";
-            bool result = TestSupport.MoveIsValid(board, color, move);
+            var result = TestSupport.MoveIsValid(board, color, move);
 
             Assert.IsFalse(result, "Expected: King Moves Out of Castle to be Invalid");
         }

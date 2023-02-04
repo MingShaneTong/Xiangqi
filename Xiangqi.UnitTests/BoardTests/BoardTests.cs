@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xiangqi.Game;
-using Xiangqi.Game.Moves;
+﻿using Xiangqi.Game;
 using Xiangqi.Game.Pieces;
 
 namespace Xiangqi.UnitTests.BoardTests
@@ -15,17 +9,17 @@ namespace Xiangqi.UnitTests.BoardTests
         [TestMethod]
         public void GetPositionSide_Test()
         {
-            for (int row = 0; row < 5; row++)
+            for (var row = 0; row < 5; row++)
             { 
-                for (int col = 0; col < Board.Cols; col++)
+                for (var col = 0; col < Board.Cols; col++)
                 {
                     Assert.IsTrue(Board.GetPositionSide(new Position(row, col)) == Color.Black);
                 }
             }
 
-            for (int row = 5; row < Board.Rows; row++)
+            for (var row = 5; row < Board.Rows; row++)
             {
-                for (int col = 0; col < Board.Cols; col++)
+                for (var col = 0; col < Board.Cols; col++)
                 {
                     Assert.IsTrue(Board.GetPositionSide(new Position(row, col)) == Color.Red);
                 }
@@ -36,22 +30,22 @@ namespace Xiangqi.UnitTests.BoardTests
         [TestMethod]
         public void InCastle_Test()
         {
-            ISet<Position> blackCastlePositions = new HashSet<Position> {
+            var blackCastlePositions = new HashSet<Position> {
                 new Position(0, 3), new Position(0, 4), new Position(0, 5),
                 new Position(1, 3), new Position(1, 4), new Position(1, 5),
                 new Position(2, 3), new Position(2, 4), new Position(2, 5),
             };
-            ISet<Position> redCastlePositions = new HashSet<Position> {
+            var redCastlePositions = new HashSet<Position> {
                 new Position(7, 3), new Position(7, 4), new Position(7, 5),
                 new Position(8, 3), new Position(8, 4), new Position(8, 5),
                 new Position(9, 3), new Position(9, 4), new Position(9, 5),
             };
 
-            for (int row = 0; row < Board.Rows; row++)
+            for (var row = 0; row < Board.Rows; row++)
             {
-                for (int col = 0; col < Board.Cols; col++)
+                for (var col = 0; col < Board.Cols; col++)
                 {
-                    Position position = new Position(row, col);
+                    var position = new Position(row, col);
                     Assert.AreEqual(
                         blackCastlePositions.Contains(position),
                         Board.InCastle(Color.Black, position),
@@ -69,7 +63,7 @@ namespace Xiangqi.UnitTests.BoardTests
         [TestMethod]
         public void GetDiagonalPiecesBetween_Test()
         {
-            Board board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
+            var board = BoardCreator.BuildBoard(new Dictionary<Position, IPiece>
             {
                 { new Position(4, 5), Pawn.Of(Color.Black) },
 
@@ -81,7 +75,7 @@ namespace Xiangqi.UnitTests.BoardTests
                 { new Position(8, 1), Pawn.Of(Color.Black) }
             });
 
-            Position center = new Position(4, 5);
+            var center = new Position(4, 5);
 
             Assert.IsTrue(board.GetDiagonalPiecesBetween(center, new Position(9, 0)).Count() == 4);
             Assert.IsTrue(board.GetDiagonalPiecesBetween(center, new Position(0, 1)).Count() == 1);

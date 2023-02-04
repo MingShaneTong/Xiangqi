@@ -58,12 +58,12 @@ namespace Xiangqi.Game
         public IList<IPiece> GetHorizontalPiecesBetween(Position p1, Position p2)
         {
             if (p1.Row != p2.Row) { throw new Exception("Positions are not on the same row"); }
-            int row = p1.Row;
-            IList<IPiece> piecesBetween = new List<IPiece>();
+            var row = p1.Row;
+            var piecesBetween = new List<IPiece>();
             if (p1.Col > p2.Col) { (p1, p2) = (p2, p1); }
-            for (int col = p1.Col + 1; col < p2.Col; col++)
+            for (var col = p1.Col + 1; col < p2.Col; col++)
             {
-                IPiece piece = Pieces[row, col];
+                var piece = Pieces[row, col];
                 if (piece == null) { continue; }
                 piecesBetween.Add(piece);
             }
@@ -73,12 +73,12 @@ namespace Xiangqi.Game
         public IList<IPiece> GetVerticalPiecesBetween(Position p1, Position p2)
         {
             if (p1.Col != p2.Col) { throw new Exception("Positions are not on the same column"); }
-            int col = p1.Col;
-            IList<IPiece> piecesBetween = new List<IPiece>();
+            var col = p1.Col;
+            var piecesBetween = new List<IPiece>();
             if (p1.Row > p2.Row) { (p1, p2) = (p2, p1); }
-            for (int row = p1.Row + 1; row < p2.Row; row++)
+            for (var row = p1.Row + 1; row < p2.Row; row++)
             {
-                IPiece piece = Pieces[row, col];
+                var piece = Pieces[row, col];
                 if (piece == null) { continue; }
                 piecesBetween.Add(piece);
             }
@@ -87,19 +87,19 @@ namespace Xiangqi.Game
 
         public IList<IPiece> GetDiagonalPiecesBetween(Position p1, Position p2)
         {
-            int rowDiff = Math.Abs(p1.Row - p2.Row);
-            int colDiff = Math.Abs(p1.Col - p2.Col);
+            var rowDiff = Math.Abs(p1.Row - p2.Row);
+            var colDiff = Math.Abs(p1.Col - p2.Col);
             if (rowDiff != colDiff) { throw new Exception("Positions are not diagonal from each other"); }
 
-            IList<IPiece> piecesBetween = new List<IPiece>();
+            var piecesBetween = new List<IPiece>();
             if (p1.Row > p2.Row) { (p1, p2) = (p2, p1); }
-            int dir = Math.Sign(p2.Col - p1.Col);
+            var dir = Math.Sign(p2.Col - p1.Col);
 
-            for (int i = 1; i < rowDiff; i++)
+            for (var i = 1; i < rowDiff; i++)
             {
-                int row = p1.Row + i;
-                int col = p1.Col + dir * i;
-                IPiece piece = Pieces[row, col];
+                var row = p1.Row + i;
+                var col = p1.Col + dir * i;
+                var piece = Pieces[row, col];
                 if (piece == null) { continue; }
                 piecesBetween.Add(piece);
             }
@@ -108,15 +108,15 @@ namespace Xiangqi.Game
 
         public IEnumerable<KeyValuePair<Position, Piece>> GetPiecesWhere(Func<IPiece, bool> condition)
         {
-            IList<KeyValuePair<Position, Piece>> results = new List<KeyValuePair<Position, Piece>>(); 
-            for (int i = 0; i < Pieces.GetLength(0); i++)
+           var results = new List<KeyValuePair<Position, Piece>>(); 
+            for (var i = 0; i < Pieces.GetLength(0); i++)
             {
-                for (int j = 0; j < Pieces.GetLength(1); j++)
+                for (var j = 0; j < Pieces.GetLength(1); j++)
                 {
                     if (condition(Pieces[i, j]))
                     {
-                        Position position = new Position(i, j);
-                        Piece piece = Pieces[i, j] as Piece;
+                        var position = new Position(i, j);
+                        var piece = Pieces[i, j] as Piece;
                         results.Add(new KeyValuePair<Position, Piece>(position, piece));
                     }
                 }
@@ -126,12 +126,12 @@ namespace Xiangqi.Game
 
         public bool KingsAreFacing()
         {
-            IEnumerable<KeyValuePair<Position, Piece>> kings = GetPiecesWhere((IPiece piece) => piece is King);
+            var kings = GetPiecesWhere((IPiece piece) => piece is King);
             if (kings.Count() != 2) { throw new Exception("Expected: 2 Kings"); }
-            KeyValuePair<Position, Piece>[] kingsArray = kings.ToArray();
+            var kingsArray = kings.ToArray();
             
-            KeyValuePair<Position, Piece> king1 = kingsArray[0];
-            KeyValuePair<Position, Piece> king2 = kingsArray[1];
+            var king1 = kingsArray[0];
+            var king2 = kingsArray[1];
 
             if (king1.Key.Col == king2.Key.Col)
             {
@@ -142,12 +142,12 @@ namespace Xiangqi.Game
 
         public bool PositionIsVulnerable(Position position, Color color, Piece captured)
         {
-            for (int row = 0; row < Pieces.GetLength(0); row++)
+            for (var row = 0; row < Pieces.GetLength(0); row++)
             {
-                for (int col = 0; col < Pieces.GetLength(1); col++)
+                for (var col = 0; col < Pieces.GetLength(1); col++)
                 {
-                    Position oldPosition = new Position(row, col);
-                    Piece piece = (Piece)GetPieceOn(oldPosition);
+                    var oldPosition = new Position(row, col);
+                    var piece = (Piece)GetPieceOn(oldPosition);
 
                     if (piece == null) { continue; }
                     if (piece.Color == color) { continue; }
@@ -160,11 +160,11 @@ namespace Xiangqi.Game
 
         public bool KingInCheck(Color color)
         {
-            IEnumerable<KeyValuePair<Position, Piece>> kingSearch = GetPiecesWhere(
+            var kingSearch = GetPiecesWhere(
                 (IPiece piece) => piece is King && ((Piece) piece).Color == color
             );
             if (kingSearch.Count() != 1) { throw new Exception("Expected 1 King"); }
-            KeyValuePair<Position, Piece> king = kingSearch.ToArray()[0];
+            var king = kingSearch.ToArray()[0];
             return PositionIsVulnerable(king.Key, color, king.Value);
         }
 
@@ -183,20 +183,20 @@ namespace Xiangqi.Game
         public bool ValidMovesAvailable(Color color)
         {
             // check if any moves do not result in check
-            IEnumerable<KeyValuePair<Position, Piece>> pieceSearch = GetPiecesWhere(
+            var pieceSearch = GetPiecesWhere(
                 (IPiece piece) => piece != null && ((Piece)piece).Color == color
             );
-            foreach (KeyValuePair<Position, Piece> positionPiecePair in pieceSearch)
+            foreach (var positionPiecePair in pieceSearch)
             {
-                Position position = positionPiecePair.Key;
-                Piece piece = positionPiecePair.Value;
+                var position = positionPiecePair.Key;
+                var piece = positionPiecePair.Value;
 
-                for (int row = 0; row < Pieces.GetLength(0); row++)
+                for (var row = 0; row < Pieces.GetLength(0); row++)
                 {
-                    for (int col = 0; col < Pieces.GetLength(1); col++)
+                    for (var col = 0; col < Pieces.GetLength(1); col++)
                     {
-                        Position newPosition = new Position(row, col);
-                        Piece captured = (Piece)GetPieceOn(newPosition);
+                        var newPosition = new Position(row, col);
+                        var captured = (Piece)GetPieceOn(newPosition);
                         if (!piece.IsValidMove(this, position, newPosition, captured)) { continue; }
                         return true;
                     }
@@ -207,13 +207,13 @@ namespace Xiangqi.Game
 
         public override string ToString()
         {
-            string[] rowString = new string[Rows];
-            for (int i = 0; i < Rows; i++)
+            var rowString = new string[Rows];
+            for (var i = 0; i < Rows; i++)
             {
-                string[] colString = new string[Cols];
-                for (int j = 0; j < Cols; j++)
+                var colString = new string[Cols];
+                for (var j = 0; j < Cols; j++)
                 {
-                    IPiece p = Pieces[i,j];
+                    var p = Pieces[i,j];
                     colString[j] = p != null ? p.ToString() : " ";
                 }
                 rowString[i] = string.Join("|", colString);

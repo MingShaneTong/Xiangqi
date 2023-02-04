@@ -30,7 +30,7 @@ namespace Xiangqi.Game.Moves
             if (!Piece.IsValidMove(board, OldPosition, NewPosition, PieceCaptured)) { return false; }
 
             // cannot face other king or put own king in check
-            Board testBoard = new Board() { Pieces = (IPiece[,])board.Pieces.Clone() };
+            var testBoard = new Board() { Pieces = (IPiece[,])board.Pieces.Clone() };
             this.Apply(testBoard, false);
 
             if (testBoard.KingsAreFacing()) { return false; }

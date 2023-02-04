@@ -15,8 +15,8 @@ namespace Xiangqi.Game.Pieces
             if (Board.GetPositionSide(newPosition) != Color) { return false; }
 
             // must be 2 square diagonal
-            int rowDiff = Math.Abs(oldPosition.Row - newPosition.Row);
-            int colDiff = Math.Abs(oldPosition.Col - newPosition.Col);
+            var rowDiff = Math.Abs(oldPosition.Row - newPosition.Row);
+            var colDiff = Math.Abs(oldPosition.Col - newPosition.Col);
             if (rowDiff != 2 || colDiff != 2) { return false; }
 
             // no obstruction

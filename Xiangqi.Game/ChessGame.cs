@@ -28,7 +28,7 @@ namespace Xiangqi.Game
         
         public void PerformTurn(string notation)
         {
-            Move move = Notation.ToMove(Board, Turn, notation);
+            var move = Notation.ToMove(Board, Turn, notation);
             PerformTurn(move);
         }
 

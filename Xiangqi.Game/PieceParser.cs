@@ -11,7 +11,7 @@ namespace Xiangqi.Game
     {
         public static Piece ToPiece(string pieceString)
         {
-            Color color = pieceString == pieceString.ToUpper() ? Color.Red : Color.Black;
+            var color = pieceString == pieceString.ToUpper() ? Color.Red : Color.Black;
             switch (pieceString.ToUpper())
             {
                 case "K":

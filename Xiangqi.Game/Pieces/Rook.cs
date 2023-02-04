@@ -12,12 +12,12 @@ namespace Xiangqi.Game.Pieces
         {
             if (oldPosition.Row == newPosition.Row)
             {
-                IList<IPiece> piecesBlocking = board.GetHorizontalPiecesBetween(oldPosition, newPosition);
+                var piecesBlocking = board.GetHorizontalPiecesBetween(oldPosition, newPosition);
                 return !piecesBlocking.Any();
             }
             if (oldPosition.Col == newPosition.Col)
             {
-                IList<IPiece> piecesBlocking = board.GetVerticalPiecesBetween(oldPosition, newPosition);
+                var piecesBlocking = board.GetVerticalPiecesBetween(oldPosition, newPosition);
                 return !piecesBlocking.Any();
             }
 

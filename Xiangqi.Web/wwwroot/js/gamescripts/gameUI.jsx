@@ -1,10 +1,15 @@
 ﻿const domContainer = document.querySelector('#boardContainer');
 const root = ReactDOM.createRoot(domContainer);
 
-let selectedCell = null;
+let selected = {
+	row: null,
+	col: null,
+	piece: null
+};
 let turn = null;
 let playerColor = null;
 let gameId = null;
+let board = null;
 
 function pieceInCell(td) {
 	return td.querySelector(".blank-piece") == null;
@@ -12,26 +17,39 @@ function pieceInCell(td) {
 
 function onBoardClick(table) {
 	let td = table.target.closest("td");
-	if (td != null) {
-		let row = Number(td.getAttribute("data-row"));
-		let col = Number(td.getAttribute("data-col"));
+	if (td == null) { return; }
 
-		if (selectedCell == null) {
-			// select piece to move
-			if (pieceInCell(td)) {
-				selectedCell = td;
-			}
-		} else {
-			if (pieceInCell(td)) {
-				// captured a piece
-				if (td != selectedCell) {
-					
+	let row = Number(td.getAttribute("data-row"));
+	let col = Number(td.getAttribute("data-col"));
+
+	let clicked = {
+		row: row,
+		col: col,
+		piece: board[row][col]
+	};
+
+	console.log(selected);
+	console.log(clicked);
+
+	if (selected.piece != null && selected.piece.color == playerColor) {
+		// check if can move
+		if (clicked.piece == null || clicked.piece.color != playerColor) {
+			// TODO check if in valid moves
+			let move = {
+				GameId: gameId,
+				OldPosition: {
+					Row: selected.row,
+					Col: selected.col
+				},
+				NewPosition: {
+					Row: clicked.row,
+					Col: clicked.col
 				}
-			} else {
-				// move piece
-			}
+			};
+			movePiece(move);
 		}
 	}
+	selected = clicked;
 }
 
 function updateGame(gameData) {
@@ -39,18 +57,20 @@ function updateGame(gameData) {
 	turn = gameData["Turn"];
 	playerColor = gameData["Player"];
 
-	let board = [];
+	let b = [];
 	for (let r = 0; r < 10; r++) {
 		let row = [];
 		for (let c = 0; c < 9; c++) {
 			row.push(null);
 		}
-		board.push(row);
+		b.push(row);
 	}
 
 	gameData["Board"].forEach(p => {
-		board[p["Row"]][p["Col"]] = new Piece(p["Piece"], p["Color"]);
+		b[p["Row"]][p["Col"]] = new Piece(p["Piece"], p["Color"]);
 	})
+
+	board = b;
 
 	root.render(<BoardComponent board={board} />);
 }

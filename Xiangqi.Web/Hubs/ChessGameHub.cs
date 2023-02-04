@@ -3,15 +3,15 @@ using System.Text.Json;
 using Xiangqi.Game;
 using Xiangqi.Game.Pieces;
 using Xiangqi.Web.Models;
-using Xiangqi.Web.Models.Json;
+using Xiangqi.Web.Models.Messages;
 
 namespace Xiangqi.Web.Hubs
 {
     public class ChessGameHub : Hub
     {
         public static readonly GameManager GameManager;
-        static ChessGameHub() 
-        { 
+        static ChessGameHub()
+        {
             GameManager = new GameManager();
         }
 
@@ -23,7 +23,7 @@ namespace Xiangqi.Web.Hubs
                 // tell client game to wait for game
                 Clients.Caller.SendAsync("AwaitingOpponent");
             }
-            else 
+            else
             {
                 // tell both players to respond with game ack
                 Clients.Clients(gameJoined.RedPlayerConnection)
@@ -44,7 +44,7 @@ namespace Xiangqi.Web.Hubs
                 game.RedAck = true;
             }
             else if (game.BlackPlayerConnection == Context.ConnectionId)
-            { 
+            {
                 game.BlackAck = true;
             }
 
@@ -53,17 +53,18 @@ namespace Xiangqi.Web.Hubs
             {
                 game.SentGameStart = true;
 
-                var json = new GameJson()
+                var gameMsg = new GameMessage()
                 {
                     GameId = game.GameId.ToString(),
                     Turn = game.ChessGame.Turn.ToString(),
                     Board = game.ChessGame.Board
                         .GetPiecesWhere(p => p != null)
-                        .Select(p => {
+                        .Select(p =>
+                        {
                             var position = p.Key;
                             var piece = p.Value;
 
-                            return new PieceJson()
+                            return new PieceMessage()
                             {
                                 Piece = piece.PieceName(),
                                 Color = piece.Color.ToString(),
@@ -73,15 +74,16 @@ namespace Xiangqi.Web.Hubs
                         })
                 };
 
-                var opt = new JsonSerializerOptions() { WriteIndented = true };
-
-                json.Player = Color.Red.ToString();
-                var redJson = JsonSerializer.Serialize(json, opt);
-                Clients.Clients(game.RedPlayerConnection).SendAsync("GamePlay", redJson);
-                json.Player = Color.Black.ToString();
-                var blackJson = JsonSerializer.Serialize(json, opt);
-                Clients.Clients(game.BlackPlayerConnection).SendAsync("GameWait", blackJson);
+                gameMsg.Player = Color.Red.ToString();
+                Clients.Clients(game.RedPlayerConnection).SendAsync("GamePlay", gameMsg);
+                gameMsg.Player = Color.Black.ToString();
+                Clients.Clients(game.BlackPlayerConnection).SendAsync("GameWait", gameMsg);
             }
+        }
+
+        public void GameMove(MoveMessage msg)
+        {
+            Console.Write(msg);
         }
     }
 }

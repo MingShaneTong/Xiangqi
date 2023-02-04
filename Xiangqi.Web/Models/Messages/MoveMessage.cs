@@ -2,7 +2,11 @@
 {
     public class MoveMessage
     {
-        public record Position(int Row, int Col);
+        public class Position
+        {
+            public int Row { get; set; }
+            public int Col { get; set; }
+        }
 
         public string GameId;
         public Position OldPosition;

@@ -22,13 +22,18 @@ namespace Xiangqi.Game
             Board = BoardCreator.InitBoard();
             Rounds = new List<Round>();
             Turn = Color.Red;
-            Notation = new BasicAlgebraicNotation();
+            Notation = new RowColNotation();
             CurrentRound = new Round();
         }
         
         public void PerformTurn(string notation)
         {
             Move move = Notation.ToMove(Board, Turn, notation);
+            PerformTurn(move);
+        }
+
+        public void PerformTurn(Move move)
+        { 
             if (move.Color != Turn) { throw new Exception("Wrong Player Turn"); }
             move.Apply(Board);
             if (Turn == Color.Red)

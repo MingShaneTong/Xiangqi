@@ -12,14 +12,8 @@ connection.on("GameCreatedSyn", (msg) => {
 	connection.invoke("GameCreatedAck", gameId);
 });
 
-connection.on("GamePlay", (msg) => {
-	console.log("GamePlay");
-	let gameData = JSON.parse(msg);
-	updateGame(gameData);
-});
-
-connection.on("GameWait", (msg) => {
-	console.log("GameWait");
+connection.on("GameState", (msg) => {
+	console.log("GameState");
 	let gameData = JSON.parse(msg);
 	updateGame(gameData);
 });
@@ -31,5 +25,6 @@ function joinGame() {
 }
 
 function movePiece(move) {
-	connection.invoke("GameMove", move);
+	let moveData = JSON.stringify(move);
+	connection.invoke("GameMove", moveData);
 }

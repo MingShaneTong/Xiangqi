@@ -67,7 +67,11 @@ function updateGame(gameData) {
 	}
 
 	gameData["Board"].forEach(p => {
-		b[p["Row"]][p["Col"]] = new Piece(p["Piece"], p["Color"]);
+		console.log(p);
+		let row = p["Position"]["Row"];
+		let col = p["Position"]["Col"];
+
+		b[row][col] = new Piece(p["Piece"], p["Color"]);
 	})
 
 	board = b;

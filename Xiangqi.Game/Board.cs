@@ -1,4 +1,5 @@
-﻿using Xiangqi.Game.Pieces;
+﻿using Xiangqi.Game.Moves;
+using Xiangqi.Game.Pieces;
 
 namespace Xiangqi.Game
 {
@@ -100,9 +101,9 @@ namespace Xiangqi.Game
             return piecesBetween;
         }
 
-        public IEnumerable<KeyValuePair<Position, Piece>> GetPiecesWhere(Func<IPiece, bool> condition)
+        public IDictionary<Position, Piece> GetPiecesWhere(Func<IPiece, bool> condition)
         {
-           var results = new List<KeyValuePair<Position, Piece>>(); 
+           var results = new Dictionary<Position, Piece>(); 
             for (var i = 0; i < Pieces.GetLength(0); i++)
             {
                 for (var j = 0; j < Pieces.GetLength(1); j++)
@@ -111,11 +112,16 @@ namespace Xiangqi.Game
                     {
                         var position = new Position(i, j);
                         var piece = Pieces[i, j] as Piece;
-                        results.Add(new KeyValuePair<Position, Piece>(position, piece));
+                        results[position] = piece;
                     }
                 }
             }
             return results;
+        }
+
+        public IDictionary<Position, Piece> GetPiecesOfColor(Color color)
+        {
+            return GetPiecesWhere(p => p != null && ((Piece)p).Color == color);
         }
 
         public bool KingsAreFacing()
@@ -155,7 +161,7 @@ namespace Xiangqi.Game
         public bool KingInCheck(Color color)
         {
             var kingSearch = GetPiecesWhere(
-                (IPiece piece) => piece is King && ((Piece) piece).Color == color
+                piece => piece is King && ((Piece) piece).Color == color
             );
             if (kingSearch.Count() != 1) { throw new Exception("Expected 1 King"); }
             var king = kingSearch.ToArray()[0];
@@ -178,7 +184,7 @@ namespace Xiangqi.Game
         {
             // check if any moves do not result in check
             var pieceSearch = GetPiecesWhere(
-                (IPiece piece) => piece != null && ((Piece)piece).Color == color
+                piece => piece != null && ((Piece)piece).Color == color
             );
             foreach (var positionPiecePair in pieceSearch)
             {
@@ -197,6 +203,39 @@ namespace Xiangqi.Game
                 }
             }
             return false;
+        }
+
+        public IEnumerable<Position> AvailableMovesFrom(Position position) 
+        {
+            var movingPiece = (Piece)GetPieceOn(position);
+            if (movingPiece == null) { return Enumerable.Empty<Position>(); }
+
+            var availableMove = new List<Position>();
+
+            for (var i = 0; i < Rows; i++)
+            {
+                for (var j = 0; j < Cols; j++)
+                {
+                    var newPosition = new Position(i, j);
+                    var capturedPiece = (Piece)GetPieceOn(newPosition);
+
+                    var move = new Move
+                    {
+                        OldPosition = position,
+                        NewPosition = newPosition,
+                        Piece = movingPiece,
+                        PieceCaptured = capturedPiece,
+                        Color = movingPiece.Color
+                    };
+
+                    if (move.IsValid(this)) 
+                    {
+                        availableMove.Add(newPosition);
+                    }
+                }
+            }
+
+            return availableMove;
         }
 
         public override string ToString()

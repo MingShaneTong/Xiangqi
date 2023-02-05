@@ -35,9 +35,8 @@ namespace Xiangqi.Web.Hubs
         public void GameCreatedAck(string message)
         {
             var gameId = new Guid(message);
-            var game = GameManager.GetGame(gameId);
-
-            // TODO: If game not found, respond error
+            var game = GetGame(gameId);
+            if (game == null) { return; }
 
             // trigger ack
             if (game.RedPlayerConnection == Context.ConnectionId)
@@ -59,42 +58,34 @@ namespace Xiangqi.Web.Hubs
 
         private void SendGameState(Models.Game game)
         {
-            var gameMsg = new GameMessage()
-            {
-                GameId = game.GameId.ToString(),
-                Turn = game.ChessGame.Turn.ToString(),
-                Board = game.ChessGame.Board
-                    .GetPiecesWhere(p => p != null)
-                    .Select(p =>
-                    {
-                        var position = p.Key;
-                        var piece = p.Value;
-
-                        return new PieceMessage()
-                        {
-                            Piece = piece.PieceName(),
-                            Color = piece.Color.ToString(),
-                            Row = position.Row,
-                            Col = position.Col
-                        };
-                    })
-            };
+            var gameMsg = GameMessage.Of(game);
 
             gameMsg.Player = Color.Red.ToString();
             var redJson = JsonConvert.SerializeObject(gameMsg);
             Clients.Clients(game.RedPlayerConnection).SendAsync("GameState", redJson);
+
             gameMsg.Player = Color.Black.ToString();
             var blackJson = JsonConvert.SerializeObject(gameMsg);
             Clients.Clients(game.BlackPlayerConnection).SendAsync("GameState", blackJson);
+        }
+
+        private Models.Game? GetGame(Guid gameId) 
+        {
+            var game = GameManager.GetGame(gameId);
+            if (game == null) 
+            {
+                Clients.Caller.SendAsync("GameNotFound");
+                return null;
+            }
+            return game;
         }
 
         public void GameMove(string msg)
         {
             var moveMsg = JsonConvert.DeserializeObject<MoveMessage>(msg);
             var gameId = new Guid(moveMsg.GameId);
-            var game = GameManager.GetGame(gameId);
-
-            // TODO: If game not found, respond error
+            var game = GetGame(gameId);
+            if(game == null) { return; }
 
             // player color
             var playerColor = game.GetPlayerColor(Context.ConnectionId);

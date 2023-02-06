@@ -1,7 +1,8 @@
 ﻿class Piece {
-	constructor(piece, color) {
+	constructor(piece, color, availableMoves) {
 		this.piece = piece;
 		this.color = color;
+		this.availableMoves = availableMoves;
 	}
 
 	tileClass() {

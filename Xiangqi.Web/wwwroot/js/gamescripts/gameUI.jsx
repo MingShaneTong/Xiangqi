@@ -67,14 +67,17 @@ function updateGame(gameData) {
 	}
 
 	gameData["Board"].forEach(p => {
-		console.log(p);
 		let row = p["Position"]["Row"];
 		let col = p["Position"]["Col"];
 
-		b[row][col] = new Piece(p["Piece"], p["Color"]);
+		b[row][col] = new Piece(p["Piece"], p["Color"], p["Moves"]);
 	})
 
 	board = b;
 
 	root.render(<BoardComponent board={board} />);
+}
+
+function updateSelected(row, col) {
+
 }

@@ -21,6 +21,24 @@
 	margin: 30px;
 }
 
+/** SELECTED */
+.selected {
+	background: radial-gradient(closest-side,yellow 70%, transparent);
+	height: 60px;
+	width: 60px;
+	position: absolute;
+	z-index: -1;
+}
+
+.move {
+	background: radial-gradient(closest-side, rgb(255 255 255) 8%, rgb(255 0 0 / 50%) 16%, transparent 50%);
+	height: 60px;
+	width: 60px;
+	position: absolute;
+	z-index: 1;
+}
+
+/** TILES */
 .tile {
 	display: inline-block;
 	background-repeat: no-repeat;

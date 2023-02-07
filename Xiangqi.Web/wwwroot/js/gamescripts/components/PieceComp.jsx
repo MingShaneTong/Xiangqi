@@ -1,8 +1,8 @@
 ﻿function PieceComponent(props) {
     return (
         <>
-            <div className={"selected"} />
-            <div className={"move"} />
+            {props.isSelected ? <div className={"selected"} /> : null}
+            {props.isMove ? <div className={"move"} /> : null}
             <div className={"tile " + props.tile}>
                 <div className={"piece " + props.piece}></div>
             </div>
@@ -10,10 +10,10 @@
     );
 }
 
-function BlankComponent() {
+function BlankComponent(props) {
     return (
         <>
-            <div className={"move"} />
+            {props.isMove ? <div className={"move"} /> : null}
             <div className={"tile blank-tile"}>
                 <div className={"piece blank-piece"}></div>
             </div>

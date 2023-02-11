@@ -7,6 +7,7 @@ function updateGameState(gameData) {
 	let gameId = gameData["GameId"];
 	let turn = gameData["Turn"];
 	let playerColor = gameData["Player"];
+	let status = gameData["Status"];
 
 	let board = [];
 	for (let r = 0; r < 10; r++) {
@@ -29,5 +30,6 @@ function updateGameState(gameData) {
 	gameState.turn = turn;
 	gameState.playerColor = playerColor;
 	gameState.board = board;
+	gameState.status = status;
 	this.setState({ game: gameState });
 }

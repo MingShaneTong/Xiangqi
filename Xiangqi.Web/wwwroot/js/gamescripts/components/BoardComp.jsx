@@ -105,8 +105,6 @@ class BoardComponent extends React.Component {
 	}
 
 	render() {
-		console.log("Board");
-		console.log(this.state.game);
 		return (
 			<div className="board">
 				<div className="boardBackground" />

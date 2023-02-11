@@ -15,6 +15,7 @@ namespace Xiangqi.Web.Models.Messages
         public string GameId { get; set; }
         public string Turn { get; set; }
         public string Player { get; set; }
+        public string Status { get; set; }
         public IEnumerable<PieceMessage> Board { get; set; }
 
         public static GameMessage Of(Game game) 
@@ -41,11 +42,14 @@ namespace Xiangqi.Web.Models.Messages
                         return pcMsg;
                     }
                 );
+            var status = game.ChessGame.GetStatus();
+
 
             var gameMsg = new GameMessage()
             {
                 GameId = gameId.ToString(),
                 Turn = turn.ToString(),
+                Status = status.ToString(),
                 Board = board
             };
             return gameMsg;

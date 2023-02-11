@@ -10,12 +10,21 @@ class GameComponent extends React.Component {
 	}
 
 	render() {
-		console.log("Game");
-		console.log(this.state.game);
+		let game = this.state.game;
 		return (
 			<div className="game">
-				<div className="boardBackground" />
-				<BoardComponent game={this.state.game} />
+				<div className="gameInfo">
+					<div className="playerColor">
+						Player: <b>{game.playerColor}</b>
+					</div>
+					<div className="turn">
+						Turn: <b>{game.turn}</b>
+					</div>
+					<div className="status">
+						Status: <b>{game.status}</b>
+					</div>
+				</div>
+				<BoardComponent game={game} />
 			</div>
 		);
 	}

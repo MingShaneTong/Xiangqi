@@ -171,13 +171,13 @@ namespace Xiangqi.Game
         public bool IsInCheckmate(Color color)
         {
             if (!KingInCheck(color)) { return false; }
-            return ValidMovesAvailable(color);
+            return !ValidMovesAvailable(color);
         }
 
         public bool IsInStalemate(Color color)
         {
             if (KingInCheck(color)) { return false; }
-            return ValidMovesAvailable(color);
+            return !ValidMovesAvailable(color);
         }
 
         public bool ValidMovesAvailable(Color color)

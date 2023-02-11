@@ -29,6 +29,23 @@ namespace Xiangqi.Game
             CurrentRound = new Round();
         }
 
+        public GameStatus GetStatus()
+        {
+            if (Board.IsInCheckmate(Turn)) 
+            { 
+                return GameStatus.Checkmate;
+            }
+            if (Board.IsInStalemate(Turn))
+            {
+                return GameStatus.Stalemate;
+            }
+            if(Board.KingInCheck(Turn))
+            {
+                return GameStatus.Check;
+            }
+            return GameStatus.InProgress;
+        }
+
         public void PerformTurn(string notation)
         {
             var move = Notation.ToMove(Board, Turn, notation);

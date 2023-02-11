@@ -72,5 +72,25 @@ namespace MoveTests.CannonTest
 
             Assert.IsFalse(result, "Expected: Cannon With Multiple Piece Jump Capture to be Invalid");
         }
+
+
+        [TestMethod]
+        public void PieceBehindCapture()
+        {
+            var board =
+                "r|h|e|a|k|a|e|h|r\n" +
+                " | | | | | | | | \n" +
+                " |c| | | | | |c| \n" +
+                "p| |p| | | |p| |p\n" +
+                " | | | |p| | | | \n" +
+                " | | | | | | | | \n" +
+                "P| |P| |P| |P| |P\n" +
+                " |C| | |C| | | | \n" +
+                " | | | | | | | | \n" +
+                "R|H|E|A|K|A|E|H|R";
+            var result = TestSupport.MoveIsValid(board, Color.Red, "e2e5");
+
+            Assert.IsTrue(result, "Expected: Cannon Valid Capture to be Valid");
+        }
     }
 }

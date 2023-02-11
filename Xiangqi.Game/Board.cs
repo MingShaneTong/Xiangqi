@@ -197,8 +197,19 @@ namespace Xiangqi.Game
                     {
                         var newPosition = new Position(row, col);
                         var captured = (Piece)GetPieceOn(newPosition);
-                        if (!piece.IsValidMove(this, position, newPosition, captured)) { continue; }
-                        return true;
+
+                        var move = new Move
+                        {
+                            OldPosition = position,
+                            NewPosition = newPosition,
+                            Piece = piece,
+                            PieceCaptured = captured,
+                            Color = color
+                        };
+
+                        if (move.IsValid(this)) {
+                            return true; 
+                        }
                     }
                 }
             }

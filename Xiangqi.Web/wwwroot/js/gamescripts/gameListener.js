@@ -15,7 +15,7 @@ connection.on("GameCreatedSyn", (msg) => {
 connection.on("GameState", (msg) => {
 	console.log("GameState");
 	let gameData = JSON.parse(msg);
-	updateGameState(gameData);
+	updateGame(gameData);
 });
 
 connection.start();

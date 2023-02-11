@@ -9,9 +9,8 @@
 class BoardComponent extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log(props.gameState);
 		this.state = {
-			game: props.gameState,
+			game: props.game,
 			selected: {
 				row: null,
 				col: null,
@@ -19,6 +18,10 @@ class BoardComponent extends React.Component {
 			},
 			moves: []
 		};
+	}
+
+	componentWillReceiveProps(props) {
+		this.setState({ game: props.game });
 	}
 
 	onCellClick(row, col) {
@@ -102,6 +105,8 @@ class BoardComponent extends React.Component {
 	}
 
 	render() {
+		console.log("Board");
+		console.log(this.state.game);
 		return (
 			<div className="board">
 				<div className="boardBackground" />

@@ -1,17 +1,21 @@
-﻿class GameComponent extends React.Component {
+﻿let updateGame;
+
+class GameComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			game = props.gameState
+			game: props.game
 		};
-		updateGame = updateGameState.bind(this);
+		updateGame = updateGameState.bind(this); 
 	}
 
 	render() {
+		console.log("Game");
+		console.log(this.state.game);
 		return (
 			<div className="game">
 				<div className="boardBackground" />
-				<BoardComponent gameState={this.state.game} />
+				<BoardComponent game={this.state.game} />
 			</div>
 		);
 	}

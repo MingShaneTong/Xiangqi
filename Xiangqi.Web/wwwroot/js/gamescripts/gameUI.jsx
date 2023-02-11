@@ -1,7 +1,7 @@
 ﻿const domContainer = document.querySelector('#boardContainer');
 const root = ReactDOM.createRoot(domContainer);
 
-root.render(<GameComponent gameState={new GameState()} />);
+root.render(<GameComponent game={new GameState()} />);
 
 function updateGameState(gameData) {
 	let gameId = gameData["GameId"];
@@ -29,5 +29,5 @@ function updateGameState(gameData) {
 	gameState.turn = turn;
 	gameState.playerColor = playerColor;
 	gameState.board = board;
-	updateGame(gameState);
+	this.setState({ game: gameState });
 }

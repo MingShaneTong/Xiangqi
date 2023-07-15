@@ -46,13 +46,23 @@ class GameInfoComponent extends React.Component {
 		}
 
 		return (
-			<div className="gameInfo">
-				<button onClick={joinGame}>Join Game</button>
-				{turnAlert}
-				{inCheckAlert}
-				<div className="playerColor">
-					Player: <b>{this.state.game.playerColor}</b>
+			<div className="card gameInfo my-3">
+				<div className={"card-header playerColor" + this.state.game.playerColor}>
+					You are Player {this.state.game.playerColor}
 				</div>
+				<div className="card-body">
+					{turnAlert}
+					{inCheckAlert}
+				</div>
+				<ul className="list-group list-group-flush">
+					<li className="list-group-item">An item</li>
+					<li className="list-group-item">A second item</li>
+					<li className="list-group-item">A third item</li>
+				</ul>
+				<div className="card-body">
+					<button className="card-link btn btn-primary" onClick={joinGame}>Join Game</button>
+				</div>
+
 			</div>
 		);
 	}

@@ -4,9 +4,29 @@
 	height: 600px;
 }
 
+.gameInfo {
+	min-width: 240px;
+}
+
 .pieceContainer, .pieceContainer td {
 	padding: 0px;
 	border-spacing: 0;
+	z-index: 1;
+	position: relative;
+}
+
+.playerColorRed, .playerColorBlack {
+	font-weight: bold;
+}
+
+.playerColorRed {
+	background: #dc3545;
+	color: #ffffff;
+}
+
+.playerColorBlack {
+	background: #000000;
+	color: #ffffff;
 }
 
 .boardBackground {

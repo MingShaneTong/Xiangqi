@@ -1,4 +1,4 @@
-﻿let updateGame;
+﻿const endStatuses = ['Checkmate', 'Stalemate'];
 
 class GameInfoComponent extends React.Component {
 	constructor(props) {
@@ -13,6 +13,10 @@ class GameInfoComponent extends React.Component {
 		return this.state.game.playerColor == this.state.game.turn;
 	}
 
+	gameHasEnded() {
+		return endStatuses.includes(this.state.game.status); 
+	}
+
 	onJoinGameButton = () => {
 		joinGame();
 		this.setState({
@@ -21,37 +25,50 @@ class GameInfoComponent extends React.Component {
 	}
 
 	render() {
-		let turnAlert;
-		if (this.isPlayerTurn()) {
-			turnAlert = (
-				<div className="alert alert-success" role="alert">
-					Your Turn
-				</div>
-			);
-		} else {
-			turnAlert = (
-				<div className="alert alert-warning" role="alert">
-					Opponent's Turn
-				</div>
-			);
-		}
+		let yourTurn = this.isPlayerTurn();
+		let gameEnded = this.gameHasEnded();
 
-		let inCheckAlert;
-		if (this.state.game.status == 'Check') {
-			if (this.isPlayerTurn()) {
-				inCheckAlert = (
+		let turnAlert = yourTurn ?
+			<div className="alert alert-success" role="alert">
+				Your Turn
+			</div> :
+			<div className="alert alert-warning" role="alert">
+				Opponent's Turn
+			</div>;
+
+		let inCheckAlert = this.state.game.status == 'Check' ?
+			(
+				yourTurn ?
 					<div className="alert alert-danger" role="alert">
 						Your King is in check
-					</div>
-				);
-			} else {
-				inCheckAlert = (
+					</div> :
 					<div className="alert alert-info" role="alert">
 						Opponent's king is in check
 					</div>
-				);
-			}
-		}
+			) : <></>;
+
+		let gameEndAlert = gameEnded ?
+			(
+				yourTurn ?
+					<div className="alert alert-danger" role="alert">
+						You have lost by {this.state.game.status}
+					</div> :
+					<div className="alert alert-success" role="alert">
+						You won by {this.state.game.status}
+					</div>
+			) : 
+			<></>
+
+		let hasFooter = !this.state.hideJoin || gameEnded;
+		let joinButton = !this.state.hideJoin ?
+			<button className="card-link btn btn-primary" onClick={this.onJoinGameButton}>
+				Join Game
+			</button> : <></>;
+		let newGameButton = gameEnded ? 
+			<button className="card-link btn btn-primary" onClick={() => window.location.reload(false)}>
+				New Game
+			</button> : <></>
+
 
 		return (
 			<div className="card gameInfo my-3">
@@ -60,6 +77,7 @@ class GameInfoComponent extends React.Component {
 				</div>
 				<div className="card-body">
 					{turnAlert}
+					{gameEndAlert}
 					{inCheckAlert}
 				</div>
 				<ul className="list-group list-group-flush">
@@ -67,15 +85,12 @@ class GameInfoComponent extends React.Component {
 					<li className="list-group-item">A second item</li>
 					<li className="list-group-item">A third item</li>
 				</ul>
-				{
-					!this.state.hideJoin
-						? <div className="card-body">
-							<button className="card-link btn btn-primary" onClick={this.onJoinGameButton}>Join Game</button>
-						</div>
-						: <></>
+				{hasFooter ?
+					<div className="card-body">
+						{joinButton}
+						{newGameButton}
+					</div> : <></>
 				}
-				
-
 			</div>
 		);
 	}

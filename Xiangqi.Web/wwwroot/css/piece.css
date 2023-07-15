@@ -1,10 +1,7 @@
 ﻿.board {
 	position: relative;
+	width: 540px;
 	height: 600px;
-}
-
-.pieceContainer {
-	position: absolute;
 }
 
 .pieceContainer, .pieceContainer td {

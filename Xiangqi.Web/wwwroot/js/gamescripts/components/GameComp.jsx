@@ -14,11 +14,13 @@
 		let game = this.state.game;
 		return (
 			<div className="game container-fluid">
-				<div className="col-lg-9">
-					<BoardComponent game={game} />
-				</div>
-				<div className="col-sm-3">
-					<GameInfoComponent game={game} />
+				<div className="row">
+					<div className="col">
+						<BoardComponent game={game} />
+					</div>
+					<div className="col">
+						<GameInfoComponent game={game} />
+					</div>
 				</div>
 			</div>
 		);

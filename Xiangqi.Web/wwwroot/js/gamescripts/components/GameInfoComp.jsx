@@ -47,6 +47,7 @@ class GameInfoComponent extends React.Component {
 
 		return (
 			<div className="gameInfo">
+				<button onClick={joinGame}>Join Game</button>
 				{turnAlert}
 				{inCheckAlert}
 				<div className="playerColor">

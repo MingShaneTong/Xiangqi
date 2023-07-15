@@ -1,30 +1,27 @@
-﻿let updateGame;
-
-class GameComponent extends React.Component {
+﻿class GameComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			game: props.game
 		};
-		updateGame = updateGameState.bind(this); 
+	}
+
+	updateState(gameState) {
+		this.setState(gameState);
 	}
 
 	render() {
 		let game = this.state.game;
 		return (
-			<div className="game">
-				<div className="gameInfo">
-					<div className="playerColor">
-						Player: <b>{game.playerColor}</b>
+			<div className="game container-fluid">
+				<div className="row">
+					<div className="col">
+						<BoardComponent game={game} />
 					</div>
-					<div className="turn">
-						Turn: <b>{game.turn}</b>
-					</div>
-					<div className="status">
-						Status: <b>{game.status}</b>
+					<div className="col">
+						<GameInfoComponent game={game} />
 					</div>
 				</div>
-				<BoardComponent game={game} />
 			</div>
 		);
 	}

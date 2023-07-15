@@ -1,8 +1,20 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@page
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="boardContainer">
 </div>
+
+<script src="~/lib/babel/babel.min.js"></script>
+<script src="~/lib/react/react.development.js"></script>
+<script src="~/lib/react-dom/react-dom.development.js"></script>
+<script src="~/lib/signalr/signalr.min.js"></script>
+
+<script src="~/js/gamescripts/Piece.js"></script>
+<script src="~/js/gamescripts/GameState.js"></script>
+
+<script type="text/babel" src="~/js/gamescripts/components/PieceComp.jsx"></script>
+<script type="text/babel" src="~/js/gamescripts/components/BoardComp.jsx"></script>
+<script type="text/babel" src="~/js/gamescripts/components/GameInfoComp.jsx"></script>
+<script type="text/babel" src="~/js/gamescripts/components/GameComp.jsx"></script>
+
+<script src="~/js/gamescripts/gameListener.js"></script>
+<script type="text/babel" src="~/js/gamescripts/gameUI.jsx"></script>

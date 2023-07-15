@@ -4,12 +4,20 @@ class GameInfoComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			game: props.game
+			game: props.game,
+			hideJoin: false
 		};
 	}
 
 	isPlayerTurn() {
 		return this.state.game.playerColor == this.state.game.turn;
+	}
+
+	onJoinGameButton = () => {
+		joinGame();
+		this.setState({
+			hideJoin: true
+		});
 	}
 
 	render() {
@@ -59,9 +67,14 @@ class GameInfoComponent extends React.Component {
 					<li className="list-group-item">A second item</li>
 					<li className="list-group-item">A third item</li>
 				</ul>
-				<div className="card-body">
-					<button className="card-link btn btn-primary" onClick={joinGame}>Join Game</button>
-				</div>
+				{
+					!this.state.hideJoin
+						? <div className="card-body">
+							<button className="card-link btn btn-primary" onClick={this.onJoinGameButton}>Join Game</button>
+						</div>
+						: <></>
+				}
+				
 
 			</div>
 		);

@@ -46,7 +46,7 @@ If you don't have Git installed, you can manually download the repository and ex
 2. Run the following command to build the Docker image:
 
 ```
-docker build -t your-image-name .
+docker build -f Xiangqi.Web/Dockerfile -t your-image-name .
 ```
 
 ### Step 3: Run the Docker Container

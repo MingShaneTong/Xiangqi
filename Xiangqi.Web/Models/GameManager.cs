@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Xiangqi.Web.Models
+﻿namespace Xiangqi.Web.Models
 {
     public class GameManager
     {
@@ -64,6 +62,5 @@ namespace Xiangqi.Web.Models
                 game.BlackPlayerConnection == connection || 
                 game.RedPlayerConnection == connection;
         }
-
 	}
 }

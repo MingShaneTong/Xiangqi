@@ -1,9 +1,11 @@
-
 # Xiangqi
 
 The Xiangqi Game is an interactive online gaming application that brings the game of Xiangqi (also known as Chinese Chess) to your web browser. This project comprises a C# library for the Xiangqi game and web server and a web-based user interface, allowing players to play with opponents from around the world.
 
 Xiangqi is a two-player board game that simulates a battle between two armies. Each player commands an army including the General, Advisors, Elephants, Horses, Chariots, Cannons, and Soldiers. The objective is to capture the opponent's General while protecting your own. 
+
+![image](https://github.com/MingShaneTong/Xiangqi/assets/63452934/08db070f-e391-4fd1-a897-cc58a8aeb781)
+
 ## Features
 
 - Online Multiplayer

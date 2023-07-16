@@ -1,6 +1,7 @@
 ﻿"use script";
 
 let connection = new signalR.HubConnectionBuilder().withUrl("/chessGameHub").build();
+let gameContinue = true;
 
 connection.on("AwaitingOpponent", (msg) => {
 	console.log("AwaitingOpponent");
@@ -18,6 +19,18 @@ connection.on("GameState", (msg) => {
 	updateGameState(gameData);
 });
 
+connection.on("PlayerDisconnected", (msg) => {
+	console.log("PlayerDisconnected");
+	gameContinue = false;
+	endGameState("PlayerDisconnected");
+});
+
+connection.on("OpponentDisconnected", (msg) => {
+	console.log("OpponentDisconnected");
+	gameContinue = false;
+	endGameState("OpponentDisconnected");
+});
+
 connection.start();
 
 function joinGame() {
@@ -25,6 +38,9 @@ function joinGame() {
 }
 
 function movePiece(move) {
+	if (!gameContinue) {
+		return;
+	}
 	let moveData = JSON.stringify(move);
 	connection.invoke("GameMove", moveData);
 }

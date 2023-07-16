@@ -34,4 +34,9 @@ function updateGameState(gameData) {
 	gameRef.current.updateState(gameState);
 }
 
+function endGameState(status) {
+	gameState.status = status;
+	gameRef.current.updateState(gameState);
+}
+
 root.render(<GameComponent ref={gameRef} game={gameState} />);

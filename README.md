@@ -1,9 +1,11 @@
-
 # Xiangqi
 
 The Xiangqi Game is an interactive online gaming application that brings the game of Xiangqi (also known as Chinese Chess) to your web browser. This project comprises a C# library for the Xiangqi game and web server and a web-based user interface, allowing players to play with opponents from around the world.
 
 Xiangqi is a two-player board game that simulates a battle between two armies. Each player commands an army including the General, Advisors, Elephants, Horses, Chariots, Cannons, and Soldiers. The objective is to capture the opponent's General while protecting your own. 
+
+![image](https://github.com/MingShaneTong/Xiangqi/assets/63452934/08db070f-e391-4fd1-a897-cc58a8aeb781)
+
 ## Features
 
 - Online Multiplayer
@@ -15,7 +17,7 @@ Xiangqi is a two-player board game that simulates a battle between two armies. E
 
 **Web-based User Interface:** The client-side of the application is implemented as a web-based user interface using HTML, CSS, and JavaScript. The UI leverages modern React.js to deliver a seamless and engaging gaming experience.
 
-**Networking:** The application utilises SignalR, a library used to enable real time communication between the server and client, ensuring smooth gameplay and real-time updates.
+**Networking:** The application utilises SignalR, a library used to enable real-time communication between the server and client, ensuring smooth gameplay and real-time updates.
 
 ## Installation Guide
 

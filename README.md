@@ -17,7 +17,7 @@ Xiangqi is a two-player board game that simulates a battle between two armies. E
 
 **Web-based User Interface:** The client-side of the application is implemented as a web-based user interface using HTML, CSS, and JavaScript. The UI leverages modern React.js to deliver a seamless and engaging gaming experience.
 
-**Networking:** The application utilises SignalR, a library used to enable real time communication between the server and client, ensuring smooth gameplay and real-time updates.
+**Networking:** The application utilises SignalR, a library used to enable real-time communication between the server and client, ensuring smooth gameplay and real-time updates.
 
 ## Installation Guide
 

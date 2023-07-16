@@ -14,7 +14,31 @@ namespace Xiangqi.Web.Hubs
             GameManager = new GameManager();
         }
 
-        public void JoinGame()
+		public override Task OnDisconnectedAsync(Exception? exception)
+		{
+            var games = GameManager.EndGameWithUser(Context.ConnectionId);
+            if (games != null)
+            {
+			    foreach (var g in games)
+			    {
+			        // tell both players game has ended
+			        Clients.Clients(g.Value.RedPlayerConnection)
+				        .SendAsync(
+						    g.Value.RedPlayerConnection == Context.ConnectionId ?
+                                "PlayerDisconnected" : "OpponentDisconnected", 
+                            g.Key.ToString());
+			        Clients.Clients(g.Value.BlackPlayerConnection)
+				        .SendAsync(
+							g.Value.BlackPlayerConnection == Context.ConnectionId ?
+								"PlayerDisconnected" : "OpponentDisconnected",
+							g.Key.ToString());
+			    }
+
+            }
+			return base.OnDisconnectedAsync(exception);
+		}
+
+		public void JoinGame()
         {
             var gameJoined = GameManager.MatchConnection(Context.ConnectionId);
             if (gameJoined == null)

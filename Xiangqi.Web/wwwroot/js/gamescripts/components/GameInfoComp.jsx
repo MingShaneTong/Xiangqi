@@ -1,4 +1,4 @@
-﻿const endStatuses = ['Checkmate', 'Stalemate'];
+﻿const endStatuses = ['Checkmate', 'Stalemate', 'PlayerDisconnected', 'OpponentDisconnected'];
 
 class GameInfoComponent extends React.Component {
 	constructor(props) {
@@ -47,17 +47,26 @@ class GameInfoComponent extends React.Component {
 					</div>
 			) : <></>;
 
-		let gameEndAlert = gameEnded ?
-			(
-				yourTurn ?
+		let gameEndAlert = <></>;
+		if (gameEnded) {
+			if (this.state.game.status == 'PlayerDisconnected') {
+				gameEndAlert = <div className="alert alert-danger" role="alert">
+					You have lost by {this.state.game.status}
+				</div>
+			} else if (this.state.game.status == 'OpponentDisconnected') {
+				gameEndAlert = <div className="alert alert-success" role="alert">
+					You won by {this.state.game.status}
+				</div>
+			} else {
+				gameEndAlert = yourTurn ?
 					<div className="alert alert-danger" role="alert">
 						You have lost by {this.state.game.status}
 					</div> :
 					<div className="alert alert-success" role="alert">
 						You won by {this.state.game.status}
-					</div>
-			) : 
-			<></>
+					</div>;
+			}
+		}
 
 		let hasFooter = !this.state.hideJoin || gameEnded;
 		let joinButton = !this.state.hideJoin ?
@@ -80,11 +89,6 @@ class GameInfoComponent extends React.Component {
 					{gameEndAlert}
 					{inCheckAlert}
 				</div>
-				<ul className="list-group list-group-flush">
-					<li className="list-group-item">An item</li>
-					<li className="list-group-item">A second item</li>
-					<li className="list-group-item">A third item</li>
-				</ul>
 				{hasFooter ?
 					<div className="card-body">
 						{joinButton}

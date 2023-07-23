@@ -35,7 +35,7 @@ Before starting the installation process, ensure that you have the following pre
 3. Run the following command to clone the repository:
 
 ```
-git clone https://github.com/your-username/your-repository.git
+git clone https://github.com/MingShaneTong/Xiangqi.git
 ```
 
 If you don't have Git installed, you can manually download the repository and extract it to your desired location.
